@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Fhes后台管理系统</title>
+</head>
+<body>
+    欢迎您！{{username}} <a href="javascript:void(0);" id="logout">退出登录</a>
+    <script type="text/javascript" src="/cdn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/cdn/jquery.cookie.min.js"></script>
+    <script type="text/javascript">
+      $(function (){
+          $('#logout').on('click',function (e){
+              $.cookie('Authorization',null)
+              alert('退出成功！')
+              location.reload();
+          })
+      })
+    </script>
+</body>
+</html>
