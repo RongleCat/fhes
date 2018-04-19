@@ -4,10 +4,35 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const ctrl = require('../controllers/manage')
 
+//检测是否含有非法字符
+router.use(function (req, res, next) {
+  if (JSON.stringify(req.body) != '{}') {
+    let r = [];
+    for (var i in req.body) {
+      if (/[@#\$<>%\^&\*]+/g.test(req.body[i])) {
+        res.json({
+          ok: 0,
+          msg: '您提交的内容含有非法字符！'
+        })
+        return false;
+      }
+    }
+    next();
+  } else {
+    next();
+  }
+});
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   verifyToken(req, res, function (r) {
-    res.render('Manage/Index',r.data);
+    res.render('Manage/Main', r.data);
+  })
+});
+
+router.get('/index', function (req, res, next) {
+  verifyToken(req, res, function (r) {
+    res.render('Manage/Index', r.data);
   })
 });
 
@@ -18,7 +43,7 @@ router.get('/login', function (req, res, next) {
     } else {
       res.render('Manage/Login')
     }
-  },true)
+  }, true)
 });
 
 router.post('/login', function (req, res, next) {
@@ -78,8 +103,10 @@ function verifyToken(req, res, callback, type) {
       }
     })
   }).then(r => {
-    callback(r)
-  }).catch(r=>{
+    if (callback) {
+      callback(r)
+    }
+  }).catch(r => {
     res.redirect(302, '/manage/login')
   })
 }
