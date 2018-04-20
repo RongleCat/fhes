@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>首页</title>
-</head>
-<body>
-    共有 <a href="javascript:void(0);" data-target="articleList" data-href="/manage/article">100</a> 篇文章
-    <script type="text/javascript" src="/cdn/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="/pc/build/js/back_common.min.js"></script>    
-</body>
-</html>
+{% extends './_ManageLayout.html' %} 
+{% block title %}
+首页
+{% endblock %}
+{% block content %}
+  <div class="main">
+        共有 <a href="javascript:void(0);" data-target="articleList" data-href="/manage/article">100</a> 篇文章
+  </div>
+{% endblock %}

@@ -36,6 +36,25 @@ router.get('/index', function (req, res, next) {
   })
 });
 
+router.get('/article', function (req, res, next) {
+  verifyToken(req, res, function (r) {
+    res.render('Manage/Article', r.data);
+  })
+});
+
+router.get('/getArticleList', function (req, res, next) {
+  let param = req.query;
+  ctrl.getArticleList({
+    rule: {},
+    start: (param.page - 1) * param.limit,
+    limit: parseInt(param.limit)
+  }, (result) => {
+    result.code = 0;
+    result.msg = '查询成功！'
+    res.json(result);
+  })
+});
+
 router.get('/login', function (req, res, next) {
   verifyToken(req, res, function (r) {
     if (r.ok === 200) {

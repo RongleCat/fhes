@@ -1,0 +1,27 @@
+{% extends './_ManageLayout.html' %} 
+{% block title %}
+添加文章
+{% endblock %}
+{% block content %}
+  <div class="main">
+        <table class="layui-table" lay-data="{width: 892, height:332, url:'/manage/getArticleList', page:true, id:'idTest'}" lay-filter="demo">
+            <thead>
+              <tr>
+                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+                <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
+                <th lay-data="{field:'title', width:80}">中文标题</th>
+                <th lay-data="{field:'entitle', width:80, sort: true}">英文标题</th>
+                <th lay-data="{field:'edittime', width:80}">编辑时间</th>
+                <th lay-data="{field:'sign', width:160}">签名</th>
+                <th lay-data="{fixed:'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+              </tr>
+            </thead>
+          </table>
+           
+          <script type="text/html" id="barDemo">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+          </script>
+  </div>
+{% endblock %}

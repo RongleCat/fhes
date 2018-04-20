@@ -5,9 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %} - Fhes后台管理系统</title>
-    
+    <link rel="stylesheet" href="/cdn/layui/css/layui.css" media="all">    
+    <link rel="stylesheet" href="/pc/build/css/common.min.css">
+    <link rel="stylesheet" href="/pc/build/css/back_common.min.css">
+    {% block plugCss %}
+      
+    {% endblock %}
 </head>
 <body>
-    
+    <div class="main">
+    {% block content %}
+      
+    {% endblock %}
+    </div>
+    <script type="text/javascript" src="/cdn/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/cdn/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="/cdn/layui/layui.all.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/pc/build/js/back_common.min.js"></script>
+    {% block plugJs %}
+      
+    {% endblock %}
 </body>
 </html>
