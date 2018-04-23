@@ -78,7 +78,9 @@ $(function (){
         if (self != top) {
             let _parentEle = $(`#${target}`, parent.document)[0]
             $(_parentEle).parents('.layui-nav-item').addClass('layui-nav-itemed')
+            top.location.hash = target
             _parentEle.click()
+            console.log($.cookie('Authorization'));            
         }else{
             top.location.href = href
         }

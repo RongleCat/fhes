@@ -50,7 +50,7 @@
                                 <a href="javascript:;" id="articleList" data-href="/manage/article">文章列表</a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" data-href="http://www.fmcat.top/catool">添加文章</a>
+                                <a href="javascript:;" id="addArticle" data-href="http://www.fmcat.top/catool">添加文章</a>
                             </dd>
                         </dl>
                     </li>
@@ -78,14 +78,15 @@
             <iframe src="/manage/index" frameborder="0" id="back-main"></iframe>
         </div>
 
-        <div class="layui-footer">
+        <!-- <div class="layui-footer">
             Fhes后台管理系统
-        </div>
+        </div> -->
     </div>
     <script type="text/javascript" src="/cdn/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="/cdn/jquery.cookie.min.js"></script>
     <script type="text/javascript" src="/cdn/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript">
+        var hash = window.location.hash;
         $(function () {
             $('#logout').on('click', function (e) {
                 $.cookie('Authorization', null)
@@ -94,10 +95,17 @@
             })
             layui.use('element', function () {
                 var element = layui.element;
+                if (hash) {
+                    let _parentEle = $(hash)[0]
+                    $(_parentEle).parents('.layui-nav-item').addClass('layui-nav-itemed')
+                    _parentEle.click()
+                }
             });
             $('[data-href]').on('click', function () {
+                window.location.hash = $(this).attr('id');
                 $('#back-main')[0].src = $(this).data('href');
             })
+            console.log($.cookie('Authorization'));
         })
     </script>
 </body>

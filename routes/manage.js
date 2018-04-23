@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const ctrl = require('../controllers/manage')
 
-//检测是否含有非法字符
+//检测是否含有非法字符及登录权限验证跳转
 router.use(function (req, res, next) {
-  if (JSON.stringify(req.body) != '{}') {
+  if (req.method === 'POST') {
     let r = [];
     for (var i in req.body) {
       if (/[@#\$<>%\^&\*]+/g.test(req.body[i])) {
@@ -19,29 +19,36 @@ router.use(function (req, res, next) {
     }
     next();
   } else {
-    next();
+    if (req.url === '/login') {
+      verifyToken(req, res, function (r) {
+        req.verifyData = r        
+        next()
+      },true)
+    } else {
+      verifyToken(req, res, function (r) {
+        req.verifyData = r
+        next()
+      })
+    }
   }
 });
 
-/* GET home page. */
+//后台框架页
 router.get('/', function (req, res, next) {
-  verifyToken(req, res, function (r) {
-    res.render('Manage/Main', r.data);
-  })
+    res.render('Manage/Main',req.verifyData.data);
 });
 
+//后台首页
 router.get('/index', function (req, res, next) {
-  verifyToken(req, res, function (r) {
-    res.render('Manage/Index', r.data);
-  })
+  res.render('Manage/Index',req.verifyData.data);
 });
 
+//文章列表页面
 router.get('/article', function (req, res, next) {
-  verifyToken(req, res, function (r) {
-    res.render('Manage/Article', r.data);
-  })
+  res.render('Manage/Article',req.verifyData.data);
 });
 
+//文章列表内容
 router.get('/getArticleList', function (req, res, next) {
   let param = req.query;
   ctrl.getArticleList({
@@ -55,16 +62,17 @@ router.get('/getArticleList', function (req, res, next) {
   })
 });
 
+//登录页
 router.get('/login', function (req, res, next) {
-  verifyToken(req, res, function (r) {
-    if (r.ok === 200) {
-      res.redirect(302, '/manage');
-    } else {
-      res.render('Manage/Login')
-    }
-  }, true)
+  let verifyData = req.verifyData;
+  if (verifyData.ok === 200) {
+    res.redirect(302, '/manage');
+  } else {
+    res.render('Manage/Login')
+  }
 });
 
+//登录页=接口
 router.post('/login', function (req, res, next) {
   let body = req.body;
   ctrl.verifyAdmin(body, result => {
@@ -83,10 +91,8 @@ router.post('/login', function (req, res, next) {
     }
   })
 });
-// router.get('/login', function(req, res, next) {
-//   res.render('Manage/Login');
-// });
 
+//创建token并向客户端设置最新token
 function createToken(res, data) {
   let cert = fs.readFileSync('cert/private.key')
   let token = jwt.sign(data, cert, {
@@ -97,12 +103,16 @@ function createToken(res, data) {
   return token
 }
 
+//验证当前请求的客户端token
 function verifyToken(req, res, callback, type) {
-  var token = req.cookies.Authorization
-  var cert = fs.readFileSync('cert/public.key')
+  //获取客户端token
+  let token = req.cookies.Authorization
+  //获取证书公钥
+  let cert = fs.readFileSync('cert/public.key')
   return new Promise((rok, rno) => {
     jwt.verify(token, cert, function (err, decoded) {
       if (err) {
+        //验证失败判断是否是登录页面
         if (!type) {
           rno({
             ok: 0,
@@ -115,17 +125,34 @@ function verifyToken(req, res, callback, type) {
           })
         }
       } else {
+        //验证成功刷新客户端token，保持登录状态
+        let {
+          id,
+          username,
+          password,
+          createtime
+        } = decoded
+        createToken(res, {
+          id,
+          username,
+          password,
+          createtime
+        })
         rok({
           ok: 200,
           data: decoded
         })
       }
     })
-  }).then(r => {
+  })
+  //验证成功执行回调
+  .then(r => {
     if (callback) {
       callback(r)
     }
-  }).catch(r => {
+  })
+  //验证失败返回登录页
+  .catch(r => {
     res.redirect(302, '/manage/login')
   })
 }
