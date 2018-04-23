@@ -50,7 +50,7 @@
                                 <a href="javascript:;" id="articleList" data-href="/manage/article">文章列表</a>
                             </dd>
                             <dd>
-                                <a href="javascript:;" id="addArticle" data-href="http://www.fmcat.top/catool">添加文章</a>
+                                <a href="javascript:;" id="addArticle" data-href="/manage/addarticle">添加文章</a>
                             </dd>
                         </dl>
                     </li>
@@ -105,7 +105,7 @@
                 window.location.hash = $(this).attr('id');
                 $('#back-main')[0].src = $(this).data('href');
             })
-            console.log($.cookie('Authorization'));
+            // console.log($.cookie('Authorization'));
         })
     </script>
 </body>

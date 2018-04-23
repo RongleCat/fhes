@@ -1,27 +1,74 @@
-{% extends './_ManageLayout.html' %} 
-{% block title %}
-添加文章
-{% endblock %}
+{% extends './_ManageLayout.html' %} {% block title %} 添加文章 {% endblock %} {% block childTitle %} 添加文章 {% endblock %}
+
 {% block content %}
-  <div class="main">
-        <table class="layui-table" lay-data="{width: 892, height:332, url:'/manage/getArticleList', page:true, id:'idTest'}" lay-filter="demo">
-            <thead>
-              <tr>
-                <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
-                <th lay-data="{field:'id', width:80, sort: true, fixed: true}">ID</th>
-                <th lay-data="{field:'title', width:80}">中文标题</th>
-                <th lay-data="{field:'entitle', width:80, sort: true}">英文标题</th>
-                <th lay-data="{field:'edittime', width:80}">编辑时间</th>
-                <th lay-data="{field:'sign', width:160}">签名</th>
-                <th lay-data="{fixed:'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
-              </tr>
-            </thead>
-          </table>
-           
-          <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-            <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-          </script>
-  </div>
+<form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">中文标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="" placeholder="请输入中文标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">中文副标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="subtitle" lay-verify="" placeholder="请输入中文副标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">中文内容</label>
+        <div class="layui-input-block">
+            <!-- <textarea name="desc" placeholder="请输入内容" id="zhContent"></textarea> -->
+            <div id="zhContent">
+                    <p>请输入内容</p>
+                </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">添加英文</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="switch" lay-skin="switch">
+        </div>
+    </div>
+
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">英文标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="entitle" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">英文副标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="ensubtitle" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+{% endblock %} {% block plugJs %}
+<script type="text/javascript" src="/cdn/wangEditor/wangEditor.min.js"></script>
+<script>
+   $(function () {
+        var E = window.wangEditor
+        var zhContent = new E('#zhContent')
+        console.log(zhContent);
+        // 或者 var zhContent = new E( document.getElementById('zhContent') )
+        zhContent.create()
+        layui.use('form', function () {
+            var form = layui.form;
+
+            //监听提交
+            form.on('submit(formDemo)', function (data) {
+                layer.msg(JSON.stringify(data.field));
+                return false;
+            });
+        });
+    })
+</script>
 {% endblock %}

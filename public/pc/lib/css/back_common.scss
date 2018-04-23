@@ -10,7 +10,15 @@
 
 .main{
     padding: 20px;
-    .layui-table{
+    .layui-table,.layui-table-view{
         margin: 0;
+    }
+    .page-title{
+        line-height: 18px;
+        font-size: 18px;
+        font-weight: normal;
+        border-bottom:1px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
     }
 }

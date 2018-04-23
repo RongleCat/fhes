@@ -53,9 +53,10 @@
                     dataType: "json",
                     data: post,
                     success: function (data) {
-                        alert(data.msg)
                         if (data.ok === 200) {
                             window.location.href = '/manage'
+                        }else{
+                            alert(data.msg)
                         }
                     }
                 });

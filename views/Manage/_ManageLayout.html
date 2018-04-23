@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %} - Fhes后台管理系统</title>
     <link rel="stylesheet" href="/cdn/layui/css/layui.css" media="all">    
-    <link rel="stylesheet" href="/pc/build/css/common.min.css">
+    <!-- <link rel="stylesheet" href="/pc/build/css/common.min.css"> -->
     <link rel="stylesheet" href="/pc/build/css/back_common.min.css">
     {% block plugCss %}
       
@@ -14,6 +14,9 @@
 </head>
 <body>
     <div class="main">
+        <h2 class="page-title">
+            {% block childTitle %}{% endblock %}
+        </h2>
     {% block content %}
       
     {% endblock %}

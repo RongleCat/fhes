@@ -21,9 +21,9 @@ router.use(function (req, res, next) {
   } else {
     if (req.url === '/login') {
       verifyToken(req, res, function (r) {
-        req.verifyData = r        
+        req.verifyData = r
         next()
-      },true)
+      }, true)
     } else {
       verifyToken(req, res, function (r) {
         req.verifyData = r
@@ -35,24 +35,40 @@ router.use(function (req, res, next) {
 
 //后台框架页
 router.get('/', function (req, res, next) {
-    res.render('Manage/Main',req.verifyData.data);
+  res.render('Manage/Main', req.verifyData.data);
 });
 
 //后台首页
 router.get('/index', function (req, res, next) {
-  res.render('Manage/Index',req.verifyData.data);
+  res.render('Manage/Index', req.verifyData.data);
 });
 
 //文章列表页面
 router.get('/article', function (req, res, next) {
-  res.render('Manage/Article',req.verifyData.data);
+  res.render('Manage/Article', req.verifyData.data);
+});
+
+//添加文章页面
+router.get('/addarticle', function (req, res, next) {
+  res.render('Manage/AddArticle', req.verifyData.data);
 });
 
 //文章列表内容
 router.get('/getArticleList', function (req, res, next) {
   let param = req.query;
+  let rule = '';
+  if (param.language !== '11' && param.language !== '00' && param.language) {
+    rule += `language like '${param.language.replace('0', '%')}' `
+  }
+  if (param.keyword) {
+    if (rule == '') {
+      rule += `title like '%${param.keyword}%' or entitle like '%${param.keyword}%'`
+    } else {
+      rule += `and (title like '%${param.keyword}%' or entitle like '%${param.keyword}%')`
+    }
+  }
   ctrl.getArticleList({
-    rule: {},
+    rule,
     start: (param.page - 1) * param.limit,
     limit: parseInt(param.limit)
   }, (result) => {
@@ -110,51 +126,51 @@ function verifyToken(req, res, callback, type) {
   //获取证书公钥
   let cert = fs.readFileSync('cert/public.key')
   return new Promise((rok, rno) => {
-    jwt.verify(token, cert, function (err, decoded) {
-      if (err) {
-        //验证失败判断是否是登录页面
-        if (!type) {
-          rno({
-            ok: 0,
-            data: err
-          })
+      jwt.verify(token, cert, function (err, decoded) {
+        if (err) {
+          //验证失败判断是否是登录页面
+          if (!type) {
+            rno({
+              ok: 0,
+              data: err
+            })
+          } else {
+            rok({
+              ok: 0,
+              data: err
+            })
+          }
         } else {
+          //验证成功刷新客户端token，保持登录状态
+          let {
+            id,
+            username,
+            password,
+            createtime
+          } = decoded
+          createToken(res, {
+            id,
+            username,
+            password,
+            createtime
+          })
           rok({
-            ok: 0,
-            data: err
+            ok: 200,
+            data: decoded
           })
         }
-      } else {
-        //验证成功刷新客户端token，保持登录状态
-        let {
-          id,
-          username,
-          password,
-          createtime
-        } = decoded
-        createToken(res, {
-          id,
-          username,
-          password,
-          createtime
-        })
-        rok({
-          ok: 200,
-          data: decoded
-        })
+      })
+    })
+    //验证成功执行回调
+    .then(r => {
+      if (callback) {
+        callback(r)
       }
     })
-  })
-  //验证成功执行回调
-  .then(r => {
-    if (callback) {
-      callback(r)
-    }
-  })
-  //验证失败返回登录页
-  .catch(r => {
-    res.redirect(302, '/manage/login')
-  })
+    //验证失败返回登录页
+    .catch(r => {
+      res.redirect(302, '/manage/login')
+    })
 }
 
 module.exports = router;
