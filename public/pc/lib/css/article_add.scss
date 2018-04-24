@@ -1,0 +1,25 @@
+.w-e-text-container {
+    min-height: 600px;
+    border-radius: 0 0 2px 2px;
+}
+
+.input-content {
+    >div {
+        border-color: #e6e6e6 !important;
+        transition: border-color .3s;
+    }
+    &.focus {
+        >div {
+            border-color: #c9c9c9 !important;
+        }
+    }
+    &:hover{
+        >div {
+            border-color: #d2d2d2 !important;
+        }
+    }
+}
+
+.en-block{
+    display: none;
+}

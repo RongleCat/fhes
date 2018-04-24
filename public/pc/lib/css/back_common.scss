@@ -1,4 +1,4 @@
-#back-main{
+#back-main {
     position: absolute;
     top: 0;
     left: 0;
@@ -8,17 +8,53 @@
     width: 100%;
 }
 
-.main{
-    padding: 20px;
-    .layui-table,.layui-table-view{
+.main {
+    padding: 0 20px;
+    .layui-table,
+    .layui-table-view {
         margin: 0;
     }
-    .page-title{
-        line-height: 18px;
-        font-size: 18px;
-        font-weight: normal;
-        border-bottom:1px solid #ddd;
-        padding-bottom: 20px;
+    .page-title {
+        position: relative;
+        height: 60px;
+        border-bottom: 1px solid #ddd;
         margin-bottom: 20px;
+        .child-title {
+            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .block-tools{
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            .layui-form-item{
+                margin: 0;
+            }
+        }
     }
+}
+
+.line-box{
+    width: 100%;
+    height: 1px;
+    background: #ccc;
+    margin: 30px 0;
+    >span{
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        top: -6px;
+        font-size: 14px;
+        line-height: 14px;
+        width: 120px;
+        text-align: center;
+        background: #fff;
+    }
+}
+
+a{
+    outline: none;
 }

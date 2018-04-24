@@ -3,18 +3,21 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const ctrl = require('../controllers/manage')
+const utils = require('./utils')
 
 //检测是否含有非法字符及登录权限验证跳转
 router.use(function (req, res, next) {
   if (req.method === 'POST') {
     let r = [];
     for (var i in req.body) {
-      if (/[@#\$<>%\^&\*]+/g.test(req.body[i])) {
-        res.json({
-          ok: 0,
-          msg: '您提交的内容含有非法字符！'
-        })
-        return false;
+      if (i.indexOf('content') == -1) {
+        if (/[@#\$<>%\^&\*]+/g.test(req.body[i])) {
+          res.json({
+            ok: 0,
+            msg: '您提交的内容含有非法字符！'
+          })
+          return false;
+        }
       }
     }
     next();
@@ -51,6 +54,40 @@ router.get('/article', function (req, res, next) {
 //添加文章页面
 router.get('/addarticle', function (req, res, next) {
   res.render('Manage/AddArticle', req.verifyData.data);
+});
+//添加文章接口
+router.post('/addarticle', function (req, res, next) {
+  let body = req.body;
+  body.edittime = utils.dateFormat(new Date());
+  ctrl.insertArticle(body).then(result =>{
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err =>{
+    res.json({
+      ok: 0,
+      data: err,
+      msg:'文章保存失败'
+    })
+  });
+});
+
+router.post('/deletearticle', function (req, res, next) {
+  let body = req.body;
+  body.id = parseInt(body.id);
+  ctrl.deleteArticle(body).then(result =>{
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err =>{
+    res.json({
+      ok: 0,
+      data: err,
+      msg:'文章删除失败'
+    })
+  });
 });
 
 //文章列表内容

@@ -1,4 +1,4 @@
-{% extends './_ManageLayout.html' %} {% block title %} 文章列表 {% endblock %} 
+{% extends './_ManageLayout.html' %} {% block title %} 文章列表 {% endblock %}
 {% block plugCss %}
   <link rel="stylesheet" href="/pc/build/css/article_index.min.css">
 {% endblock %}
@@ -10,8 +10,8 @@
     <div class="layui-form-item">
         <div class="layui-inline">
             <div class="layui-input-block">
-                <input type="checkbox" class="lang" name="zh" title="中文">
-                <input type="checkbox" class="lang" name="en" title="英文">
+                <input type="checkbox" class="lang" lay-filter="lang" name="zh" title="中文" checked>
+                <input type="checkbox" class="lang" lay-filter="lang" name="en" title="英文" checked>
             </div>
         </div>
         <div class="layui-inline">
