@@ -3,7 +3,24 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const ctrl = require('../controllers/manage')
+const ctrlWeb = require('../controllers/webpc')
 const utils = require('./utils')
+const qiniu = require('qiniu');
+const config = {
+  'ACCESS_KEY': 'WhJVctKpmNEc-fCxGANwDpVAhtUi9CFKPWe2IKCg', // 此处填写自己申请的 ACCESS_KEY
+  'SECRET_KEY': '2qXbI_LHWUWgEFN8MnEU4At4jEOon4CZJIgUx86Y', // 此处填写自己申请的 SECRET_KEY
+  'Bucket_Name': 'fhes', // 此处填写自己的 Bucket_Name
+}
+
+
+qiniu.conf.ACCESS_KEY = config.ACCESS_KEY;
+qiniu.conf.SECRET_KEY = config.SECRET_KEY;
+
+let uptoken = new qiniu.rs.PutPolicy({
+  scope: 'fhesimages',
+  expires: 100000
+});
+// console.log(uptoken.uploadToken());
 
 //检测是否含有非法字符及登录权限验证跳转
 router.use(function (req, res, next) {
@@ -55,37 +72,90 @@ router.get('/article', function (req, res, next) {
 router.get('/addarticle', function (req, res, next) {
   res.render('Manage/AddArticle', req.verifyData.data);
 });
+
+//修改文章页面
+router.get('/editarticle/:id', function (req, res, next) {
+  ctrlWeb.getNewsDetail({
+    id: parseInt(req.params.id)
+  }, result => {
+    res.render('Manage/EditArticle', result[0]);
+  }).catch(err => {
+    console.log(err);
+    res.render('error', err);
+  })
+});
+
+
 //添加文章接口
 router.post('/addarticle', function (req, res, next) {
   let body = req.body;
   body.edittime = utils.dateFormat(new Date());
-  ctrl.insertArticle(body).then(result =>{
+  ctrl.insertArticle(body).then(result => {
     res.json({
       ok: 200,
       data: result
     })
-  }).catch(err =>{
+  }).catch(err => {
     res.json({
       ok: 0,
       data: err,
-      msg:'文章保存失败'
+      msg: '文章保存失败'
     })
   });
 });
 
-router.post('/deletearticle', function (req, res, next) {
+//修改文章接口
+router.post('/editarticle', function (req, res, next) {
   let body = req.body;
-  body.id = parseInt(body.id);
-  ctrl.deleteArticle(body).then(result =>{
+  body.edittime = utils.dateFormat(new Date());
+  let url = req.headers.referer.split('/');
+  let params = {
+    id: parseInt(url[url.length - 1]),
+    data: body
+  }
+  body.edittime = utils.dateFormat(new Date());
+  ctrl.updateArticle(params).then(result => {
     res.json({
       ok: 200,
       data: result
     })
-  }).catch(err =>{
+  }).catch(err => {
     res.json({
       ok: 0,
       data: err,
-      msg:'文章删除失败'
+      msg: '文章保存失败'
+    })
+  });
+});
+
+
+//获取七牛上传token接口
+router.get('/uptoken', function (req, res, next) {
+  var token = uptoken.uploadToken();
+  res.header("Cache-Control", "max-age=0, private, must-revalidate");
+  res.header("Pragma", "no-cache");
+  res.header("Expires", 0);
+  if (token) {
+    res.json({
+      uptoken: token
+    });
+  }
+});
+
+//删除文章接口
+router.post('/deletearticle', function (req, res, next) {
+  let body = req.body;
+  body.id = parseInt(body.id);
+  ctrl.deleteArticle(body).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '文章删除失败'
     })
   });
 });

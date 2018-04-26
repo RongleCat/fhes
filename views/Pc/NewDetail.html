@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <div class="time">最后编辑时间：{{= edittime|date('Y-m-d h:m:s') =}} 发布时间：{{= createtime|date('Y-m-d h:m:s') =}}</div>
+    <div class="time">最后编辑时间：{{= edittime|date('Y-m-d H:i:s', -480, 'CCT') =}} 发布时间：{{= createtime|date('Y-m-d H:i:s', -480, 'CCT') =}}</div>
     <h2>{{title || title}}</h2>
     <h4>{{subtitle || ensubtitle}}</h4>
     <div class="content">
-        {% autoescape %}{{ content }}{% endautoescape %}
+        {% autoescape %}{{ content || encontent }}{% endautoescape %}
     </div>
 </body>
 
