@@ -1,10 +1,11 @@
 function uploadInit(editor) {
-    var btnId = editor.imgMenuId;
-    var containerId = editor.toolbarElemId;
-    var textElemId = editor.textElemId;
+    let btnId = editor.imgMenuId;
+    let containerId = editor.toolbarElemId;
+    let textElemId = editor.textElemId;
+    let mask = {};
 
     // 创建上传对象
-    var uploader = Qiniu.uploader({
+    let uploader = Qiniu.uploader({
         runtimes: 'html5,flash,html4', //上传模式,依次退化
         browse_button: btnId, //上传选择的点选按钮，**必需**
         uptoken_url: '/manage/uptoken',
@@ -15,7 +16,7 @@ function uploadInit(editor) {
         // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
         // save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://image.fmcat.top/',
+        domain: 'http://p8wnfmuiu.bkt.clouddn.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: containerId, //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '100mb', //最大文件体积限制
@@ -35,19 +36,17 @@ function uploadInit(editor) {
         chunk_size: '4mb', //分块上传时，每片的体积
         auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
         init: {
-            'FilesAdded': function (up, files) {
-                plupload.each(files, function (file) {
-                    // 文件添加进队列后,处理相关的事情
-                    printLog('on FilesAdded');
-                });
-            },
-            'BeforeUpload': function (up, file) {
-                // 每个文件上传前,处理相关的事情
-                printLog('on BeforeUpload');
+            'FilesAdded': function(up, files) {
+                mask = createLoadingLayer(editor.toolbarSelector)
+                mask.progress = mask.parent.find('.progress-bgcolor')
+                mask.icon = mask.parent.find('use')[0]
+                mask.textP = mask.parent.find('.progress-text')
+                setLoadingAnimation(mask.icon, mask.iconList, containerId)
             },
             'UploadProgress': function (up, file) {
-                // 显示进度
-                printLog('进度 ' + file.percent)
+                printLog('进度 ' + uploader.total.percent)
+                mask.progress.css('width', uploader.total.percent + '%')
+                mask.textP.text(`正在上传图片(${uploader.total.percent}%)`)
             },
             'FileUploaded': function (up, file, info) {
                 // 每个文件上传成功后,处理相关的事情
@@ -59,9 +58,9 @@ function uploadInit(editor) {
                 printLog(info);
                 // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
 
-                var domain = up.getOption('domain');
-                var res = $.parseJSON(info);
-                var sourceLink = domain + res.key; //获取上传成功后的文件的Url
+                let domain = up.getOption('domain');
+                let res = $.parseJSON(info);
+                let sourceLink = domain + res.key; //获取上传成功后的文件的Url
 
                 printLog(sourceLink);
 
@@ -73,15 +72,15 @@ function uploadInit(editor) {
                 printLog('on Error');
             },
             'UploadComplete': function () {
-                //队列文件处理完毕后,处理相关的事情
-                printLog('on UploadComplete');
+                window.clearInterval(window[containerId + '_loading']);
+                mask.parent.find('.img-upload-mask').remove();
             }
             // Key 函数如果有需要自行配置，无特殊需要请注释
             //,
             // 'Key': function(up, file) {
             //     // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
             //     // 该配置必须要在 unique_names: false , save_key: false 时才生效
-            //     var key = "";
+            //     let key = "";
             //     // do something with key here
             //     return key
             // }
@@ -94,4 +93,38 @@ function uploadInit(editor) {
 // 封装 console.log 函数
 function printLog(title, info) {
     window.console && console.log(title, info);
+}
+
+//获取所有svg图标id
+function getSVGIconList() {
+    let list = [];
+    $('svg symbol').map((index, item) => {
+        list.push(item.id)
+    })
+    return list
+}
+
+//添加icon图标，并设置动画
+function setLoadingAnimation($el, iconList, containerId) {
+    window[containerId + '_loading'] = setInterval(() => {
+        $el.href.baseVal = `#${iconList[Math.floor(Math.random()*iconList.length)]}`
+    }, 1000)
+}
+
+function createLoadingLayer(editorId) {
+    let iconList = getSVGIconList();
+    let $parent = $(editorId).parent();
+    $parent.append(`<div class="img-upload-mask">
+        <svg class="icon loading-icon" aria-hidden="true">
+            <use xlink:href="#${iconList[Math.floor(Math.random()*iconList.length)]}"></use>
+        </svg>
+        <p class="progress-text">正在上传图片</p>
+        <div class="progress-container">
+            <div class="progress-bgcolor"></div>
+        </div>
+    </div>`)
+    return {
+        parent: $parent,
+        iconList
+    }
 }

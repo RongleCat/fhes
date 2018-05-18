@@ -13,13 +13,55 @@
             border-color: #c9c9c9 !important;
         }
     }
-    &:hover{
+    &:hover {
         >div {
             border-color: #d2d2d2 !important;
         }
     }
 }
 
-.en-block{
+.en-block {
     display: none;
 }
+
+.layui-input-block {
+    position: relative;
+}
+
+.img-upload-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, .7);
+    z-index: 10002;
+    border: 1px solid #e6e6e6;
+    padding-top: 190px;
+    .icon {
+        width: 160px;
+        height: 160px;
+        display: block;
+        fill: currentColor;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    .progress-text{
+        text-align: center;
+        margin: 0 0 20px 0;
+    }
+    .progress-container{
+        width: 300px;
+        height: 30px;
+        border: 1px solid #f0f0f0;
+        margin: 0 auto;
+        position: relative;
+        .progress-bgcolor{
+            width: 0;
+            height: 100%;
+            background: #42c02e;
+        }
+    }
+}
+
+

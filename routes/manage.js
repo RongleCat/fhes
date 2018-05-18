@@ -7,9 +7,8 @@ const ctrlWeb = require('../controllers/webpc')
 const utils = require('./utils')
 const qiniu = require('qiniu');
 const config = {
-  'ACCESS_KEY': 'WhJVctKpmNEc-fCxGANwDpVAhtUi9CFKPWe2IKCg', // 此处填写自己申请的 ACCESS_KEY
-  'SECRET_KEY': '2qXbI_LHWUWgEFN8MnEU4At4jEOon4CZJIgUx86Y', // 此处填写自己申请的 SECRET_KEY
-  'Bucket_Name': 'fhes', // 此处填写自己的 Bucket_Name
+  'ACCESS_KEY': '_7FzMf-18W0voaEVxQiPiNPnp7RTqb-g_Z5pszO9', // 此处填写自己申请的 ACCESS_KEY
+  'SECRET_KEY': 'raFS99akPMzVgNCs7FrLHaVp1_nvRjTE-HHdI0mv', // 此处填写自己申请的 SECRET_KEY
 }
 
 

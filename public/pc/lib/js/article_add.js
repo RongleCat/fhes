@@ -1,3 +1,4 @@
+
 $(function () {
     var E = window.wangEditor
     var _menu = [
@@ -137,4 +138,9 @@ $(function () {
     // $(window).bind('beforeunload', function () {
     //     return '';
     // });
+    // console.log($('svg'));
+    // setLoadingAnimation($('.img-upload-mask').eq(0));
+    // setTimeout(() => {
+    //     $('#loading-icon').find('use')[0].href.baseVal = '#icon-qie'
+    // }, 1000);
 })

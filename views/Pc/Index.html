@@ -1,12 +1,272 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{title}}</title>
-</head>
-<body>
-    sssss
-</body>
-</html>
+{% extends './_layout.html' %}
+{% block title %}
+  FHES首页
+{% endblock %}
+{% block content %}
+<div class="top-img" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/top_bg.jpg"></div>
+<div class="video-container">
+    <video id="my-player" class="video-js" controls preload="auto" poster="//p8vbi0sf0.bkt.clouddn.com/images/video_cover.jpg" data-setup='{}'>
+        <source src="http://p8vbsyyqf.bkt.clouddn.com/fhes.mp4" type="video/mp4"></source>
+        <p class="vjs-no-js">
+            若要查看此视频，请启用JavaScript，或者考虑升级网页浏览器
+            <a href="http://videojs.com/html5-video-support/" target="_blank">
+                supports HTML5 video
+            </a>
+        </p>
+    </video>
+    <div class="video-bottom" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/video_bottom.jpg"></div>
+</div>
+<div class="window-container" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window_bg.jpg">
+    <div class="block-title">{{lang.application}}</div>
+    <ul class="fold_wrap{{lang.langClass}}" id="sm">
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.food}}</h4>
+                </div>
+                <div class="pic_auto pic_auto1" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/01.jpg"></div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.seed}}</h4>
+                </div>
+                <div class="pic_auto pic_auto2" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/02.jpg"></div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.packaging}}</h4>
+                </div>
+                <div class="pic_auto pic_auto3" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/03.jpg"></div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.bottle}}</h4>
+                </div>
+                <div class="pic_auto pic_auto4" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/04.jpg"></div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.salt}}</h4>
+                </div>
+                <div class="pic_auto pic_auto5" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/05.jpg"></div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="mask_b">
+                    <h4>{{lang.parts}}</h4>
+                </div>
+                <div class="pic_auto pic_auto6" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/window/06.jpg"></div>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="class-container">
+    <div class="block-title font-black">{{lang.productseries}}</div>
+    <div class="class-list clearfix">
+        <div class="class-item item-01" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg">
+            <a href="#">
+                <div class="tip-bar">激光
+                    <u>{{lang.readmore}}></u>
+                </div>
+            </a>
+            <div class="mask-layer"></div>
+        </div>
+        <div class="class-item item-02" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/02.jpg">
+            <a href="#">
+                <div class="tip-bar">CIJ
+                    <u>{{lang.readmore}}></u>
+                </div>
+            </a>
+            <div class="mask-layer"></div>
+        </div>
+        <div class="class-item item-03" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/03.jpg">
+            <a href="#">
+                <div class="tip-bar">DP
+                    <u>{{lang.readmore}}></u>
+                </div>
+            </a>
+            <div class="mask-layer"></div>
+        </div>
+    </div>
+    <div class="class-view-block">
+        <div class="bg-layer"></div>
+        <div class="content-layer">
+            <div class="content-layer-main clearfix{{lang.langClass}}">
+                <div class="vertical-line">
+                    <div class="class-view-item">
+                        <div class="img-block" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class_view.jpg"></div>
+                        <div class="text-block">
+                            {{lang.productqr}}
+                        </div>
+                    </div>
+                    <div class="class-view-item">
+                        <div class="img-block" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class_view.jpg"></div>
+                        <div class="text-block">
+                            {{lang.counterfeitingsystem}}
+                        </div>
+                    </div>
+                </div>
+                <div class="vertical-line">
+                    <div class="class-view-item long-view">
+                        <div class="text-block black">
+                            {{lang.qrmarketing}}
+                        </div>
+                        <div class="img-block" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class_view.jpg"></div>
+                    </div>
+                </div>
+                <div class="vertical-line">
+                    <div class="class-view-item">
+                        <div class="img-block" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class_view.jpg"></div>
+                        <div class="text-block">
+                            {{lang.qrassignment}}
+                        </div>
+                    </div>
+                    <div class="class-view-item">
+                        <div class="img-block" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class_view.jpg"></div>
+                        <div class="text-block">
+                            {{lang.datamonitoring}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="news-container">
+    <div class="block-title font-black">{{lang.latestnews}}</div>
+    <!-- <div class="btn-ctrl btn-prev">
+        <i class="iconfont icon-fanhui"></i>
+    </div>
+    <div class="btn-ctrl btn-next">
+        <i class="iconfont icon-gengduo"></i>
+    </div> -->
+    <div id="news-list">
+        <div class="slide-box ">
+            <div class="slide-con">
+                <div class="slide-out">
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                    <div class="slide-li">
+                        <a href="#">
+                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
+                            <div class="title-box">数据检测采集本世纪见分晓</div>
+                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                            <div class="detail-text">{{lang.readmore}}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-page">
+                <div class="slide-button-prev" id="slide-button-prev">
+                    <i></i>
+                </div>
+                <div class="slide-button-next" id="slide-button-next">
+                    <i></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="view-more">
+        <a href="#">{{lang.readmore}}</a>
+    </div>
+</div>
+<div class="market-container">
+    <div class="block-title font-black">{{lang.marketdevelopment}}</div>
+    <div class="three-icon-button clearfix">
+        <div class="button-item item-01">
+            <a href="#">
+                <span>{{lang.marketcoverage}}</span>
+            </a>
+        </div>
+        <div class="button-item item-02">
+            <a href="#">
+                <span>{{lang.partners}}</span>
+            </a>
+        </div>
+        <div class="button-item item-03">
+            <a href="#">
+                <span>{{lang.dealerenquiry}}</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="service-container">
+    <div class="block-title font-black">{{lang.technicalsupport}}</div>
+    <ul class="service-list clearfix{{lang.langClass}}">
+        <li>
+            <a href="#">{{lang.installation}}</a>
+        </li>
+        <li>
+            <a href="#">{{lang.thesoftware}}</a>
+        </li>
+        <li>
+            <a href="#">{{lang.productionlinereform}}</a>
+        </li>
+        <li>
+            <a href="#">{{lang.customplatform}}</a>
+        </li>
+        <li>
+            <a href="#">{{lang.download}}</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+{% block plugCss %}
+<link href="//p8vbkdd7w.bkt.clouddn.com/video/video-js.min.css{{dev}}" rel="stylesheet">
+<link rel="stylesheet" href="//p8vbkdd7w.bkt.clouddn.com/fullScreenSlide/css/full-screen-slide.min.css{{dev}}">
+<link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/home_index.min.css{{dev}}">
+{% endblock %}
+
+{% block plugJs %}
+
+<script src="//p8vbkdd7w.bkt.clouddn.com/fullScreenSlide/js/full-screen-slide.min.js{{dev}}"></script>
+<script src="//p8vbkdd7w.bkt.clouddn.com/video/video.min.js{{dev}}"></script>
+<script type="text/javascript" src="//p8vbi0sf0.bkt.clouddn.com/js/home_index.min.js{{dev}}"></script>
+{% endblock %}

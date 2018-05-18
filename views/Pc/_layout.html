@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
+    <meta name="renderer" content="webkit">
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_kn5szra9k7ec23xr.css{{dev}}">
+    <link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/common.min.css{{dev}}"> {% block plugCss %} {% endblock %}
+</head>
+
+<body>
+    <div class="common-header">
+        <div class="header-main">
+            <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt="FHES" class="logo">
+            <ul class="nav-list clearfix">
+                <li class="active">
+                    <a href="#">{{lang.home}}</a>
+                </li>
+                <li>
+                    <a href="#">{{lang.about}}</a>
+                </li>
+                <li>
+                    <a href="#">{{lang.product}}</a>
+                </li>
+                <li>
+                    <a href="#">{{lang.solution}}</a>
+                </li>
+                <li>
+                    <a href="#">{{lang.market}}</a>
+                </li>
+                <li>
+                    <a href="#">{{lang.services}}</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0);" class="select-lang">
+                <i class="iconfont {{lang.langIcon}}"></i>{{lang.lang}}</a>
+        </div>
+    </div>
+    <div class="main-container">
+        {% block content %} {% endblock %}
+    </div>
+    {% if !other %}
+    <div class="common-footer">
+    {% else %}
+    <div class="common-footer other">
+    {% endif %}
+            <div class="footer-main">
+                <div class="bottom-nav-list clearfix{{lang.langClass}}">
+                    <div class="bottom-nav-item">
+                        <div class="item-title">
+                            {{lang.aboutus}}
+                        </div>
+                        <ul class="item-list">
+                            <li>
+                                <a href="#">{{lang.companyintroduction}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.companynews}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.research}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.investoreelations}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.humanresources}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{developmentprospect}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-nav-item">
+                        <div class="item-title">
+                            {{lang.productseries}}
+                        </div>
+                        <ul class="item-list">
+                            <li>
+                                <a href="#">{{lang.DPseries}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.laserseries}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.CIJseries}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.consumables}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.software}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-nav-item">
+                        <div class="item-title">
+                            {{lang.solution}}
+                        </div>
+                        <ul class="item-list">
+                            <li>
+                                <a href="#">{{lang.industry}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.applications}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-nav-item">
+                        <div class="item-title">
+                            {{lang.marketdevelopment}}
+                        </div>
+                        <ul class="item-list">
+                            <li>
+                                <a href="#">{{lang.marketcoverage}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.partners}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.dealerenquiry}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bottom-nav-item">
+                        <div class="item-title">
+                            {{lang.services}}
+                        </div>
+                        <ul class="item-list">
+                            <li>
+                                <a href="#">{{lang.installation}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.thesoftware}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.productionlinereform}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.customplatform}}</a>
+                            </li>
+                            <li>
+                                <a href="#">{{lang.download}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-logo">
+                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/QRcode.jpg">
+                    <div>{{lang.focus}}</div>
+                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo_black.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery-2.1.4.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery.cookie.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//p8vbi0sf0.bkt.clouddn.com/js/common.min.js{{dev}}"></script>
+        {% block plugJs %} {% endblock %}
+</body>
+
+</html>

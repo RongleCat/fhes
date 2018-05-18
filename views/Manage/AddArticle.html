@@ -1,5 +1,7 @@
 {% extends './_ManageLayout.html' %} {% block title %} 添加文章 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="/pc/build/css/article_add.min.css"> {% endblock %} {% block childTitle %} 添加文章 {% endblock %} {% block toolsBar %}
+<link rel="stylesheet" href="/pc/build/css/article_add.min.css">
+<script type="text/javascript" src="//at.alicdn.com/t/font_656017_r9b441jjqsolayvi.js"></script>
+{% endblock %} {% block childTitle %} 添加文章 {% endblock %} {% block toolsBar %}
 <div class="layui-form">
     <div class="layui-form-item">
         <label class="layui-form-label">添加英文</label>
@@ -26,7 +28,6 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">中文内容</label>
         <div class="layui-input-block">
-            <!-- <textarea name="desc" placeholder="请输入内容" id="zhContent"></textarea> -->
             <div id="zhContent" class="input-content"></div>
         </div>
     </div>
