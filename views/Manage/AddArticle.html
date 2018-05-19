@@ -13,6 +13,16 @@
 {% endblock %} {% block content %}
 <form class="layui-form layui-form-pane" action="">
     <div class="layui-form-item">
+        <label class="layui-form-label upload-cover">新闻封面</label>
+        <div class="layui-input-block cover">
+            <div class="layui-upload-drag" id="upload-cover">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <span>最佳封面图大小360(宽)*250(高)</span>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">中文标题</label>
         <div class="layui-input-block">
             <input type="text" name="title" lay-verify="" placeholder="请输入中文标题" autocomplete="off" class="layui-input">

@@ -5,15 +5,24 @@
         <label class="layui-form-label">添加英文</label>
         <div class="layui-input-block">
             {% if language === '11' || language === '01'%}
-                <input type="checkbox" lay-filter="addEn" id="openEn" name="switch" lay-skin="switch" lay-text="ON|OFF" checked>
-            {% else %}
-                <input type="checkbox" lay-filter="addEn" id="openEn" name="switch" lay-skin="switch" lay-text="ON|OFF">
-            {% endif %}
+            <input type="checkbox" lay-filter="addEn" id="openEn" name="switch" lay-skin="switch" lay-text="ON|OFF" checked> {% else %}
+            <input type="checkbox" lay-filter="addEn" id="openEn" name="switch" lay-skin="switch" lay-text="ON|OFF"> {% endif %}
         </div>
     </div>
 </div>
 {% endblock %} {% block content %}
 <form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label upload-cover">新闻封面</label>
+        <div class="layui-input-block cover">
+            <img src="{{cover}}" class="img-cover" data-id="{{id}}">
+            <div class="layui-upload-drag" id="upload-cover">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <span>最佳封面图大小360(宽)*250(高)</span>
+            </div>
+        </div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">中文标题</label>
         <div class="layui-input-block">
@@ -36,39 +45,39 @@
     </div>
 
     {% if language === '11' || language === '01'%}
-        <div class="en-block" style="display: block">
-    {% else %}
+    <div class="en-block" style="display: block">
+        {% else %}
         <div class="en-block">
-    {% endif %}
-        <div class="line-box">
-            <span>英文文章内容</span>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">英文标题</label>
-            <div class="layui-input-block">
-                <input type="text" name="entitle" placeholder="请输入英文标题" autocomplete="off" class="layui-input" value="{{entitle}}">
+            {% endif %}
+            <div class="line-box">
+                <span>英文文章内容</span>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">英文标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="entitle" placeholder="请输入英文标题" autocomplete="off" class="layui-input" value="{{entitle}}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">英文副标题</label>
+                <div class="layui-input-block">
+                    <input type="text" name="ensubtitle" placeholder="请输入英文副标题" autocomplete="off" class="layui-input" value="{{ensubtitle}}">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">英文内容</label>
+                <div class="layui-input-block">
+                    <div id="enContent" class="input-content">{% autoescape %}{{ encontent }}{% endautoescape %}</div>
+                </div>
             </div>
         </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">英文副标题</label>
-            <div class="layui-input-block">
-                <input type="text" name="ensubtitle" placeholder="请输入英文副标题" autocomplete="off" class="layui-input" value="{{ensubtitle}}">
-            </div>
-        </div>
-        <div class="layui-form-item layui-form-text">
-            <label class="layui-form-label">英文内容</label>
-            <div class="layui-input-block">
-                <div id="enContent" class="input-content">{% autoescape %}{{ encontent }}{% endautoescape %}</div>
-            </div>
-        </div>
-    </div>
 
-    <div class="layui-form-item">
-        <div class="layui-input-block">
-            <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
-            <button type="reset" class="layui-btn layui-btn-primary" id="btn-reset">重置</button>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary" id="btn-reset">重置</button>
+            </div>
         </div>
-    </div>
 </form>
 {% endblock %} {% block plugJs %}
 <script type="text/javascript" src="/cdn/wangEditor/js/plupload.full.min.js"></script>

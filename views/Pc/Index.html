@@ -1,11 +1,8 @@
-{% extends './_layout.html' %}
-{% block title %}
-  FHES首页
-{% endblock %}
-{% block content %}
+{% extends './_layout.html' %} {% block title %} FHES首页 {% endblock %} {% block content %}
 <div class="top-img" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/top_bg.jpg"></div>
 <div class="video-container">
-    <video id="my-player" class="video-js" controls preload="auto" poster="//p8vbi0sf0.bkt.clouddn.com/images/video_cover.jpg" data-setup='{}'>
+    <video id="my-player" class="video-js" controls preload="auto" poster="//p8vbi0sf0.bkt.clouddn.com/images/video_cover.jpg"
+        data-setup='{}'>
         <source src="http://p8vbsyyqf.bkt.clouddn.com/fhes.mp4" type="video/mp4"></source>
         <p class="vjs-no-js">
             若要查看此视频，请启用JavaScript，或者考虑升级网页浏览器
@@ -153,54 +150,21 @@
         <div class="slide-box ">
             <div class="slide-con">
                 <div class="slide-out">
+                    {% for item in newsList %}
                     <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
+                        <a href="/news/{{item.id}}" target="_blank">
+                            <div class="img-cover" style="background-image:url('{{item.cover}}')"></div>
+                            {% if client_lang === 'zh'%}
+                            <div class="title-box">{{item.title}}</div>
+                            <div class="content-box">{{item.content}}</div>
+                            {% else %}
+                            <div class="title-box">{{item.entitle}}</div>
+                            <div class="content-box">{{item.encontent}}</div>
+                            {% endif %}
                             <div class="detail-text">{{lang.readmore}}</div>
                         </a>
                     </div>
-                    <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
-                            <div class="detail-text">{{lang.readmore}}</div>
-                        </a>
-                    </div>
-                    <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
-                            <div class="detail-text">{{lang.readmore}}</div>
-                        </a>
-                    </div>
-                    <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
-                            <div class="detail-text">{{lang.readmore}}</div>
-                        </a>
-                    </div>
-                    <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
-                            <div class="detail-text">{{lang.readmore}}</div>
-                        </a>
-                    </div>
-                    <div class="slide-li">
-                        <a href="#">
-                            <div class="img-cover" style="background-image:url('//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/class/01.jpg')" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg"></div>
-                            <div class="title-box">数据检测采集本世纪见分晓</div>
-                            <div class="content-box">数据检测采集本世纪见分晓数据检测采集本世纪见分晓数据检测采集本世纪见分晓...</div>
-                            <div class="detail-text">{{lang.readmore}}</div>
-                        </a>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="slide-page">
@@ -257,14 +221,10 @@
         </li>
     </ul>
 </div>
-{% endblock %}
-{% block plugCss %}
+{% endblock %} {% block plugCss %}
 <link href="//p8vbkdd7w.bkt.clouddn.com/video/video-js.min.css{{dev}}" rel="stylesheet">
 <link rel="stylesheet" href="//p8vbkdd7w.bkt.clouddn.com/fullScreenSlide/css/full-screen-slide.min.css{{dev}}">
-<link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/home_index.min.css{{dev}}">
-{% endblock %}
-
-{% block plugJs %}
+<link rel="stylesheet" href="/pc/build/css/home_index.min.css{{dev}}"> {% endblock %} {% block plugJs %}
 
 <script src="//p8vbkdd7w.bkt.clouddn.com/fullScreenSlide/js/full-screen-slide.min.js{{dev}}"></script>
 <script src="//p8vbkdd7w.bkt.clouddn.com/video/video.min.js{{dev}}"></script>

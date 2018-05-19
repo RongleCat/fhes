@@ -6,14 +6,39 @@ const ctrl = require('../controllers/manage')
 const ctrlWeb = require('../controllers/webpc')
 const utils = require('./utils')
 const qiniu = require('qiniu');
+const multipart = require('connect-multiparty');
+const multipartMiddleware = multipart();
+const qn = require('qn');
+const path = require('path');
+
 const config = {
-  'ACCESS_KEY': '_7FzMf-18W0voaEVxQiPiNPnp7RTqb-g_Z5pszO9', // 此处填写自己申请的 ACCESS_KEY
-  'SECRET_KEY': 'raFS99akPMzVgNCs7FrLHaVp1_nvRjTE-HHdI0mv', // 此处填写自己申请的 SECRET_KEY
+  accessKey: '_7FzMf-18W0voaEVxQiPiNPnp7RTqb-g_Z5pszO9', // 此处填写自己申请的 ACCESS_KEY
+  secretKey: 'raFS99akPMzVgNCs7FrLHaVp1_nvRjTE-HHdI0mv', // 此处填写自己申请的 SECRET_KEY
+  bucket: 'fhesimages',
+  origin: 'http://p8wnfmuiu.bkt.clouddn.com'
 }
 
+let client = qn.create(config)
 
-qiniu.conf.ACCESS_KEY = config.ACCESS_KEY;
-qiniu.conf.SECRET_KEY = config.SECRET_KEY;
+let qiniuUpload = (filePaths) => {
+  // map()方法返回新的 promise对象数组，
+  // 若使用forEach()，报错：Cannot read property 'Symbol(Symbol.iterator)' of undefined
+  // 因为没有返回值，运行到 return Promise.all(qiniuPromise) 时会返回 undefinded
+
+  let qiniuPromise = filePaths.map(filePath => {
+
+    // key 为上传到七牛云后自定义图片的名称
+    return new Promise((resolve, reject) => {
+      let fileName = path.win32.basename(filePath);
+
+    });
+  });
+
+  return Promise.all(qiniuPromise);
+};
+
+qiniu.conf.ACCESS_KEY = config.accessKey;
+qiniu.conf.SECRET_KEY = config.secretKey;
 
 let uptoken = new qiniu.rs.PutPolicy({
   scope: 'fhesimages',
@@ -107,9 +132,8 @@ router.post('/addarticle', function (req, res, next) {
 router.post('/editarticle', function (req, res, next) {
   let body = req.body;
   body.edittime = utils.dateFormat(new Date());
-  let url = req.headers.referer.split('/');
   let params = {
-    id: parseInt(url[url.length - 1]),
+    id: body.id,
     data: body
   }
   body.edittime = utils.dateFormat(new Date());
@@ -126,6 +150,23 @@ router.post('/editarticle', function (req, res, next) {
     })
   });
 });
+
+router.post('/uploadNewsCover', multipartMiddleware, (req, res, next) => {
+  // console.log(req.files.file);
+  client.uploadFile(req.files.file.path, {
+    key: req.files.file.originalFilename
+  }, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json({
+        ok: 200,
+        result
+      })
+    }
+  });
+})
 
 
 //获取七牛上传token接口
@@ -277,6 +318,16 @@ function verifyToken(req, res, callback, type) {
     .catch(r => {
       res.redirect(302, '/manage/login')
     })
+}
+
+function randomString(len, charSet) {
+  charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var randomString = '';
+  for (var i = 0; i < len; i++) {
+    var randomPoz = Math.floor(Math.random() * charSet.length);
+    randomString += charSet.substring(randomPoz, randomPoz + 1);
+  }
+  return randomString;
 }
 
 module.exports = router;

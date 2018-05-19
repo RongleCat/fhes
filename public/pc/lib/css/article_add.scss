@@ -26,6 +26,9 @@
 
 .layui-input-block {
     position: relative;
+    &.cover{
+        height: 135px!important;
+    }
 }
 
 .img-upload-mask {
@@ -65,3 +68,29 @@
 }
 
 
+.upload-cover{
+    line-height: 135px!important;
+    height: 135px!important;
+    padding: 0 15px!important;
+}
+
+.img-cover{
+    max-height: 135px;
+    display: block;
+    float: left;
+    // position: absolute;
+    // top: 0;
+    border:1px dashed #e2e2e2;
+    border-right: 0;
+    box-sizing: border-box;
+}
+
+.layui-upload-drag{
+    box-sizing: border-box;
+    height: 135px;
+    padding: 0 30px;
+    padding-top: 20px;
+    span{
+        font-size: 12px;
+    }
+}

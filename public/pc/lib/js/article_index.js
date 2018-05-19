@@ -4,7 +4,15 @@ $(function () {
     let allCols = [ //标题栏
         {
             field: 'id',
-            title: 'ID'
+            title: 'ID',
+            width:80
+        }, {
+            field: 'cover',
+            title: '封面图片',
+            width:130,
+            templet: function (d) {
+                return `<img src="${d.cover}">`
+            }
         }, {
             field: 'title',
             title: '中文标题'
@@ -35,12 +43,22 @@ $(function () {
         limits: [10, 15, 20],
         height: 'full-200',
         where: {},
-        cols: [[...allCols]]
+        cols: [
+            [...allCols]
+        ]
     }
     let zhCols = [ //标题栏
         {
             field: 'id',
-            title: 'ID'
+            title: 'ID',
+            width:80
+        }, {
+            field: 'cover',
+            title: '封面图片',
+            width:130,
+            templet: function (d) {
+                return `<img src="${d.cover}">`
+            }
         }, {
             field: 'title',
             title: '中文标题'
@@ -60,7 +78,15 @@ $(function () {
     let enCols = [ //标题栏
         {
             field: 'id',
-            title: 'ID'
+            title: 'ID',
+            width:80
+        }, {
+            field: 'cover',
+            title: '封面图片',
+            width:130,
+            templet: function (d) {
+                return `<img src="${d.cover}">`
+            }
         }, {
             field: 'entitle',
             title: '英文标题'
@@ -151,7 +177,9 @@ $(function () {
                     type: "POST",
                     url: "/manage/deletearticle",
                     dataType: "json",
-                    data: {id:data.id},
+                    data: {
+                        id: data.id
+                    },
                     success: function (data) {
                         if (data.ok === 200) {
                             obj.del();
@@ -163,7 +191,7 @@ $(function () {
             });
         } else if (layEvent === 'edit') { //编辑
             //do something
-            window.location.href=`/manage/editarticle/${data.id}`
+            window.location.href = `/manage/editarticle/${data.id}`
             //同步更新缓存对应的值
             // obj.update({
             //     username: '123',

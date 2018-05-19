@@ -19,6 +19,28 @@ $(function () {
         'undo', // 撤销
         'redo' // 重复
     ]
+
+    
+    var upload = layui.upload;
+
+    //初始化封面上传
+    upload.render({
+        elem: '#upload-cover',
+        url: '/manage/uploadNewsCover',
+        accept: 'images',
+        acceptMime: 'image/*',
+        done: function (res) {
+            if (res.ok === 200) {
+                if ($('.img-cover').length != 0) {
+                    $('.img-cover')[0].src = res.result.url + '-mask'
+                } else {
+                    $('#upload-cover').find('p').text('点击/拖拽更换封面图片').end().before(`<img src="${res.result.url}-mask" class="img-cover">`)
+                }
+            }
+        }
+    });
+
+    //初始化文本编辑器    
     var zhContent = new E('#zhContent')
     zhContent.customConfig.onfocus = function () {
         $(zhContent.toolbarSelector).addClass('focus')
@@ -48,14 +70,25 @@ $(function () {
         form.on('submit(submit)', function (data) {
             let content = zhContent.txt.html();
             let encontent = enContent.txt.html();
+            let cover = $('.img-cover').attr('src')
+
             for (var i in data.field) {
                 if (!data.field[i]) {
                     delete data.field[i]
                 }
             }
+            data.field.id = $('.img-cover').attr('data-id')
+            if (!cover) {
+                layer.msg('请先上传封面图片')
+                return false;
+            }else{
+                data.field.cover = cover
+            }
+
             if (zhContent.txt.text()) {
                 data.field.content = content;
             }
+
             if (enContent.txt.text()) {
                 data.field.encontent = encontent;
             }
