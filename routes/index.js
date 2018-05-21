@@ -19,6 +19,10 @@ router.use((req, res, next) => {
     dev: devparam,
     client_lang
   }
+  req.returnData.navActive = req.originalUrl
+  if (req.originalUrl != '/') {
+    req.returnData.other = true
+  }
   next()
 })
 
@@ -52,18 +56,40 @@ router.get('/', function (req, res, next) {
   })
 });
 
+//新闻详情页面
 router.get('/news/:id', function (req, res, next) {
   ctrl.getNewsDetail({
     id: parseInt(req.params.id)
   }, result => {
     // console.log(result);
-    res.render('Pc/NewDetail', result[0]);
+    req.returnData.detail = result[0]
+    res.render('Pc/NewDetail', req.returnData);
   }).catch(err => {
     console.log(err);
     res.render('error', err);
   })
 });
 
+//产品分类页面
+router.get('/about',(req,res,next)=>{
+  res.render('Pc/About', req.returnData);
+})
+//产品分类页面
+router.get('/class',(req,res,next)=>{
+  res.render('Pc/Class', req.returnData);
+})
+//产品分类页面
+router.get('/solution',(req,res,next)=>{
+  res.render('Pc/Solution', req.returnData);
+})
+//产品分类页面
+router.get('/market',(req,res,next)=>{
+  res.render('Pc/Market', req.returnData);
+})
+//产品分类页面
+router.get('/service',(req,res,next)=>{
+  res.render('Pc/Service', req.returnData);
+})
 
 function removeTAG(str) {
   return str.replace(/<[^>]+>/g, "");

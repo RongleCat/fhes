@@ -8,32 +8,118 @@
     <meta name="renderer" content="webkit">
     <meta name="referrer" content="no-referrer">
     <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_kn5szra9k7ec23xr.css{{dev}}">
-    <link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/common.min.css{{dev}}"> {% block plugCss %} {% endblock %}
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_kn5szra9k7ec23xr.css{{dev}}"> {% if dev %}
+    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% else %}
+    <link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {% endblock %}
 </head>
 
 <body>
     <div class="common-header">
         <div class="header-main">
-            <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt="FHES" class="logo">
-            <ul class="nav-list clearfix">
-                <li class="active">
-                    <a href="#">{{lang.home}}</a>
+            <a href="/" title="返回首页"><img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt="FHES" class="logo"></a>
+            <ul class="nav-list clearfix{{lang.langClass}}">
+                <li class="{{navActive|active0}}">
+                    <a href="/">{{lang.home}}</a>
                 </li>
-                <li>
-                    <a href="#">{{lang.about}}</a>
+                <li class="{{navActive|active1}}">
+                    <a href="/about">{{lang.about}}</a>
+                    <ul class="down-list">
+                        <li>
+                            <a href="#">{{lang.listintroduction}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.companynews}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.listresearch}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.investoreelations}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.humanresources}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.contactus}}</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">{{lang.product}}</a>
+                <li class="{{navActive|active2}}">
+                    <a href="/class">{{lang.product}}</a>
+                    <ul class="down-list">
+                        <li>
+                            <a href="#">{{lang.DPseries}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.laserseries}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.CIJseries}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.consumables}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.software}}</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">{{lang.solution}}</a>
+                <li class="{{navActive|active3}}">
+                    <a href="/solution">{{lang.solution}}</a>
+                    <ul class="down-list">
+                        <li>
+                            <a href="/About#mark1">{{lang.food}}</a>
+                        </li>
+                        <li>
+                            <a href="/About#mark2">{{lang.seed}}</a>
+                        </li>
+                        <li>
+                            <a href="/About#mark3">{{lang.packaging}}</a>
+                        </li>
+                        <li>
+                            <a href="/About#mark4">{{lang.bottle}}</a>
+                        </li>
+                        <li>
+                            <a href="/About#mark5">{{lang.salt}}</a>
+                        </li>
+                        <li>
+                            <a href="/About#mark5">{{lang.parts}}</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">{{lang.market}}</a>
+                <li class="{{navActive|active4}}">
+                    <a href="/market">{{lang.market}}</a>
+                    <ul class="down-list">
+                        <li>
+                            <a href="#">{{lang.marketcoverage}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.partners}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.dealerenquiry}}</a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">{{lang.services}}</a>
+                <li class="{{navActive|active5}}">
+                    <a href="/service">{{lang.services}}</a>
+                    <ul class="down-list">
+                        <li>
+                            <a href="#">{{lang.installation}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.thesoftware}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.productionlinereform}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.customplatform}}</a>
+                        </li>
+                        <li>
+                            <a href="#">{{lang.download}}</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <a href="javascript:void(0);" class="select-lang">
@@ -45,9 +131,9 @@
     </div>
     {% if !other %}
     <div class="common-footer">
-    {% else %}
-    <div class="common-footer other">
-    {% endif %}
+        {% else %}
+        <div class="common-footer other">
+            {% endif %}
             <div class="footer-main">
                 <div class="bottom-nav-list clearfix{{lang.langClass}}">
                     <div class="bottom-nav-item">
@@ -71,7 +157,7 @@
                                 <a href="#">{{lang.humanresources}}</a>
                             </li>
                             <li>
-                                <a href="#">{{developmentprospect}}</a>
+                                <a href="#">{{lang.contactus}}</a>
                             </li>
                         </ul>
                     </div>
@@ -152,15 +238,22 @@
                 <div class="right-logo">
                     <img src="//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/QRcode.jpg">
                     <div>{{lang.focus}}</div>
-                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo_black.png" alt="">
+                    {% if !other %}
+                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo_black.png" alt=""> {% else %}
+                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt=""> {% endif %}
+
                 </div>
             </div>
         </div>
 
         <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery-2.1.4.min.js{{dev}}"></script>
         <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery.cookie.min.js{{dev}}"></script>
+
+        {% if dev %}
+        <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
+        {% else %}
         <script type="text/javascript" src="//p8vbi0sf0.bkt.clouddn.com/js/common.min.js{{dev}}"></script>
-        {% block plugJs %} {% endblock %}
+        {% endif %} {% block plugJs %} {% endblock %}
 </body>
 
 </html>

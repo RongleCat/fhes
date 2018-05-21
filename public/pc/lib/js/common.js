@@ -28,4 +28,15 @@ $(function () {
             hdimg.src = hdSrc;
         });
     }
+
+    $('.nav-list').on('mouseenter','>li',e=>{
+        let $this = $(e.currentTarget);
+        let $ul = $this.find('ul');
+        if($ul.length !=0){
+            $ul.fadeIn('fast');
+            $this.on('mouseleave',e=>{
+                $ul.fadeOut('fast');
+            })
+        }
+    })
 });

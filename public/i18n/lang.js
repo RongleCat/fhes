@@ -42,13 +42,16 @@ module.exports = {
         focus: '扫码关注我们',
         lang:'英文',
         langClass:'',
+        contactus:'联系我们',
         food:'食品饮料',
         seed:'种子化肥',
         packaging:'包装印刷',
         bottle:'酒类制盖',
         salt:'盐业',
         parts:'汽配',
-        langIcon:'icon-yingwenyuyan'
+        langIcon:'icon-yingwenyuyan',
+        listintroduction:'公司介绍',
+        listresearch:'研发能力',
     },
     en: {
         home: 'Home',
@@ -93,12 +96,15 @@ module.exports = {
         focus: 'Focus On Us',
         lang:'Chinese',
         langClass:' en-lang',
+        contactus:'Contact us',
         food:'Food and beverage',
         seed:'Seed and Fertilizer',
         packaging:'Packaging printing',
         bottle:'Wine bottle',
         salt:'Salt industry',
         parts:'Auto parts',
-        langIcon:'icon-zhongwenyuyan'
+        langIcon:'icon-zhongwenyuyan',
+        listintroduction:'Introduction',
+        listresearch:'Research Ability',
     }
 }
