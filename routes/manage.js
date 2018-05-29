@@ -11,31 +11,25 @@ const multipartMiddleware = multipart();
 const qn = require('qn');
 const path = require('path');
 
-const config = {
+let config = {
   accessKey: '_7FzMf-18W0voaEVxQiPiNPnp7RTqb-g_Z5pszO9', // 此处填写自己申请的 ACCESS_KEY
-  secretKey: 'raFS99akPMzVgNCs7FrLHaVp1_nvRjTE-HHdI0mv', // 此处填写自己申请的 SECRET_KEY
-  bucket: 'fhesimages',
-  origin: 'http://p8wnfmuiu.bkt.clouddn.com'
+  secretKey: 'raFS99akPMzVgNCs7FrLHaVp1_nvRjTE-HHdI0mv' // 此处填写自己申请的 SECRET_KEY
 }
 
-let client = qn.create(config)
+let newsCover = qn.create({
+  accessKey: config.accessKey, // 此处填写自己申请的 ACCESS_KEY
+  secretKey: config.secretKey, // 此处填写自己申请的 SECRET_KEY
+  bucket: 'fhesimages',
+  origin: 'http://p8wnfmuiu.bkt.clouddn.com'
+})
 
-let qiniuUpload = (filePaths) => {
-  // map()方法返回新的 promise对象数组，
-  // 若使用forEach()，报错：Cannot read property 'Symbol(Symbol.iterator)' of undefined
-  // 因为没有返回值，运行到 return Promise.all(qiniuPromise) 时会返回 undefinded
+let downloadFile = qn.create({
+  accessKey: config.accessKey, // 此处填写自己申请的 ACCESS_KEY
+  secretKey: config.secretKey, // 此处填写自己申请的 SECRET_KEY
+  bucket: 'downloadfiles',
+  origin: 'http://p9gz545fl.bkt.clouddn.com'
+})
 
-  let qiniuPromise = filePaths.map(filePath => {
-
-    // key 为上传到七牛云后自定义图片的名称
-    return new Promise((resolve, reject) => {
-      let fileName = path.win32.basename(filePath);
-
-    });
-  });
-
-  return Promise.all(qiniuPromise);
-};
 
 qiniu.conf.ACCESS_KEY = config.accessKey;
 qiniu.conf.SECRET_KEY = config.secretKey;
@@ -97,6 +91,16 @@ router.get('/addarticle', function (req, res, next) {
   res.render('Manage/AddArticle', req.verifyData.data);
 });
 
+//文档下载管理页面
+
+router.get('/download', (req, res, next) => {
+  res.render('Manage/Download')
+})
+
+
+
+
+
 //修改文章页面
 router.get('/editarticle/:id', function (req, res, next) {
   ctrlWeb.getNewsDetail({
@@ -114,7 +118,7 @@ router.get('/editarticle/:id', function (req, res, next) {
 router.post('/addarticle', function (req, res, next) {
   let body = req.body;
   body.edittime = utils.dateFormat(new Date());
-  ctrl.insertArticle(body).then(result => {
+  ctrl.addArticle(body).then(result => {
     res.json({
       ok: 200,
       data: result
@@ -151,9 +155,47 @@ router.post('/editarticle', function (req, res, next) {
   });
 });
 
+
+//上传新闻封面接口
 router.post('/uploadNewsCover', multipartMiddleware, (req, res, next) => {
   // console.log(req.files.file);
-  client.uploadFile(req.files.file.path, {
+  newsCover.uploadFile(req.files.file.path, {
+    key: req.files.file.originalFilename
+  }, function (err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(result);
+      res.json({
+        ok: 200,
+        result
+      })
+    }
+  });
+})
+
+
+//添加文件接口
+router.post('/addDownFile', function (req, res, next) {
+  let body = req.body;
+  ctrl.addDownFile(body).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '文章保存失败'
+    })
+  });
+});
+
+//上传下载文档接口
+router.post('/uploadDownFile', multipartMiddleware, (req, res, next) => {
+  // console.log(req.files.file);
+  downloadFile.uploadFile(req.files.file.path, {
     key: req.files.file.originalFilename
   }, function (err, result) {
     if (err) {
@@ -192,6 +234,32 @@ router.post('/deletearticle', function (req, res, next) {
       data: result
     })
   }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '文章删除失败'
+    })
+  });
+});
+
+//删除文件接口
+router.post('/deleteDownFile', function (req, res, next) {
+  let body = req.body;
+  body.id = parseInt(body.id);
+  let filename = body.filepath.split('/');
+  ctrl.deleteDownFile(body).then(result => {
+    downloadFile.delete(filename[filename.length-1],err=>{
+      if (err) {
+        console.log(err);
+      }else{
+        res.json({
+          ok: 200,
+          data: result
+        })
+      }
+    })
+  }).catch(err => {
     res.json({
       ok: 0,
       data: err,
@@ -215,6 +283,36 @@ router.get('/getArticleList', function (req, res, next) {
     }
   }
   ctrl.getArticleList({
+    rule,
+    start: (param.page - 1) * param.limit,
+    limit: parseInt(param.limit)
+  }, (result) => {
+    result.code = 0;
+    result.msg = '查询成功！'
+    res.json(result);
+  })
+});
+
+router.get('/downFile',(req,res,next)=>{
+  let param = req.query
+  ctrl.getFilePath(param,result=>{
+    res.download(result[0].filepath)
+  })
+})
+
+
+//文件列表内容
+router.get('/getDownFileList', function (req, res, next) {
+  let param = req.query;
+  let rule = '';
+  if (param.keyword) {
+    if (rule == '') {
+      rule += `title like '%${param.keyword}%' or entitle like '%${param.keyword}%'`
+    } else {
+      rule += `and (title like '%${param.keyword}%' or entitle like '%${param.keyword}%')`
+    }
+  }
+  ctrl.getDownFileList({
     rule,
     start: (param.page - 1) * param.limit,
     limit: parseInt(param.limit)

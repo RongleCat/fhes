@@ -1,37 +1,251 @@
 {% extends './_layout.html' %} {% block title %} 产品分类 {% endblock %} {% block content %}
-<div class="banner-bar">
+<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/06.jpg')" data-hd="/pc/build/images/banner/06.jpg">
     <div class="banner-main">
-        <div>产品分类</div>
-        <p>Product Categories</p>
+        <div>关于我们</div>
+        <p>About Us</p>
     </div>
 </div>
 <div class="other-main">
-    <div class="class-list clearfix">
-        <div class="class-item item-01" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg">
-            <a href="#">
-                <div class="tip-bar">激光
-                    <u>{{lang.readmore}}></u>
-                </div>
+    <ul class="left-nav">
+        <li id="Introduction_hash" class="active">
+            <a href="#Introduction">
+                <p>公司简介</p>
+                <span>Company Introduction</span>
             </a>
-            <div class="mask-layer"></div>
+        </li>
+        <li id="News_hash">
+            <a href="#News">
+                <p>新闻中心</p>
+                <span>News Center</span>
+            </a>
+        </li>
+        <li id="Honor_hash">
+            <a href="#Honor">
+                <p>研发能力
+                    <span>(荣誉资质)</span>
+                </p>
+                <span>Honor and Qualification</span>
+            </a>
+        </li>
+        <li id="Investor_hash">
+            <a href="#Investor">
+                <p>投资者关系</p>
+                <span>Investor Relations</span>
+            </a>
+        </li>
+        <li id="Human_hash">
+            <a href="#Human">
+                <p>人力资源</p>
+                <span>Human resources</span>
+            </a>
+        </li>
+        <li id="Contact_hash">
+            <a href="#Contact">
+                <p>联系我们</p>
+                <span>Contact Us</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="about-main">
+    <div class="right-content">
+        <div class="content-block" id="Introduction">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>公司简介</p>
+                    <span>Company Introduction</span>
+                </div>
+                <div class="content-body">
+                    <div class="text-introduction">
+                        <p>宁波法赫施标识科技有限公司是一家提供物联网标识，一物一码赋码整体解决方案及系统集成解决方案的高科技公司。</p>
+                        <p>历经16年的发展与沉淀，形成了具有独立自主知识产权的4+1产品体系，集UV技术DPS数码赋码系统，全系列激光赋码系统，惠普技术热发泡赋码系统，视觉检测四大产品体系及防伪追溯系统，互联网营销，大数据应用，自动化产线软硬件集成于一身，提供一站式的整体赋码解决方案。</p>
+                        <p>公司与美国HP、日本柯尼卡、日本理光等行业优秀企业合作，不断开发精度更高，速度更快，操作更智能的产品。公司研发团队由行业资深专家带领，已拥有数十项发明专利和实用新型及软件著作权，并通过ISO9001质量管理体系认证和SGS质量管控体系认证，完善公司系统管理体系，保障了产品的一贯优良品质。至2016年已为超过两千家客户提供了各具特色的项目解决方案及配套自动化工装设备。</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="class-item item-02" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/02.jpg">
-            <a href="#">
-                <div class="tip-bar">CIJ
-                    <u>{{lang.readmore}}></u>
+        <div class="content-block bg-ef" id="News">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>新闻中心</p>
+                    <span>News Center</span>
+                    <a href="/news" target="_blank">{{lang.readmore}}</a>
                 </div>
-            </a>
-            <div class="mask-layer"></div>
+                <div class="content-body">
+                    <div class="news-view clearfix">
+                        <div class="left-view">
+                            <div class="top-news">
+                                <a href="/news/27" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/61534.jpg-mask" alt="">
+                                    <p>腾讯一季度净利远超预期，《王者荣耀》势头依然强劲</p>
+                                </a>
+                            </div>
+                            <div class="bottom-newslist clearfix">
+                                <div class="news-item">
+                                    <a href="/news/23" target="_blank">
+                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                        <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    </a>
+                                </div>
+                                <div class="news-item">
+                                    <a href="/news/22" target="_blank">
+                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_02small_04_201851616315A3.jpg-mask" alt="">
+                                        <p>在这部没有隐私的反乌托邦电影里 你将习惯于被窥视</p>
+                                    </a>
+                                </div>
+                                <div class="news-item">
+                                    <a href="/news/21" target="_blank">
+                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_02small_04_2018517152730C.jpg-mask" alt="">
+                                        <p>十年烂片王凯奇终于翻身 这部满分血浆片救了他</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-view">
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                            <div class="news-item">
+                                <a href="/news/23" target="_blank">
+                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
+                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <span>2018年5月1号</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="class-item item-03" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/03.jpg">
-            <a href="#">
-                <div class="tip-bar">DP
-                    <u>{{lang.readmore}}></u>
+        <div class="content-block bg-60a25a" id="Honor">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>研发能力
+                        <span>(荣誉资质)</span>
+                    </p>
+                    <span>Honor and Qualification</span>
                 </div>
-            </a>
-            <div class="mask-layer"></div>
+                <div class="content-body">
+                    <div class="power-container clearfix">
+                        <div class="power-left">
+                            <div class="img-view-nav">
+                                <div class="item item-01">专利证书</div>
+                                <div class="item item-02">企业认证</div>
+                                <div class="item item-03">荣誉称号</div>
+                            </div>
+                            <div class="img-view-content">
+                                <div class="item">
+                                    <img src="/pc/build/images/cert_01.jpg">
+                                </div>
+                                <div class="item">
+                                    <img src="/pc/build/images/cert_02.jpg">
+                                </div>
+                                <div class="item">
+                                    <img src="/pc/build/images/cert_03.jpg">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="power-right">
+                            法赫施拥有一支高学历、高素质的研发团队。在行业资深专家的带领下，凭借丰富的行业经验和刻苦钻研，取得了傲人成绩。目前研发团队已拥有数十项发明专利、实用新型及软件著作权。精度更高、速度更快，更符合市场需求的新型产品，是法赫施研发团队不懈追求。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-block bg-ef" id="Investor">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>投资者关系</p>
+                    <span>Investor Relations</span>
+                </div>
+                <div class="content-body">
+                    <div class="investor-text">
+                        宁波天使投资有限公司
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-block" id="Human">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>人力资源</p>
+                    <span>Human resources</span>
+                </div>
+                <div class="content-body">
+                    <div class="img-human">
+                        <img src="/pc/build/images/renli.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-block bg-60a25a" id="Contact">
+            <div class="content-main-box">
+                <div class="content-title">
+                    <span class="dot-block"></span>
+                    <p>联系我们</p>
+                    <span>Contact Us</span>
+                </div>
+                <div class="content-body">
+                    <div class="contact-box">
+                        <div class="text-line">
+                            <span>咨询热线：18058557666</span>
+                            <span>邮箱：fhes@fhes.com.cn</span>
+                        </div>
+                        <div class="text-line">
+                            <span>传　　真：0574-87361882</span>
+                            <span>网址：www.fhes.com.cn </span>
+                        </div>
+                        <div class="text-line">
+                            地　　址：宁波市高新区凌云路1177号凌云产业园6栋3楼东区
+                        </div>
+                        <div class="map-box" id="map">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="/pc/build/css/class_index.min.css"> {% endblock %}
+<link rel="stylesheet" href="/pc/build/css/about_index.min.css"> {% endblock %} {% block plugJs %}
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1Gmz71GTqPvpzUp3H7wNKSOqMNpsDhcb"></script>
+<script type="text/javascript" src="/pc/build/js/about_index.min.js"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+.other-main{
+    width: 1200px;
+    margin: 0 auto;
+}
+.page-ctrl{
+    text-align: center;
+    padding: 40px;
+}
+.down-list{
+    padding: 40px 0;
+    .item{
+        border-bottom:1px dashed #ccc;
+        padding-left: 72px;
+        height: 64px;
+        position: relative;
+        line-height: 64px;
+        transition: all .2s;
+        &:hover{
+            background: #efefef;
+        }
+        .icon{
+            width: 48px;
+            height: 48px;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+        }
+        p{
+            float: left;
+        }
+        .right-box{
+            float: right;
+            padding-right: 20px;
+            span{
+                padding-right: 40px;
+            }
+        }
+    }
+}

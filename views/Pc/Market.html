@@ -1,37 +1,24 @@
 {% extends './_layout.html' %} {% block title %} 产品分类 {% endblock %} {% block content %}
-<div class="banner-bar">
+<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/04.jpg')" data-hd="/pc/build/images/banner/04.jpg">
     <div class="banner-main">
-        <div>产品分类</div>
-        <p>Product Categories</p>
+        <div>市场开发</div>
+        <p>Market Development</p>
     </div>
 </div>
 <div class="other-main">
-    <div class="class-list clearfix">
-        <div class="class-item item-01" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/01.jpg">
-            <a href="#">
-                <div class="tip-bar">激光
-                    <u>{{lang.readmore}}></u>
-                </div>
-            </a>
-            <div class="mask-layer"></div>
-        </div>
-        <div class="class-item item-02" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/02.jpg">
-            <a href="#">
-                <div class="tip-bar">CIJ
-                    <u>{{lang.readmore}}></u>
-                </div>
-            </a>
-            <div class="mask-layer"></div>
-        </div>
-        <div class="class-item item-03" data-hd="http://p8vbi0sf0.bkt.clouddn.com/images/class/03.jpg">
-            <a href="#">
-                <div class="tip-bar">DP
-                    <u>{{lang.readmore}}></u>
-                </div>
-            </a>
-            <div class="mask-layer"></div>
-        </div>
+    <div class="title-block" id="coverage">
+        市场覆盖<br>
+        <p>Market coverage</p>
     </div>
+    <img src="/pc/build/images/lowjpg/map.jpg" alt="" data-hd="/pc/build/images/map.jpg">
+    <div class="hottel-block" id="hottel">
+        经销商查询热线：0574-88888888
+    </div>
+    <div class="title-block" id="partner">
+        合作伙伴<br>
+        <p>Partner</p>
+    </div>
+    <img src="/pc/build/images/lowjpg/partner.jpg" alt="" data-hd="/pc/build/images/partner.jpg">
 </div>
 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="/pc/build/css/class_index.min.css"> {% endblock %}
+<link rel="stylesheet" href="/pc/build/css/market_index.min.css"> {% endblock %}

@@ -1,0 +1,69 @@
+{% extends './_layout.html' %} {% block title %} 产品分类 {% endblock %} {% block content %}
+<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/07.jpg')" data-hd="/pc/build/images/banner/07.jpg">
+    <div class="banner-main">
+        <div>下载</div>
+        <p>Download</p>
+    </div>
+</div>
+<div class="other-main">
+    <div class="down-list">
+        <div class="item clearfix">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pdf"></use>
+            </svg>
+            <p>激光打印机说明书</p>
+            <div class="right-box">
+                <span>2.5M</span>
+                <a href="#" download>{{lang.download}}</a>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pdf"></use>
+            </svg>
+            <p>激光打印机说明书</p>
+            <div class="right-box">
+                <span>2.5M</span>
+                <a href="#" download>{{lang.download}}</a>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pdf"></use>
+            </svg>
+            <p>激光打印机说明书</p>
+            <div class="right-box">
+                <span>2.5M</span>
+                <a href="#" download>{{lang.download}}</a>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pdf"></use>
+            </svg>
+            <p>激光打印机说明书</p>
+            <div class="right-box">
+                <span>2.5M</span>
+                <a href="#" download>{{lang.download}}</a>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-pdf"></use>
+            </svg>
+            <p>激光打印机说明书</p>
+            <div class="right-box">
+                <span>2.5M</span>
+                <a href="#" download>{{lang.download}}</a>
+            </div>
+        </div>
+    </div>
+    <div id="page" class="page-ctrl" data-count="{{downCount}}"></div>
+</div>
+{% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="/pc/build/css/download_index.min.css">
+<script type="text/javascript" src="//at.alicdn.com/t/font_685071_n04zuxmp0wo2yb9.js"></script>
+<link rel="stylesheet" href="/cdn/layui/css/layui.css" media="all"> {% endblock %} {% block plugJs %}
+<script type="text/javascript" src="/cdn/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="/pc/build/js/download_index.min.js"></script>
+{% endblock %}

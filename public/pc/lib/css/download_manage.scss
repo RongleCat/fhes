@@ -1,0 +1,29 @@
+.layui-input-block{
+    margin-left: 0;
+}
+.layui-table-cell{
+    height: auto!important;
+}
+
+.addfile-container{
+    padding: 30px;
+}
+.upload-file{
+    line-height: 135px!important;
+    height: 135px!important;
+    padding: 0 15px!important;
+}
+.layui-upload-drag{
+    box-sizing: border-box;
+    height: 135px;
+    padding: 0 30px;
+    padding-top: 20px;
+    width: 100%;
+    span{
+        font-size: 12px;
+    }
+}
+
+.btn-box{
+    text-align: center;
+}

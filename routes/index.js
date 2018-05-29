@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken')
 const fs = require('fs')
 const ctrl = require('../controllers/webpc')
+const ctrlmanage = require('../controllers/manage')
 const utils = require('./utils')
 const lang = require('../public/i18n/lang')
 let dev = true
@@ -26,6 +27,7 @@ router.use((req, res, next) => {
   next()
 })
 
+//首页新闻接口
 router.get('/', function (req, res, next) {
   let rule = ''
   let language = ''
@@ -70,7 +72,7 @@ router.get('/news/:id', function (req, res, next) {
   })
 });
 
-//产品分类页面
+//关于我们页面
 router.get('/about',(req,res,next)=>{
   res.render('Pc/About', req.returnData);
 })
@@ -78,18 +80,49 @@ router.get('/about',(req,res,next)=>{
 router.get('/class',(req,res,next)=>{
   res.render('Pc/Class', req.returnData);
 })
-//产品分类页面
-router.get('/solution',(req,res,next)=>{
-  res.render('Pc/Solution', req.returnData);
+//产品详情页面
+router.get('/class/01',(req,res,next)=>{
+  res.render('Pc/ClassDetail', req.returnData);
 })
-//产品分类页面
+//解决方案详情页面
+router.get('/solution',(req,res,next)=>{
+  res.render('Pc/SolutionDetail', req.returnData);
+})
+//市场开发页面
 router.get('/market',(req,res,next)=>{
   res.render('Pc/Market', req.returnData);
 })
-//产品分类页面
+//服务支持页面
 router.get('/service',(req,res,next)=>{
   res.render('Pc/Service', req.returnData);
 })
+//文档下载页面
+router.get('/download',(req,res,next)=>{
+  ctrl.getDownCount().then((result)=>{
+    req.returnData.downCount = result.length
+    res.render('Pc/Download', req.returnData);
+  })
+})
+
+//文档下载列表内容
+router.get('/getDownFileList', function (req, res, next) {
+  let param = req.query;
+  let rule = '';
+  console.log(req.returnData);
+  ctrlmanage.getDownFileList({
+    rule,
+    start: (param.page - 1) * param.limit,
+    limit: param.limit
+  }, (result) => {
+    result.ok = 200;
+    result.msg = '查询成功！',
+    result.lang = req.returnData.client_lang
+    res.json(result);
+  })
+});
+
+
+//方法
 
 function removeTAG(str) {
   return str.replace(/<[^>]+>/g, "");
