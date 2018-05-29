@@ -108,7 +108,6 @@ router.get('/download',(req,res,next)=>{
 router.get('/getDownFileList', function (req, res, next) {
   let param = req.query;
   let rule = '';
-  console.log(req.returnData);
   ctrlmanage.getDownFileList({
     rule,
     start: (param.page - 1) * param.limit,
