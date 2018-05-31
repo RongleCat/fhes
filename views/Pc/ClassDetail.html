@@ -1,12 +1,60 @@
-{% extends './_layout.html' %} {% block title %} 产品分类 {% endblock %} {% block content %}
+{% extends './_layout.html' %} 
+{% block title %}
+ {% if client_lang === 'zh'%}
+ {{detail.title}}
+ {% else %}
+ {{detail.entitle}}
+ {% endif %}
+{% endblock %} 
+{% block content %}
 <div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/03.jpg')" data-hd="/pc/build/images/banner/03.jpg">
     <div class="banner-main">
-        <div>产品详情</div>
-        <p>Product Details</p>
+        <div>{{detail.title}}</div>
+        <p>{{detail.entitle}}</p>
     </div>
 </div>
 <div class="other-main">
-
+        {% if detail.video %}
+        <div class="video-container">
+            <video id="my-player" class="video-js" controls preload="auto" poster="{{detail.videocover}}"
+                data-setup='{}'>
+                <source src="{{detail.video}}" type="video/mp4"></source>
+                <p class="vjs-no-js">
+                    若要查看此视频，请启用JavaScript，或者考虑升级网页浏览器
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">
+                        supports HTML5 video
+                    </a>
+                </p>
+            </video>
+        </div>
+        {% endif %}
+        <div class="content-container">
+            {% if client_lang === 'zh'%}
+                {% autoescape %}{{detail.content}}{% endautoescape %}
+            {% else %}
+                {% autoescape %}{{detail.encontent}}{% endautoescape %}
+            {% endif %}
+        </div>
+        {% if detail.file %}
+        <div class="downfile-container">
+            {% if client_lang === 'zh'%}
+            <a href="{{detail.file}}?attname=" download>{{lang.download}}文档</a>
+            {% else %}
+            <a href="{{detail.file}}?attname=" download>{{lang.download}} file</a>
+            {% endif %}
+        </div>
+        {% endif %}
 </div>
 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="/pc/build/css/other_detail.min.css"> {% endblock %}
+{% if detail.video %}
+    <link href="//p8vbkdd7w.bkt.clouddn.com/video/video-js.min.css{{dev}}" rel="stylesheet">
+{% endif %}
+<link rel="stylesheet" href="/pc/build/css/class_detail.min.css"> 
+{% endblock %}
+
+{% block plugJs %}
+{% if detail.video %}
+    <script src="//p8vbkdd7w.bkt.clouddn.com/video/video.min.js{{dev}}"></script>
+{% endif %}
+    
+{% endblock %}

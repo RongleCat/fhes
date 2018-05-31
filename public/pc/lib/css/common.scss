@@ -169,14 +169,14 @@ a,img{
     margin-right: 60px;
     color: inherit;
     .item-title {
-        font-size: 24px;
-        line-height: 60px;
+        font-size: 16px;
+        line-height: 48px;
     }
     .item-list {
         li {
             color: inherit;
             list-style: none;
-            font-size: 16px;
+            font-size: 12px;
             line-height: 36px;
             a {
                 color: inherit;
@@ -189,14 +189,14 @@ a,img{
     }
 }
 
-.bottom-nav-list.en-lang {
-    .item-title {
-        font-size: 18px;
-    }
-    li {
-        font-size: 12px;
-    }
-}
+// .bottom-nav-list.en-lang {
+//     .item-title {
+//         font-size: 18px;
+//     }
+//     li {
+//         font-size: 12px;
+//     }
+// }
 
 .banner-bar{
     max-width: 1920px;

@@ -81,8 +81,15 @@ router.get('/class',(req,res,next)=>{
   res.render('Pc/Class', req.returnData);
 })
 //产品详情页面
-router.get('/class/01',(req,res,next)=>{
-  res.render('Pc/ClassDetail', req.returnData);
+router.get('/class/:id',(req,res,next)=>{
+  ctrl.getDetail({
+    id: parseInt(req.params.id)
+  }).then(result => {
+    req.returnData.detail = result[0]
+    res.render('Pc/ClassDetail', req.returnData);
+  }).catch(err => {
+    res.render('error', err);
+  })
 })
 //解决方案详情页面
 router.get('/solution',(req,res,next)=>{

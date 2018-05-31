@@ -99,6 +99,21 @@ router.get('/download', (req, res, next) => {
 
 
 
+//编辑详情页内容页面
+router.get('/editdetail/:id', function (req, res, next) {
+  ctrlWeb.getDetail({
+    id: parseInt(req.params.id)
+  }).then(result => {
+    if (result[0].file) {
+      let file = result[0].file.split('/')
+      result[0].filename = file[file.length - 1]
+    }
+    res.render('Manage/editDetail', result[0]);
+  }).catch(err => {
+    console.log(err);
+    res.render('error', err);
+  })
+});
 
 
 //修改文章页面
@@ -151,6 +166,27 @@ router.post('/editarticle', function (req, res, next) {
       ok: 0,
       data: err,
       msg: '文章保存失败'
+    })
+  });
+});
+
+//修改详情页接口
+router.post('/editdetail', function (req, res, next) {
+  let body = req.body;
+  let params = {
+    id: body.id,
+    data: body
+  }
+  ctrl.updateDetail(params).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '详情页保存失败'
     })
   });
 });
@@ -249,10 +285,10 @@ router.post('/deleteDownFile', function (req, res, next) {
   body.id = parseInt(body.id);
   let filename = body.filepath.split('/');
   ctrl.deleteDownFile(body).then(result => {
-    downloadFile.delete(filename[filename.length-1],err=>{
+    downloadFile.delete(filename[filename.length - 1], err => {
       if (err) {
         console.log(err);
-      }else{
+      } else {
         res.json({
           ok: 200,
           data: result
@@ -293,9 +329,9 @@ router.get('/getArticleList', function (req, res, next) {
   })
 });
 
-router.get('/downFile',(req,res,next)=>{
+router.get('/downFile', (req, res, next) => {
   let param = req.query
-  ctrl.getFilePath(param,result=>{
+  ctrl.getFilePath(param, result => {
     res.download(result[0].filepath)
   })
 })

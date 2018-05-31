@@ -1,0 +1,89 @@
+{% extends './_ManageLayout.html' %} {% block title %} 编辑详情页内容 {% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="/pc/build/css/article_add.min.css">
+<script type="text/javascript" src="//at.alicdn.com/t/font_656017_r9b441jjqsolayvi.js"></script>
+{% endblock %} {% block childTitle %} 编辑详情页内容 {% endblock %} {% block toolsBar %}
+<div class="layui-form">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btn-submit-top">立即提交</button>
+            <button class="layui-btn layui-btn-primary" id="btn-reset-top">重置</button>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block content %}
+<form class="layui-form layui-form-pane" id="post" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label upload-cover">视频封面</label>
+        <div class="layui-input-block cover">
+            {% if videocover %}
+                <img src="{{videocover}}" class="img-cover" data-id="{{id}}">
+            {% endif%}
+            <div class="layui-upload-drag" id="upload-cover">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <span>最佳封面图大小1000(宽)*562(高)</span>
+            </div>
+            <button class="layui-btn" id="btn-delete-cover">点击清除图片</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">视频链接</label>
+        <div class="layui-input-block">
+            <input type="text" name="video" lay-verify="" placeholder="请填写视频链接(视频上传至七牛云，获取链接)" autocomplete="off" class="layui-input"
+                value="{{video}}">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label  upload-cover">选择文件</label>
+        <div class="layui-input-block cover">
+            <div class="layui-upload-drag" id="upload-file" data-file="{{file}}">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <span>已上传文件 {{filename}}</span>
+            </div>
+            <button class="layui-btn" id="btn-delete-file">点击清除文件</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">中文标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" lay-verify="" placeholder="请输入中文标题" autocomplete="off" class="layui-input" value="{{title}}">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">中文内容</label>
+        <div class="layui-input-block">
+            <div id="zhContent" class="input-content">{% autoescape %}{{ content }}{% endautoescape %}</div>
+        </div>
+    </div>
+
+    <div class="line-box">
+        <span>英文文章内容</span>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">英文标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="entitle" placeholder="请输入标题" autocomplete="off" class="layui-input" value="{{entitle}}">
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">英文内容</label>
+        <div class="layui-input-block">
+            <div id="enContent" class="input-content">{% autoescape %}{{ encontent }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
+            <button class="layui-btn layui-btn-primary" id="btn-reset">重置</button>
+        </div>
+    </div>
+</form>
+{% endblock %} {% block plugJs %}
+<script type="text/javascript" src="/cdn/wangEditor/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/qiniu.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/upQiniu.js"></script>
+<script type="text/javascript" src="/pc/build/js/edit_detail.min.js"></script>
+{% endblock %}

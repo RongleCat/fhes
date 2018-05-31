@@ -88,9 +88,14 @@ $(function () {
   })
 })
 
-function targetParent(hashId) {
-  let _parentEle = $(`#${hashId}`, parent.document)[0]
-  $(_parentEle).parents('.layui-nav-item').addClass('layui-nav-itemed')
-  top.location.hash = hashId
-  _parentEle.click()
+function targetParent(hashId, jump) {
+  if (!jump) {
+    let _parentEle = $(`#${hashId}`, parent.document)[0]
+    $(_parentEle).parents('.layui-nav-item').addClass('layui-nav-itemed')
+    top.location.hash = hashId
+    _parentEle.click()
+  } else {
+    top.location.href = hashId
+  }
+
 }
