@@ -108,7 +108,19 @@ router.get('/editdetail/:id', function (req, res, next) {
       let file = result[0].file.split('/')
       result[0].filename = file[file.length - 1]
     }
-    res.render('Manage/editDetail', result[0]);
+    res.render('Manage/EditDetail', result[0]);
+  }).catch(err => {
+    console.log(err);
+    res.render('error', err);
+  })
+});
+
+//编辑详情页内容页面
+router.get('/editservice', function (req, res, next) {
+  ctrlWeb.getService({
+    id: 1
+  }).then(result => {
+    res.render('Manage/EditService', result[0]);
   }).catch(err => {
     console.log(err);
     res.render('error', err);
@@ -178,6 +190,29 @@ router.post('/editdetail', function (req, res, next) {
     data: body
   }
   ctrl.updateDetail(params).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '详情页保存失败'
+    })
+  });
+});
+
+//修改服务支持接口
+router.post('/editservice', function (req, res, next) {
+  let body = req.body;
+  let params = {
+      one:body.onecontent,
+      two:body.twocontent,
+      three:body.threecontent,
+      fore:body.forecontent
+  }
+  ctrl.updateService(params).then(result => {
     res.json({
       ok: 200,
       data: result
@@ -357,6 +392,27 @@ router.get('/getDownFileList', function (req, res, next) {
     result.msg = '查询成功！'
     res.json(result);
   })
+});
+
+//设置首页新闻接口
+router.post('/setHomeNews', function (req, res, next) {
+  let body = req.body;
+  let params = {
+    id: body.id,
+    data: {'home':body.state}
+  }
+  ctrl.updateArticle(params).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '文章保存失败'
+    })
+  });
 });
 
 //登录页

@@ -39,7 +39,7 @@
                 <p>安装调试</p>
                 <span>Installation</span>
             </div>
-            <div class="content-body"></div>
+            <div class="content-body">{% autoescape %}{{ detail.one }}{% endautoescape %}</div>
         </div>
         <div class="content-block" id="Software">
             <div class="content-title">
@@ -47,7 +47,7 @@
                 <p>软件联调</p>
                 <span>Software</span>
             </div>
-            <div class="content-body"></div>
+            <div class="content-body">{% autoescape %}{{ detail.two }}{% endautoescape %}</div>
         </div>
         <div class="content-block" id="Production">
             <div class="content-title">
@@ -55,7 +55,7 @@
                 <p>产线改造</p>
                 <span>Production</span>
             </div>
-            <div class="content-body"></div>
+            <div class="content-body">{% autoescape %}{{ detail.three }}{% endautoescape %}</div>
         </div>
         <div class="content-block" id="Platform">
             <div class="content-title">
@@ -63,7 +63,7 @@
                 <p>定制平台</p>
                 <span>Custom platform</span>
             </div>
-            <div class="content-body"></div>
+            <div class="content-body">{% autoescape %}{{ detail.fore }}{% endautoescape %}</div>
         </div>
     </div>
 </div>

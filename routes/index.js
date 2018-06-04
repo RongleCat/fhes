@@ -37,12 +37,12 @@ router.get('/', function (req, res, next) {
     language = '01'
   }
   if (language !== '11' && language !== '00' && language) {
-    rule += `language like '${language.replace('0', '%')}' `
+    rule += `home = '1' and (language like '${language.replace('0', '%')}') `
   }
   ctrl.getHomeNewsList({
     rule,
     start: 0,
-    limit: 10
+    limit: 100
   }, (result) => {
     result.data.forEach(element => {
       if (element.content) {
@@ -74,7 +74,33 @@ router.get('/news/:id', function (req, res, next) {
 
 //关于我们页面
 router.get('/about',(req,res,next)=>{
-  res.render('Pc/About', req.returnData);
+  let rule = ''
+  let language = ''
+  if (req.returnData.client_lang === 'zh') {
+    language = '10'
+  } else {
+    language = '01'
+  }
+  if (language !== '11' && language !== '00' && language) {
+    rule += `home = '1' and (language like '${language.replace('0', '%')}') `
+  }
+  ctrl.getHomeNewsList({
+    rule,
+    start: 0,
+    limit: 10
+  }, (result) => {
+    result.data.forEach(element => {
+      if (element.content) {
+        element.content = removeTAG(element.content).substr(0,48)+'...'
+      }
+      if (element.encontent) {
+        element.encontent = removeTAG(element.encontent).substr(0,50)+'...'
+      }
+    });
+    console.log(result.data);
+    req.returnData.newsList = result.data
+    res.render('Pc/About', req.returnData);
+  })
 })
 //产品分类页面
 router.get('/class',(req,res,next)=>{
@@ -92,8 +118,15 @@ router.get('/class/:id',(req,res,next)=>{
   })
 })
 //解决方案详情页面
-router.get('/solution',(req,res,next)=>{
-  res.render('Pc/SolutionDetail', req.returnData);
+router.get('/solution/:id',(req,res,next)=>{
+  ctrl.getDetail({
+    id: parseInt(req.params.id)
+  }).then(result => {
+    req.returnData.detail = result[0]
+    res.render('Pc/ClassDetail', req.returnData);
+  }).catch(err => {
+    res.render('error', err);
+  })
 })
 //市场开发页面
 router.get('/market',(req,res,next)=>{
@@ -101,7 +134,15 @@ router.get('/market',(req,res,next)=>{
 })
 //服务支持页面
 router.get('/service',(req,res,next)=>{
-  res.render('Pc/Service', req.returnData);
+  ctrl.getService({
+    id: 1
+  }).then(result => {
+    console.log(result);
+    req.returnData.detail = result[0]
+    res.render('Pc/Service', req.returnData);
+  }).catch(err => {
+    res.render('error', err);
+  })
 })
 //文档下载页面
 router.get('/download',(req,res,next)=>{

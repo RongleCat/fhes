@@ -1,0 +1,52 @@
+{% extends './_ManageLayout.html' %} {% block title %} 编辑服务支持页面 {% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="/pc/build/css/article_add.min.css">
+<script type="text/javascript" src="//at.alicdn.com/t/font_656017_r9b441jjqsolayvi.js"></script>
+{% endblock %} {% block childTitle %} 编辑服务支持页面 {% endblock %} {% block toolsBar %}
+<div class="layui-form">
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" id="btn-submit-top">立即提交</button>
+            <button class="layui-btn layui-btn-primary" id="btn-reset-top">重置</button>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block content %}
+<form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">安装调试</label>
+        <div class="layui-input-block">
+            <div id="one" class="input-content">{% autoescape %}{{ one }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">软件联调</label>
+        <div class="layui-input-block">
+            <div id="two" class="input-content">{% autoescape %}{{ two }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">产线改造</label>
+        <div class="layui-input-block">
+            <div id="three" class="input-content">{% autoescape %}{{ three }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">定制平台</label>
+        <div class="layui-input-block">
+            <div id="fore" class="input-content">{% autoescape %}{{ fore }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary" id="btn-reset">重置</button>
+        </div>
+    </div>
+</form>
+{% endblock %} {% block plugJs %}
+<script type="text/javascript" src="/cdn/wangEditor/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/qiniu.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/upQiniu.js"></script>
+<script type="text/javascript" src="/pc/build/js/service_manage.min.js"></script>
+{% endblock %}

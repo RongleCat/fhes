@@ -71,81 +71,47 @@
                     <span class="dot-block"></span>
                     <p>新闻中心</p>
                     <span>News Center</span>
-                    <a href="/news" target="_blank">{{lang.readmore}}</a>
+                    <!-- <a href="/news" target="_blank">{{lang.readmore}}</a> -->
                 </div>
                 <div class="content-body">
                     <div class="news-view clearfix">
                         <div class="left-view">
                             <div class="top-news">
-                                <a href="/news/27" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/61534.jpg-mask" alt="">
-                                    <p>腾讯一季度净利远超预期，《王者荣耀》势头依然强劲</p>
+                                <a href="/news/{{ newsList[0].id }}" target="_blank">
+                                    <img src="{{ newsList[0].cover }}" alt=""> {% if client_lang === 'zh'%}
+                                    <p>{{ newsList[0].title }}</p>
+                                    {% else %}
+                                    <p>{{ newsList[0].entitle }}</p>
+                                    {% endif %}
                                 </a>
                             </div>
                             <div class="bottom-newslist clearfix">
+                                {% for item in newsList %} {% if loop.index0 == 1 || loop.index0 == 2 || loop.index0 == 3%}
                                 <div class="news-item">
-                                    <a href="/news/23" target="_blank">
-                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                        <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
+                                    <a href="/news/{{item.id}}" target="_blank">
+                                        <img src="{{item.cover}}" alt=""> {% if client_lang === 'zh'%}
+                                        <p>{{ item.title }}</p>
+                                        {% else %}
+                                        <p>{{ item.entitle }}</p>
+                                        {% endif %}
                                     </a>
                                 </div>
-                                <div class="news-item">
-                                    <a href="/news/22" target="_blank">
-                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_02small_04_201851616315A3.jpg-mask" alt="">
-                                        <p>在这部没有隐私的反乌托邦电影里 你将习惯于被窥视</p>
-                                    </a>
-                                </div>
-                                <div class="news-item">
-                                    <a href="/news/21" target="_blank">
-                                        <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_02small_04_2018517152730C.jpg-mask" alt="">
-                                        <p>十年烂片王凯奇终于翻身 这部满分血浆片救了他</p>
-                                    </a>
-                                </div>
+                                {% endif %} {% endfor %}
                             </div>
                         </div>
                         <div class="right-view">
+                            {% for item in newsList %} {% if loop.index0 != 1 && loop.index0 != 2 && loop.index0 != 3&& loop.index0 != 0%}
                             <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
+                                <a href="/news/{{item.id}}" target="_blank">
+                                    <img src="{{item.cover}}" alt=""> {% if client_lang === 'zh'%}
+                                    <p>{{ item.title }}</p>
+                                    {% else %}
+                                    <p>{{ item.entitle }}</p>
+                                    {% endif %}
+                                    <span>{{= item.createtime|date('Y-m-d H:i:s', -480,'CCT') =}}</span>
                                 </a>
                             </div>
-                            <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
-                                </a>
-                            </div>
-                            <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
-                                </a>
-                            </div>
-                            <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
-                                </a>
-                            </div>
-                            <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
-                                </a>
-                            </div>
-                            <div class="news-item">
-                                <a href="/news/23" target="_blank">
-                                    <img src="http://p8wnfmuiu.bkt.clouddn.com/gamersky_01small_02_20185161435BC3.jpg-mask" alt="">
-                                    <p>灭霸的黑暗教团是酱油？拿出一个都能捅穿金刚狼！</p>
-                                    <span>2018年5月1号</span>
-                                </a>
-                            </div>
+                            {% endif %} {% endfor %}
                         </div>
                     </div>
                 </div>

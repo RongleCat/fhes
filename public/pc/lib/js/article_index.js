@@ -5,11 +5,11 @@ $(function () {
         {
             field: 'id',
             title: 'ID',
-            width:80
+            width: 80
         }, {
             field: 'cover',
             title: '封面图片',
-            width:130,
+            width: 130,
             templet: function (d) {
                 return `<img src="${d.cover}">`
             }
@@ -28,8 +28,13 @@ $(function () {
         }, {
             fixed: 'right',
             align: 'center',
-            toolbar: '#barDemo',
-            title: '操作'
+            title: '操作',
+            templet(d) {
+                return `<a class="layui-btn ${d.home === '1'?'layui-btn-warm':'layui-btn-normal'} layui-btn-xs" lay-event="home">${d.home === '1'?'从首页删除':'添加到首页'}</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>`
+            }
         }
     ]
     let options = {
@@ -51,11 +56,11 @@ $(function () {
         {
             field: 'id',
             title: 'ID',
-            width:80
+            width: 80
         }, {
             field: 'cover',
             title: '封面图片',
-            width:130,
+            width: 130,
             templet: function (d) {
                 return `<img src="${d.cover}">`
             }
@@ -71,19 +76,24 @@ $(function () {
         }, {
             fixed: 'right',
             align: 'center',
-            toolbar: '#barDemo',
-            title: '操作'
+            title: '操作',
+            templet(d) {
+                return `<a class="layui-btn ${d.home === '1'?'layui-btn-warm':'layui-btn-normal'} layui-btn-xs" lay-event="home">${d.home === '1'?'从首页删除':'添加到首页'}</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>`
+            }
         }
     ]
     let enCols = [ //标题栏
         {
             field: 'id',
             title: 'ID',
-            width:80
+            width: 80
         }, {
             field: 'cover',
             title: '封面图片',
-            width:130,
+            width: 130,
             templet: function (d) {
                 return `<img src="${d.cover}">`
             }
@@ -99,8 +109,13 @@ $(function () {
         }, {
             fixed: 'right',
             align: 'center',
-            toolbar: '#barDemo',
-            title: '操作'
+            title: '操作',
+            templet(d) {
+                return `<a class="layui-btn ${d.home === '1'?'layui-btn-warm':'layui-btn-normal'} layui-btn-xs" lay-event="home">${d.home === '1'?'从首页删除':'添加到首页'}</a>
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>`
+            }
         }
     ]
 
@@ -197,6 +212,27 @@ $(function () {
             //     username: '123',
             //     title: 'xxx'
             // });
+        } else if (layEvent === 'home') {
+            let state = '1'
+            if (data.home === '1') {
+                state = ''
+            }
+            $.ajax({
+                type: "POST",
+                url: "/manage/setHomeNews",
+                dataType: "json",
+                data: {
+                    id: data.id,
+                    state
+                },
+                success: function (data) {
+                    if (data.ok === 200) {
+                        ArticleList.reload(options)
+                    } else {
+                        alert(data.msg)
+                    }
+                }
+            });
         }
     });
 })
