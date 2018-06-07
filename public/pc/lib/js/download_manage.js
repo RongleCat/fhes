@@ -82,7 +82,7 @@ $(function () {
                         if (data.ok === 200) {
                             obj.del();
                         } else {
-                            layer.msg(data.msg,()=>{})
+                            layer.msg(data.msg, () => {})
                         }
                     }
                 });
@@ -141,13 +141,28 @@ $(function () {
                     //初始化上传
                     let upload = layui.upload;
                     let post = {}
-                    upload.render({
-                        elem: '#upload-file',
-                        url: '/manage/uploadDownFile',
-                        accept: 'file',
-                        done: function (res, index, upload) {
-                            if (res.ok === 200) {
-                                let fileType = getFileType(res.result['x:filename'])
+
+                    let uploader = Qiniu.uploader({
+                        runtimes: 'html5,flash,html4', //上传模式,依次退化
+                        browse_button: 'upload-file',
+                        uptoken_url: '/manage/uptoken?type=file',
+                        domain: 'http://p9gz545fl.bkt.clouddn.com/',
+                        max_file_size: '100mb', //最大文件体积限制
+                        max_retries: 3, //上传失败最大重试次数
+                        dragdrop: true, //开启可拖曳上传
+                        chunk_size: '4mb', //分块上传时，每片的体积
+                        auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                        init: {
+                            'UploadProgress': function (up, file) {
+                                let $tip = $('#upload-file').find('span');
+                                $tip.text('已上传 ' + uploader.total.percent +'%')
+                            },
+                            'FileUploaded': function (up, file, info) {
+                                let domain = up.getOption('domain');
+                                let res = $.parseJSON(info);
+                                let sourceLink = domain + res.key;
+                                let fileType = getFileType(res.key)
+
                                 if (fileTypes.indexOf(fileType) > -1) {
                                     post.type = fileType
                                 } else {
@@ -157,11 +172,13 @@ $(function () {
                                         post.type = 'othe'
                                     }
                                 }
-                                post.size = bytesToSize(res.result['x:size'])
-                                post.filepath = res.result['url']
-                                $('#upload-file').find('span').text(`已上传 ${res.result.key}`)
-                            } else {
-                                upload();
+                                post.size = bytesToSize(file.size);
+                                post.filepath = sourceLink
+                                $('#upload-file').find('span').text(`已上传 ${res.key}`)
+                            },
+                            'Error': function (up, err, errTip) {
+                                //上传出错时,处理相关的事情
+                                printLog('on Error');
                             }
                         }
                     });
@@ -222,7 +239,7 @@ function getFileType(name) {
 //转换文件大小
 function bytesToSize(bytes) {
     if (bytes === 0) return '0 B';
-    var k = 1024, // or 1024
+    let k = 1024, // or 1024
         sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         i = Math.floor(Math.log(bytes) / Math.log(k));
 

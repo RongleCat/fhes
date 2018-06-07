@@ -215,7 +215,7 @@ $(function () {
         } else if (layEvent === 'home') {
             let state = '1'
             if (data.home === '1') {
-                state = ''
+                state = '0'
             }
             $.ajax({
                 type: "POST",

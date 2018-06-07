@@ -1,8 +1,8 @@
 /*! full-screen-slide.js v1.0.0 | tianjia | https://github.com/tianjiax/Personal-plug-in-library/tree/master/Full-screen-slide */
-(function ($) { 
-    $.fn.setSlide = function(option){ 
-        var set = $.extend({ 
-            slideElem: $(this), 
+(function ($) {
+    $.fn.setSlide = function(option){
+        var set = $.extend({
+            slideElem: $(this),
             switchingSpeed:600,
             isBlock:false,
             fullScreenw:false,
@@ -69,6 +69,8 @@
 					slideElem.css({'overflow':'hidden'});
 					slideOut.addClass('isblock')
 				}
+				SlideIndex = parseInt(slideLen/2);
+				slide(SlideIndex);
 
 				// 上一页
 				slidePrev.click(function(){
@@ -139,7 +141,7 @@
 				}
 			}
         )
-        
-    }; 
+
+    };
 })(jQuery);
 

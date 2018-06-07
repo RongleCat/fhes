@@ -308,8 +308,17 @@
 }
 
 .investor-text{
-    font-size: 56px;
-    padding: 80px;
+    font-size: 32px;
+    padding: 20px 0;
+    p{
+        padding-top: 20px;
+        font-size: 16px;
+        line-height: 24px;
+        span{
+            display: inline-block;
+            width: 200px;
+        }
+    }
 }
 
 .img-human{
@@ -335,6 +344,6 @@
 
 .text-introduction{
     text-indent: 2em;
-    font-size: 22px;
-    line-height: 50px;
+    font-size: 18px;
+    line-height: 48px;
 }

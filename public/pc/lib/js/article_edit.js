@@ -20,27 +20,52 @@ $(function () {
         'redo' // 重复
     ]
 
-    
-    var upload = layui.upload;
 
-    //初始化封面上传
-    upload.render({
-        elem: '#upload-cover',
-        url: '/manage/uploadNewsCover',
-        accept: 'images',
-        acceptMime: 'image/*',
-        done: function (res) {
-            if (res.ok === 200) {
-                if ($('.img-cover').length != 0) {
-                    $('.img-cover')[0].src = res.result.url + '-mask'
-                } else {
-                    $('#upload-cover').find('p').text('点击/拖拽更换封面图片').end().before(`<img src="${res.result.url}-mask" class="img-cover">`)
+
+    let $cover = Qiniu.uploader({
+        runtimes: 'html5,flash,html4', //上传模式,依次退化
+        browse_button: 'upload-cover',
+        uptoken_url: '/manage/uptoken',
+        domain: 'http://p8wnfmuiu.bkt.clouddn.com/',
+        filters: {
+            mime_types: [
+                //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
+                {
+                    title: "图片文件",
+                    extensions: "jpg,gif,png,bmp"
                 }
+            ]
+        },
+        max_file_size: '100mb', //最大文件体积限制
+        max_retries: 3, //上传失败最大重试次数
+        dragdrop: true, //开启可拖曳上传
+        chunk_size: '4mb', //分块上传时，每片的体积
+        auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+            'UploadProgress': function (up, file) {
+                let $tip = $('#upload-cover').find('span');
+                $tip.text('已上传 ' + $cover.total.percent + '%')
+            },
+            'FileUploaded': function (up, file, info) {
+                let domain = up.getOption('domain');
+                let res = $.parseJSON(info);
+                let sourceLink = domain + res.key;
+
+                if ($('.img-cover').length != 0) {
+                    $('.img-cover')[0].src = sourceLink + '-mask'
+                } else {
+                    $('#upload-cover').find('p').text('点击/拖拽更换封面图片').end().before(`<img src="${sourceLink}-mask" class="img-cover">`)
+                }
+
+            },
+            'Error': function (up, err, errTip) {
+                //上传出错时,处理相关的事情
+                printLog('on Error');
             }
         }
     });
 
-    //初始化文本编辑器    
+    //初始化文本编辑器
     var zhContent = new E('#zhContent')
     zhContent.customConfig.onfocus = function () {
         $(zhContent.toolbarSelector).addClass('focus')

@@ -38,6 +38,12 @@ let uptoken = new qiniu.rs.PutPolicy({
   scope: 'fhesimages',
   expires: 100000
 });
+
+let downtoken = new qiniu.rs.PutPolicy({
+  scope: 'downloadfiles',
+  expires: 100000
+});
+
 // console.log(uptoken.uploadToken());
 
 //检测是否含有非法字符及登录权限验证跳转
@@ -284,12 +290,20 @@ router.post('/uploadDownFile', multipartMiddleware, (req, res, next) => {
 
 //获取七牛上传token接口
 router.get('/uptoken', function (req, res, next) {
-  var token = uptoken.uploadToken();
+  let querys = req.query;
+  let token = '';
+  if (querys.type == 'file') {
+    token= downtoken.uploadToken()
+  }else{
+    token= uptoken.uploadToken()
+  }
   res.header("Cache-Control", "max-age=0, private, must-revalidate");
   res.header("Pragma", "no-cache");
   res.header("Expires", 0);
+  console.log(querys,token);
   if (token) {
     res.json({
+      ok:200,
       uptoken: token
     });
   }

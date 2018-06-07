@@ -3,7 +3,9 @@ $(function () {
     let $content = $('.content-block');
     let top;
     let _block = [];
-
+    let bodyHeight = $(document).height();
+    let windowHeight = $(window).height();
+    let stopHeight = bodyHeight-windowHeight-720;
     $content.map((index, item) => {
         _block.push($(item).offset().top)
     })
@@ -24,8 +26,11 @@ $(function () {
         let scrollY = $(window).scrollTop();
         $nav.find('li').eq(limit(_block, scrollY + 300)).addClass('active').siblings().removeClass('active')
         if (scrollY <= 400) {
-            $nav.css('top', '0px')
-        } else {
+            $nav.css({'top':'0'})
+        } else if(scrollY>=stopHeight){
+            $nav.css({'top':(stopHeight)+'px'})
+        }
+        else {
             setNavTop($nav);
         }
     })
@@ -55,7 +60,8 @@ $(function () {
 function setNavTop(el) {
     let windowTop = $(window).scrollTop();
     let mainTop = $('.other-main').offset().top;
-    el.css('top', (windowTop - mainTop + 100) + 'px')
+    el.css({'top':(windowTop - mainTop + 100) + 'px'})
+
 }
 
 function limit(arr, num) {

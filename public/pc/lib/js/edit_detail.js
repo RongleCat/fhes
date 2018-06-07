@@ -24,38 +24,92 @@ $(function () {
 
     var upload = layui.upload;
 
-    //初始化封面上传
-    upload.render({
-        elem: '#upload-cover',
-        url: '/manage/uploadNewsCover',
-        accept: 'images',
-        acceptMime: 'image/*',
-        done: function (res) {
-            if (res.ok === 200) {
-                if ($('.img-cover').length != 0) {
-                    $('.img-cover')[0].src = res.result.url + '-mask'
-                } else {
-                    $('#upload-cover').find('p').text('点击/拖拽更换视频封面图片').end().before(`<img src="${res.result.url}-mask" class="img-cover">`)
+    // 初始化封面上传
+    let $cover = Qiniu.uploader({
+        runtimes: 'html5,flash,html4', //上传模式,依次退化
+        browse_button: 'upload-cover',
+        uptoken_url: '/manage/uptoken',
+        domain: 'http://p8wnfmuiu.bkt.clouddn.com/',
+        filters: {
+            mime_types: [
+                //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
+                {
+                    title: "图片文件",
+                    extensions: "jpg,gif,png,bmp"
                 }
+            ]
+        },
+        max_file_size: '100mb', //最大文件体积限制
+        max_retries: 3, //上传失败最大重试次数
+        dragdrop: true, //开启可拖曳上传
+        chunk_size: '4mb', //分块上传时，每片的体积
+        auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        init: {
+            'UploadProgress': function (up, file) {
+                let $tip = $('#upload-cover').find('span');
+                $tip.text('已上传 ' + $cover.total.percent + '%')
+            },
+            'FileUploaded': function (up, file, info) {
+                let domain = up.getOption('domain');
+                let res = $.parseJSON(info);
+                let sourceLink = domain + res.key;
+
+                if ($('.img-cover').length != 0) {
+                    $('.img-cover')[0].src = sourceLink + '-mask'
+                } else {
+                    $('#upload-cover').find('p').text('点击/拖拽更换视频封面图片').end().before(`<img src="${sourceLink}-mask" class="img-cover">`)
+                }
+
+            },
+            'Error': function (up, err, errTip) {
+                //上传出错时,处理相关的事情
+                printLog('on Error');
             }
         }
     });
 
+
+
     //详情页文档上传
-    upload.render({
-        elem: '#upload-file',
-        url: '/manage/uploadDownFile',
-        accept: 'file',
-        done: function (res, index, upload) {
-            if (res.ok === 200) {
-                console.log(res);
-                fileurl = res.result.url
-                $('#upload-file').find('span').text(`已上传 ${res.result.key}`)
-            } else {
-                upload();
+    setTimeout(() => {
+        let $file = Qiniu.uploader({
+            runtimes: 'html5,flash,html4', //上传模式,依次退化
+            browse_button: 'upload-file',
+            uptoken_url: '/manage/uptoken?type=file',
+            domain: 'http://p9gz545fl.bkt.clouddn.com/',
+            max_file_size: '100mb', //最大文件体积限制
+            max_retries: 3, //上传失败最大重试次数
+            dragdrop: true, //开启可拖曳上传
+            chunk_size: '4mb', //分块上传时，每片的体积
+            auto_start: true, //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+            init: {
+                'FilesAdded': function (up, files) {
+                    console.log(up);
+                },
+                'UploadProgress': function (up, file) {
+                    let $tip = $('#upload-file').find('span');
+                    $tip.text('已上传 ' + $file.total.percent + '%')
+                },
+                'FileUploaded': function (up, file, info) {
+                    let domain = up.getOption('domain');
+                    let res = $.parseJSON(info);
+                    let sourceLink = domain + res.key;
+
+                    console.log(res);
+                    fileurl = sourceLink
+                    $('#upload-file').find('span').text(`已上传 ${res.key}`)
+
+                    post.size = bytesToSize(file.size);
+                    post.filepath = sourceLink
+                },
+                'Error': function (up, err, errTip) {
+                    //上传出错时,处理相关的事情
+                    printLog('on Error');
+                }
             }
-        }
-    });
+        });
+    }, 100);
+
 
     //初始化文本编辑器
     var zhContent = new E('#zhContent')
@@ -81,7 +135,10 @@ $(function () {
 
 
     uploadInit(zhContent)
-    uploadInit(enContent)
+    uploadInit(enContent);
+
+
+
 
     layui.use('form', function () {
         var form = layui.form;
@@ -98,18 +155,18 @@ $(function () {
             let content = zhContent.txt.html();
             let encontent = enContent.txt.html();
             let cover = $('.img-cover').attr('src')
-            data.field.id = url[url.length-1]
+            data.field.id = url[url.length - 1]
             console.log(data.field);
 
             if (cover) {
                 data.field.videocover = cover
-            }else{
+            } else {
                 data.field.videocover = ''
             }
 
             if (fileurl) {
                 data.field.file = fileurl
-            }else{
+            } else {
                 data.field.file = ''
             }
 
@@ -158,7 +215,7 @@ $(function () {
                 data: data.field,
                 success: function (data) {
                     if (data.ok === 200) {
-                        targetParent('/manage',true)
+                        targetParent('/manage', true)
                     } else {
                         alert(data.msg)
                     }
@@ -168,7 +225,7 @@ $(function () {
         });
     });
 
-    $('#btn-reset').on('click',function (e){
+    $('#btn-reset').on('click', function (e) {
         e.preventDefault();
         $('input[type="text"]').val('')
         zhContent.txt.clear()
@@ -178,13 +235,13 @@ $(function () {
         $('.img-cover').remove()
     })
 
-    $('#btn-delete-file').on('click',function (e){
+    $('#btn-delete-file').on('click', function (e) {
         e.preventDefault();
         fileurl = null
         $('#upload-file span').text('')
     })
 
-    $('#btn-delete-cover').on('click',function (e){
+    $('#btn-delete-cover').on('click', function (e) {
         e.preventDefault();
         $('.img-cover').remove()
     })
@@ -199,3 +256,13 @@ $(function () {
     //     $('#loading-icon').find('use')[0].href.baseVal = '#icon-qie'
     // }, 1000);
 })
+
+//转换文件大小
+function bytesToSize(bytes) {
+    if (bytes === 0) return '0 B';
+    let k = 1024, // or 1024
+        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+        i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return (bytes / Math.pow(k, i)).toPrecision(3) + sizes[i];
+}
