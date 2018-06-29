@@ -1,74 +1,45 @@
-{% extends './_layout.html' %} {% block title %} 产品分类 {% endblock %} {% block content %}
-<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/05.jpg')" data-hd="/pc/build/images/banner/05.jpg">
+{% extends './_layout.html' %} {% block title %} 服务/支持 {% endblock %} {% block content %}
+<div class="banner-bar" style="background-image:url('//pcstatic.fhes.com/images/lowjpg/banner/05.jpg')" data-hd="//pcstatic.fhes.com/images/banner/05.jpg">
     <div class="banner-main">
         <div>技术服务/支持</div>
         <p>Technical Services</p>
     </div>
 </div>
 <div class="other-main">
-    <ul class="left-nav">
-        <li id="Installation_hash" class="active">
-            <a href="#Installation">
-                <p>安装调试</p>
-                <span>Installation</span>
-            </a>
-        </li>
-        <li id="Software_hash">
-            <a href="#Software">
-                <p>软件联调</p>
-                <span>Software</span>
-            </a>
-        </li>
-        <li id="Production_hash">
-            <a href="#Production">
-                <p>产线改造</p>
-                <span>Production</span>
-            </a>
-        </li>
-        <li id="Platform_hash">
-            <a href="#Platform">
-                <p>定制平台</p>
-                <span>Custom platform</span>
-            </a>
-        </li>
-    </ul>
-    <div class="right-content">
-        <div class="content-block" id="Installation">
-            <div class="content-title">
-                <span class="dot-block"></span>
-                <p>安装调试</p>
-                <span>Installation</span>
-            </div>
-            <div class="content-body">{% autoescape %}{{ detail.one }}{% endautoescape %}</div>
+    <div class="center-container">
+        <div class="text-box item-01">
+            软件联调
+            <span>Software</span>
         </div>
-        <div class="content-block" id="Software">
-            <div class="content-title">
-                <span class="dot-block"></span>
-                <p>软件联调</p>
-                <span>Software</span>
-            </div>
-            <div class="content-body">{% autoescape %}{{ detail.two }}{% endautoescape %}</div>
+        <div class="text-box item-02">
+            安装调试
+            <span>Installation</span>
         </div>
-        <div class="content-block" id="Production">
-            <div class="content-title">
-                <span class="dot-block"></span>
-                <p>产线改造</p>
-                <span>Production</span>
-            </div>
-            <div class="content-body">{% autoescape %}{{ detail.three }}{% endautoescape %}</div>
+        <div class="text-box black item-03">
+            定制平台
+            <span>Custom platform</span>
         </div>
-        <div class="content-block" id="Platform">
-            <div class="content-title">
-                <span class="dot-block"></span>
-                <p>定制平台</p>
-                <span>Custom platform</span>
-            </div>
-            <div class="content-body">{% autoescape %}{{ detail.fore }}{% endautoescape %}</div>
+        <div class="text-box black item-04">
+            产线改造
+            <span>Production</span>
+        </div>
+        <div class="text-box item-05">
+            <a href="/download">
+                下载
+                <span>Download</span>
+            </a>
+        </div>
+        <div class="text-box black item-06">
+            打样测试
+            <span>Proof testing</span>
+        </div>
+        <div class="text-box item-07">
+            定制方案
+            <span>Customized plan</span>
         </div>
     </div>
 </div>
 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="/pc/build/css/service_index.min.css"> {% endblock %}
-{% block plugJs %}
-<script type="text/javascript" src="/pc/build/js/service_index.min.js"></script>
+<link rel="stylesheet" href="//pcstatic.fhes.com/css/service_index.min.css"> {% endblock %} {% block plugJs %}
+<script type="text/javascript" src="//pcstatic.fhes.com/js/service_index.min.js"></script>
 {% endblock %}

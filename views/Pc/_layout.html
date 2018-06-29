@@ -8,15 +8,17 @@
     <meta name="renderer" content="webkit">
     <meta name="referrer" content="no-referrer">
     <title>{% block title %} {% endblock %}</title>
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_kn5szra9k7ec23xr.css{{dev}}"> {% if dev %}
-    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% else %}
-    <link rel="stylesheet" href="//p8vbi0sf0.bkt.clouddn.com/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {% endblock %}
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_ucdd411jzip.css{{dev}}"> {% if dev %}
+    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% else %}
+    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {% endblock %}
 </head>
 
 <body>
     <div class="common-header">
         <div class="header-main">
-            <a href="/" title="返回首页"><img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt="FHES" class="logo"></a>
+            <a href="/" title="返回首页">
+                <img src="//pcstatic.fhes.com/images/logo.png" alt="FHES" class="logo">
+            </a>
             <ul class="nav-list clearfix{{lang.langClass}}">
                 <li class="{{navActive|active0}}">
                     <a href="/">{{lang.home}}</a>
@@ -105,25 +107,13 @@
                     <a href="/service">{{lang.services}}</a>
                     <ul class="down-list">
                         <li>
-                            <a href="/service#Installation">{{lang.installation}}</a>
-                        </li>
-                        <li>
-                            <a href="/service#Software">{{lang.thesoftware}}</a>
-                        </li>
-                        <li>
-                            <a href="/service#Production">{{lang.productionlinereform}}</a>
-                        </li>
-                        <li>
-                            <a href="/service#Platform">{{lang.customplatform}}</a>
-                        </li>
-                        <li>
                             <a href="/download">{{lang.download}}</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             <a href="javascript:void(0);" class="select-lang">
-                <i class="iconfont {{lang.langIcon}}"></i>{{lang.lang}}</a>
+                <span class="lang-icon {{lang.langIcon}}"></span>{{lang.lang}}</a>
         </div>
     </div>
     <div class="main-container">
@@ -142,22 +132,22 @@
                         </div>
                         <ul class="item-list">
                             <li>
-                                <a href="#">{{lang.companyintroduction}}</a>
+                                <a href="/about#Introduction">{{lang.companyintroduction}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.companynews}}</a>
+                                <a href="/about#News">{{lang.companynews}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.research}}</a>
+                                <a href="/about#Honor">{{lang.research}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.investoreelations}}</a>
+                                <a href="/about#Investor">{{lang.investoreelations}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.humanresources}}</a>
+                                <a href="/about#Human">{{lang.humanresources}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.contactus}}</a>
+                                <a href="/about#Contact">{{lang.contactus}}</a>
                             </li>
                         </ul>
                     </div>
@@ -167,19 +157,19 @@
                         </div>
                         <ul class="item-list">
                             <li>
-                                <a href="#">{{lang.DPseries}}</a>
+                                <a href="/class/7">{{lang.DPseries}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.laserseries}}</a>
+                                <a href="/class/8">{{lang.laserseries}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.CIJseries}}</a>
+                                <a href="/class/9">{{lang.CIJseries}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.consumables}}</a>
+                                <a href="/class/10">{{lang.consumables}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.software}}</a>
+                                <a href="/class/11">{{lang.software}}</a>
                             </li>
                         </ul>
                     </div>
@@ -189,10 +179,22 @@
                         </div>
                         <ul class="item-list">
                             <li>
-                                <a href="#">{{lang.industry}}</a>
+                                <a href="/solution/1">{{lang.food}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.applications}}</a>
+                                <a href="/solution/2">{{lang.seed}}</a>
+                            </li>
+                            <li>
+                                <a href="/solution/3">{{lang.packaging}}</a>
+                            </li>
+                            <li>
+                                <a href="/solution/4">{{lang.bottle}}</a>
+                            </li>
+                            <li>
+                                <a href="/solution/5">{{lang.salt}}</a>
+                            </li>
+                            <li>
+                                <a href="/solution/6">{{lang.parts}}</a>
                             </li>
                         </ul>
                     </div>
@@ -202,13 +204,13 @@
                         </div>
                         <ul class="item-list">
                             <li>
-                                <a href="#">{{lang.marketcoverage}}</a>
+                                <a href="/market#coverage">{{lang.marketcoverage}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.partners}}</a>
+                                <a href="/market#partner">{{lang.partners}}</a>
                             </li>
                             <li>
-                                <a href="#">{{lang.dealerenquiry}}</a>
+                                <a href="/market#hottel">{{lang.dealerenquiry}}</a>
                             </li>
                         </ul>
                     </div>
@@ -218,41 +220,29 @@
                         </div>
                         <ul class="item-list">
                             <li>
-                                <a href="#">{{lang.installation}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{lang.thesoftware}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{lang.productionlinereform}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{lang.customplatform}}</a>
-                            </li>
-                            <li>
-                                <a href="#">{{lang.download}}</a>
+                                <a href="/download">{{lang.download}}</a>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="right-logo">
-                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//p8vbi0sf0.bkt.clouddn.com/images/QRcode.jpg">
+                    <img src="//pcstatic.fhes.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//pcstatic.fhes.com/images/QRcode.jpg">
                     <div>{{lang.focus}}</div>
                     {% if !other %}
-                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo_black.png" alt=""> {% else %}
-                    <img src="//p8vbi0sf0.bkt.clouddn.com/images/logo.png" alt=""> {% endif %}
+                    <img src="//pcstatic.fhes.com/images/logo_black.png" alt=""> {% else %}
+                    <img src="//pcstatic.fhes.com/images/logo.png" alt=""> {% endif %}
 
                 </div>
             </div>
         </div>
 
-        <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery-2.1.4.min.js{{dev}}"></script>
-        <script type="text/javascript" src="//p8vbkdd7w.bkt.clouddn.com/jquery.cookie.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//cdn.fhes.com/jquery-2.1.4.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
 
         {% if dev %}
-        <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
         {% else %}
-        <script type="text/javascript" src="//p8vbi0sf0.bkt.clouddn.com/js/common.min.js{{dev}}"></script>
+        <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
         {% endif %} {% block plugJs %} {% endblock %}
 </body>
 

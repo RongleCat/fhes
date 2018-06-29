@@ -49,7 +49,7 @@ module.exports = {
         bottle:'酒类制盖',
         salt:'盐业',
         parts:'汽配',
-        langIcon:'icon-yingwenyuyan',
+        langIcon:'icon-yingguo',
         listintroduction:'公司介绍',
         listresearch:'研发能力',
     },
@@ -103,7 +103,7 @@ module.exports = {
         bottle:'Wine bottle',
         salt:'Salt industry',
         parts:'Auto parts',
-        langIcon:'icon-zhongwenyuyan',
+        langIcon:'icon-zhongguo',
         listintroduction:'Introduction',
         listresearch:'Research Ability',
     }

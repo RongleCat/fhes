@@ -20,7 +20,7 @@ swig.setDefaults({
 })
 
 swig.setFilter('active0', function (input) {
-  if (input === '/') {
+  if (input === '/' || input.toLocaleLowerCase().indexOf('/news')!==-1) {
     return 'active'
   } else {
     return ''

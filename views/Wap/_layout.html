@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="browsermode" content="application">
+    <title>{% block title %} {% endblock %}</title>
+    <script src="//cdn.fhes.com/flexible.js"></script>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_pwhh1ynph8.css">
+    <link rel="stylesheet" href="//wapstatic.fhes.com/css/common.min.css">
+    {% block plugCss %} {% endblock %}
+</head>
+
+<body>
+    <div class="common-header">
+        <div class="iconfont icon-caidan btn-menu"></div>
+        <div class="btn-lang select-lang">
+            <span class="lang-icon {{lang.langIcon}}"></span>{{lang.lang}}
+        </div>
+    </div>
+    <div class="menu-list">
+        <ul class="nav-list clearfix{{lang.langClass}}">
+            <li class="{{navActive|active0}}">
+                <a href="/">{{lang.home}}</a>
+            </li>
+            <li class="{{navActive|active1}}">
+                <a href="/about">{{lang.about}}</a>
+                <ul class="down-list">
+                    <li>
+                        <a href="/about#Introduction">{{lang.listintroduction}}</a>
+                    </li>
+                    <li>
+                        <a href="/about#Honor">{{lang.listresearch}}</a>
+                    </li>
+                    <li>
+                        <a href="/about#Investor">{{lang.investoreelations}}</a>
+                    </li>
+                    <li>
+                        <a href="/about#Human">{{lang.humanresources}}</a>
+                    </li>
+                    <li>
+                        <a href="/about#Contact">{{lang.contactus}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{navActive|active2}}">
+                <a href="/class/7">{{lang.product}}</a>
+                <ul class="down-list">
+                    <li>
+                        <a href="/class/7">{{lang.DPseries}}</a>
+                    </li>
+                    <li>
+                        <a href="/class/8">{{lang.laserseries}}</a>
+                    </li>
+                    <li>
+                        <a href="/class/9">{{lang.CIJseries}}</a>
+                    </li>
+                    <li>
+                        <a href="/class/10">{{lang.consumables}}</a>
+                    </li>
+                    <li>
+                        <a href="/class/11">{{lang.software}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{navActive|active3}}">
+                <a href="/solution/1">{{lang.solution}}</a>
+                <ul class="down-list">
+                    <li>
+                        <a href="/solution/1">{{lang.food}}</a>
+                    </li>
+                    <li>
+                        <a href="/solution/2">{{lang.seed}}</a>
+                    </li>
+                    <li>
+                        <a href="/solution/3">{{lang.packaging}}</a>
+                    </li>
+                    <li>
+                        <a href="/solution/4">{{lang.bottle}}</a>
+                    </li>
+                    <li>
+                        <a href="/solution/5">{{lang.salt}}</a>
+                    </li>
+                    <li>
+                        <a href="/solution/6">{{lang.parts}}</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="{{navActive|active4}}">
+                <a href="/market">{{lang.market}}</a>
+                <ul class="down-list">
+                    <li>
+                        <a href="/market#coverage">{{lang.marketcoverage}}</a>
+                    </li>
+                    <li>
+                        <a href="/market#partner">{{lang.partners}}</a>
+                    </li>
+                    <li>
+                        <a href="/market#hottel">{{lang.dealerenquiry}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="menu-mask-layer"></div>
+    <div class="main-container">
+            {% block content %} {% endblock %}
+    </div>
+    <div class="common-footer clearfix">
+        <div class="left">
+            <img src="//wapstatic.fhes.com/images/logo.png" alt="">
+            <p>扫码关注我们
+                <br>(长按保存图片)</p>
+        </div>
+        <div class="right">
+            <img src="//wapstatic.fhes.com/images/erweima.jpg" alt="">
+        </div>
+    </div>
+    <script type="text/javascript" src="//cdn.fhes.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
+    <script type="text/javascript" src="//wapstatic.fhes.com/js/common.min.js"></script>
+    <!-- <script type="text/javascript" src="//sxrongoss.oss-cn-hangzhou.aliyuncs.com//cdn.fhes.com/sxrongmobile/evt/worldcup/js/vconsole.min.js"></script> -->
+    {% block plugJs %}{% endblock %}
+</body>
+
+</html>

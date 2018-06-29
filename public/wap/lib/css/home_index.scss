@@ -1,0 +1,211 @@
+@import 'function';
+.main-container {
+    background: url('../images/top_bg.jpg') no-repeat top center;
+    background-size: auto px2rem(500px);
+    // height: px2rem(500px);
+    padding-top: px2rem(500px);
+}
+
+.video-container {
+    width: 100%;
+    .video-js {
+        width: px2rem(750px) !important;
+        height: px2rem(422px) !important;
+        margin: 0 auto;
+    }
+    .video-bottom {
+        width: 100%;
+        height: px2rem(290px);
+        background: url('../images/lowjpg/video_bottom.jpg') no-repeat;
+        background-size: 100% auto;
+    }
+}
+
+.vjs-big-play-button {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    height: px2rem(90px)!important;
+    width: px2rem(90px)!important;
+    border-radius: 50% !important;
+    line-height: px2rem(90px)!important;
+}
+
+.content-block {
+    .block-title {
+        line-height: px2rem(120px);
+        color: #fff;
+        font-size: px2rem(32px);
+        text-align: center;
+    }
+    &.hangye {
+        background: url('../images/lowjpg/window_bg.jpg') no-repeat center;
+        background-size: auto 100%;
+        .block-main {
+            padding: px2rem(30px);
+            padding-top: 0;
+            .item {
+                width: px2rem(230px);
+                height: px2rem(230px);
+                float: left;
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                }
+                p {
+                    text-align: center;
+                    color: #fff;
+                    font-size: px2rem(32px);
+                    background: rgba(23, 23, 23, .5);
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    z-index: 10;
+                    padding: px2rem(20px);
+                }
+                img {
+                    position: absolute;
+                    width: px2rem(230px);
+                    height: px2rem(230px);
+                    object-fit: cover;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+    &.chanpin {
+        .block-title {
+            color: #666;
+        }
+        .block-main {
+            padding: px2rem(30px);
+            padding-top: 0;
+            .item {
+                width: px2rem(230px);
+                height: px2rem(400px);
+                float: left;
+                a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                }
+                p {
+                    color: #fff;
+                    font-size: px2rem(24px);
+                    background: rgba(23, 23, 23, .5);
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: 10;
+                    line-height: px2rem(48px);
+                    padding-left: px2rem(10px);
+                }
+                img {
+                    position: absolute;
+                    width: px2rem(230px);
+                    height: px2rem(400px);
+                    object-fit: cover;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
+    &.fangan {
+        position: relative;
+        .block-main {
+            padding: px2rem(30px);
+            position: relative;
+            z-index: 10;
+        }
+        .block-bg {
+            background: #171717;
+            height: px2rem(1200px);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 6;
+        }
+        .left {
+            float: left;
+            width: px2rem(330px);
+        }
+        .right {
+            float: right;
+            width: px2rem(330px);
+        }
+        .item {
+            .title {
+                color: #fff;
+                font-size: px2rem(24px);
+                text-align: center;
+                position: relative;
+                line-height: px2rem(100px);
+                margin-top: px2rem(30px);
+                &::after {
+                    display: block;
+                    position: absolute;
+                    content: '';
+                    width: px2rem(100px);
+                    height: px2rem(4px);
+                    background: #fff;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+            img {
+                max-width: 100%;
+                display: block;
+            }
+        }
+    }
+    &.news {
+        .block-title {
+            color: #666;
+        }
+        .swiper-container {
+            img {
+                max-width: 100%;
+                display: block;
+                border:0;
+            }
+            .swiper-slide {
+                padding: px2rem(20px);
+                .news-item {
+                    border-radius: px2rem(20px);
+                    overflow: hidden;
+                    background: #fff;
+                    box-shadow: 0 0 px2rem(30px) rgba(23, 23, 23, .2);
+                    a{
+                        display: block;
+                        position: relative;
+                        color: #fff;
+                        text-decoration: none;
+                    }
+                    p {
+                        width: 100%;
+                        position: absolute;
+                        color: #fff;
+                        background: rgba(23, 23, 23, .5);
+                        bottom: 0;
+                        z-index: 10;
+                        padding: px2rem(10px);
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
+}

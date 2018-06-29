@@ -1,0 +1,18 @@
+{% extends './_layout.html' %} {% block title %} {{detail.title || detail.entitle}} {% endblock %} {% block content %}
+<div class="news-main">
+    <h2>{{detail.title || detail.title}}</h2>
+    <h4>{{detail.subtitle || detail.ensubtitle}}</h4>
+    <div class="time">发布时间：{{= detail.createtime|date('Y-m-d H:i:s', -480,
+            'CCT') =}}</div>
+    <div class="content">
+        {% autoescape %}{{ detail.content || detail.encontent }}{% endautoescape %}
+    </div>
+</div>
+<div class="loading-layer">正在加载...</div>
+{% endblock %}
+{% block plugCss %}
+  <link rel="stylesheet" href="//wapstatic.fhes.com/css/news_detail.min.css">
+{% endblock %}
+{% block plugJs %}
+    <script type="text/javascript" src="//wapstatic.fhes.com/js/news_detail.min.js"></script>
+{% endblock %}

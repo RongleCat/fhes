@@ -114,16 +114,20 @@ img{
         font-size: 16px;
         color: #fff;
         text-decoration: none;
-        padding-left: 30px;
+        padding-left: 42px;
         transition: color .2s;
-        .iconfont {
+        .lang-icon {
             position: absolute;
             display: block;
-            line-height: 28px;
+            height: 32px;
+            width: 32px;
             top: 50%;
             left: 0;
-            font-size: 28px;
             transform: translateY(-50%);
+            background: url('../images/lang.png') right;
+            &.icon-zhongguo{
+                background-position-x: left;
+            }
         }
         &:hover {
             color: #3fa635;
@@ -215,10 +219,10 @@ img{
         opacity: .9;
         padding-top: 180px;
         div{
-            font-size: 48px;
+            font-size: 32px;
         }
         p{
-            font-size: 24px;
+            font-size: 18px;
         }
     }
     &+.other-main{

@@ -20,14 +20,14 @@ let newsCover = qn.create({
   accessKey: config.accessKey, // 此处填写自己申请的 ACCESS_KEY
   secretKey: config.secretKey, // 此处填写自己申请的 SECRET_KEY
   bucket: 'fhesimages',
-  origin: 'http://p8wnfmuiu.bkt.clouddn.com'
+  origin: 'http://images.fhes.com/'
 })
 
 let downloadFile = qn.create({
   accessKey: config.accessKey, // 此处填写自己申请的 ACCESS_KEY
   secretKey: config.secretKey, // 此处填写自己申请的 SECRET_KEY
   bucket: 'downloadfiles',
-  origin: 'http://p9gz545fl.bkt.clouddn.com'
+  origin: 'http://dwonload.fhes.com/'
 })
 
 
@@ -242,7 +242,6 @@ router.post('/uploadNewsCover', multipartMiddleware, (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
       res.json({
         ok: 200,
         result
@@ -278,7 +277,6 @@ router.post('/uploadDownFile', multipartMiddleware, (req, res, next) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(result);
       res.json({
         ok: 200,
         result
@@ -300,7 +298,6 @@ router.get('/uptoken', function (req, res, next) {
   res.header("Cache-Control", "max-age=0, private, must-revalidate");
   res.header("Pragma", "no-cache");
   res.header("Expires", 0);
-  console.log(querys,token);
   if (token) {
     res.json({
       ok:200,

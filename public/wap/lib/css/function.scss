@@ -1,0 +1,16 @@
+@function px2rem($px) {
+    //$px为需要转换的字号
+    @return $px / 75px * 1rem;
+}
+
+.clearfix {
+    zoom: 1;
+    &:after {
+        content: "";
+        height: 0;
+        line-height: 0;
+        display: block;
+        visibility: hidden;
+        clear: both;
+    }
+}

@@ -16,7 +16,7 @@ function uploadInit(editor) {
         // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
         // save_key: true,
         // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
-        domain: 'http://p8wnfmuiu.bkt.clouddn.com/',
+        domain: 'http://images.fhes.com/',
         //bucket 域名，下载资源时用到，**必需**
         container: containerId, //上传区域DOM ID，默认是browser_button的父元素，
         max_file_size: '100mb', //最大文件体积限制

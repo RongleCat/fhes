@@ -1,0 +1,32 @@
+@import 'function';
+
+.main-container {
+    padding-top: px2rem(80px);
+}
+
+.title-block{
+    text-align: center;
+    font-size: px2rem(32px);
+    padding: px2rem(50px) 0;
+}
+.other-main{
+    padding: px2rem(30px);
+    img{
+        max-width: 100%;
+    }
+}
+
+.hottel-block{
+    width: px2rem(600px);
+    height: px2rem(100px);
+    margin: px2rem(60px) auto;
+    background: #eee;
+    font-size: px2rem(28px);
+    text-align: right;
+    line-height: px2rem(100px);
+    padding-right: px2rem(30px);
+    color: #32872a;
+    background: #eee url('../images/big_icon_04.png') no-repeat;
+    background-position: px2rem(30px) center;
+    background-size: px2rem(80px) auto;
+}

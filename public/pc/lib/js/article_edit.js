@@ -26,7 +26,7 @@ $(function () {
         runtimes: 'html5,flash,html4', //上传模式,依次退化
         browse_button: 'upload-cover',
         uptoken_url: '/manage/uptoken',
-        domain: 'http://p8wnfmuiu.bkt.clouddn.com/',
+        domain: 'http://images.fhes.com/',
         filters: {
             mime_types: [
                 //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
