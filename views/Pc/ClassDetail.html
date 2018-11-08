@@ -7,7 +7,7 @@
  {% endif %}
 {% endblock %}
 {% block content %}
-<div class="banner-bar" style="background-image:url('//pcstatic.fhes.com/images/lowjpg/banner/03.jpg')" data-hd="//pcstatic.fhes.com/images/banner/03.jpg">
+<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/03.jpg')" data-hd="/pc/build/images/banner/03.jpg">
     <div class="banner-main">
         <div>{{detail.title}}</div>
         <p>{{detail.entitle}}</p>
@@ -49,7 +49,7 @@
 {% if detail.video %}
     <link href="//cdn.fhes.com/video/video-js.min.css{{dev}}" rel="stylesheet">
 {% endif %}
-<link rel="stylesheet" href="//pcstatic.fhes.com/css/class_detail.min.css">
+<link rel="stylesheet" href="/pc/build/css/class_detail.min.css">
 {% endblock %}
 
 {% block plugJs %}

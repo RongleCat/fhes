@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
-    <meta name="renderer" content="webkit">
-    <meta name="referrer" content="no-referrer">
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_ucdd411jzip.css{{dev}}"> {% if dev %}
-    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% else %}
-    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {% endblock %}
+    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% else %}
+    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {%
+    endblock %}
 </head>
 
 <body>
     <div class="common-header">
         <div class="header-main">
             <a href="/" title="返回首页">
-                <img src="//pcstatic.fhes.com/images/logo.png" alt="FHES" class="logo">
+                <img src="/pc/build/images/logo.png" alt="FHES" class="logo">
             </a>
             <ul class="nav-list clearfix{{lang.langClass}}">
                 <li class="{{navActive|active0}}">
@@ -114,7 +113,9 @@
             </ul>
             <a href="javascript:void(0);" class="select-lang">
                 <span class="lang-icon {{lang.langIcon}}"></span>{{lang.lang}}</a>
-            <a href="https://shop413801617.taobao.com/" target="_blank" style="position: absolute;top: 34px;right: -32px;border:0;"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyOTczZWMyMC00MzgwLTlkNGEtYTFmNS1hMmYzNTg0YzNjNWUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzI3OTlGQTBDMDhCMTFFODkzNEVCRjQxRTJCRUQxNTQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzI3OTlGOUZDMDhCMTFFODkzNEVCRjQxRTJCRUQxNTQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Mjk3M2VjMjAtNDM4MC05ZDRhLWExZjUtYTJmMzU4NGMzYzVlIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjI5NzNlYzIwLTQzODAtOWQ0YS1hMWY1LWEyZjM1ODRjM2M1ZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkkYeqAAAAVQSURBVHjatFcNTFVVHP/dywNCUwsUJT+CIBSExsRma5SJoX1Q0ZfRTMtssmzTDMuENcukVrliRVthtKUbU6nmqIiVE4dJzlqWWLFQFCwIBUTkGx+337nnPu+73MsDCf/b/71zz9f/+3fOUbTnYSfVYEH9l/pc/E0m302+gXwjeZox+i+5mnyC/B15PzS0kwHFmCH+3WTNKkoZhgKTuHiVzsAMDI+aKaiAnMd1p30poA6xUSZn1HDxlssQLiiEa17S1wI5vibaFZAaXs0Nvub/Vr09cnJxnyzyT2xPH2i9XQEZs1D2HmXrXowezSUf476zB1dA078C4Y+fqUSEk7b/k8bDDxWUEeK9t8xtD/uhZDBXjQppVEKlEoqZjKqXKms4kGwRHp0CxN5n3WQyvRgWz1CpI1NCQTQNzTPLcK3eGUQPdFom3vkKsHizbB8pBAqXyvbrrcBVE4CSl4Gyt+jYMGBiFBBxO3Dt9fRiANDRBNQfAY7vA9oaBvMGJ6NO4oCKjdTqDYv1b7utVr6oSAFZp+R3QyXQWgfE+MjVi93AvjeB7zc7je6gvOWKlkn7FZxjxwTLcOo7wPz1sv3rTnrgcSBjPxA537rNb7uBqlLacgjoagECWLWz7gLS8sw5FR8Be561gRBBLljR1iPFgE87xT9E90YD5e8Ci2hF8gbZ3/gHvREOnGZ5f3wHHJM2gQovLTS/czi/tXZgGFaL3L/fjg7sfmqPdN2xL6nETFP4XoLi4W0MRa30xqMFtPw84WoS4+8v55z/h2tfYz/zJega2TebyXwwb2BCLnJRi8hLB4aHktbI2Are8RhQSTcfyGXCXceNXwVeqJTzutuAm5+2W3+hETiUD/R1mQoEjHXy8XQBlVG27j+JwjGpQNQCYNkuxi8UKF5nVkHgOGADvfRIvqnApolAZ7MX7LA6xk3xSsgeJwVCRQim2rrP/sXY8uRdUiAFpH1AL3zBUPAEbmEVnPyBqxLJc7zA9kngHMPS3yddL9qiCvyDfKHCWJfXiW2nopV0YTAQl8Y6Z7zD4njilxEHxjP2n8j699BtBJReQkknK6H2R2b+h9Jq3wroACwuExE+a1lQO+NaUS5BqLedGc1j/hmW38zFcnwb/89UyXb4rTz7e4cUTupSjVuMMyXRqoR0mdV/s+RWHyAgsQRXfCXHezvMuUK4ELjxJPDcQWAK4bqpesiLi8oqOOGA10DichZorvwuyZJWCyTUrxuRhlfOGPWsySyfswwIDpd9D+QO7QEFdaIKvmEzwzIQtRBI/8wstV+2S6U6zsrMDiTapbNvcoyxEQdz2mW4RCWMCZHzBJ54yEmZfpSpBgqaNRL3ILBqrzlJAIqHSjeZ7URaO22u+V3D/MhmeX7K8i1/D8hPkYp5qK3e6UDa6aIWPbROXB4zzckNso7dfRKGPReWw6z77hZDsCYPqx5aXvWtFBb/MHC0iFXAc2FFMa0eYwr7vdgaYk2/8tUr2jq9I4QnYpM5gTOe2C3xoDR7eOf8SkZy1j0OVlLRzzMkfFspVkCeVEDTb0NbqET2iG9DM+bJ8gskRmhueT64GdlqhrO5ZqD1RfT8EvNd4HlAuHhxhP3iOMrUzPfBVMoUoTeuZJ47Wj8Wst11xUQruowkPe+MvFIHDDbiIm5hq+kKiHdToIDNKt8Pk36+CTQQ9FE5isIbuGeC08VHdXQT7zxccBP/3x8F4du5V6z+MBnW08wKFGvJIilFDfVdpuBdXDuPzHMarYOmhePr2M9xrrg3pNJDC8R5Jy4T+mtH+uyCkTenKJCXBR1kjg+ShPKVbIDkfwIMAMw+kYWzPkmsAAAAAElFTkSuQmCC" alt=""></a>
+            <a href="https://shop413801617.taobao.com/" target="_blank" style="position: absolute;top: 34px;right: -32px;border:0;"><img
+                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQyIDc5LjE2MDkyNCwgMjAxNy8wNy8xMy0wMTowNjozOSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoyOTczZWMyMC00MzgwLTlkNGEtYTFmNS1hMmYzNTg0YzNjNWUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NzI3OTlGQTBDMDhCMTFFODkzNEVCRjQxRTJCRUQxNTQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NzI3OTlGOUZDMDhCMTFFODkzNEVCRjQxRTJCRUQxNTQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6Mjk3M2VjMjAtNDM4MC05ZDRhLWExZjUtYTJmMzU4NGMzYzVlIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjI5NzNlYzIwLTQzODAtOWQ0YS1hMWY1LWEyZjM1ODRjM2M1ZSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkkYeqAAAAVQSURBVHjatFcNTFVVHP/dywNCUwsUJT+CIBSExsRma5SJoX1Q0ZfRTMtssmzTDMuENcukVrliRVthtKUbU6nmqIiVE4dJzlqWWLFQFCwIBUTkGx+337nnPu+73MsDCf/b/71zz9f/+3fOUbTnYSfVYEH9l/pc/E0m302+gXwjeZox+i+5mnyC/B15PzS0kwHFmCH+3WTNKkoZhgKTuHiVzsAMDI+aKaiAnMd1p30poA6xUSZn1HDxlssQLiiEa17S1wI5vibaFZAaXs0Nvub/Vr09cnJxnyzyT2xPH2i9XQEZs1D2HmXrXowezSUf476zB1dA078C4Y+fqUSEk7b/k8bDDxWUEeK9t8xtD/uhZDBXjQppVEKlEoqZjKqXKms4kGwRHp0CxN5n3WQyvRgWz1CpI1NCQTQNzTPLcK3eGUQPdFom3vkKsHizbB8pBAqXyvbrrcBVE4CSl4Gyt+jYMGBiFBBxO3Dt9fRiANDRBNQfAY7vA9oaBvMGJ6NO4oCKjdTqDYv1b7utVr6oSAFZp+R3QyXQWgfE+MjVi93AvjeB7zc7je6gvOWKlkn7FZxjxwTLcOo7wPz1sv3rTnrgcSBjPxA537rNb7uBqlLacgjoagECWLWz7gLS8sw5FR8Be561gRBBLljR1iPFgE87xT9E90YD5e8Ci2hF8gbZ3/gHvREOnGZ5f3wHHJM2gQovLTS/czi/tXZgGFaL3L/fjg7sfmqPdN2xL6nETFP4XoLi4W0MRa30xqMFtPw84WoS4+8v55z/h2tfYz/zJega2TebyXwwb2BCLnJRi8hLB4aHktbI2Are8RhQSTcfyGXCXceNXwVeqJTzutuAm5+2W3+hETiUD/R1mQoEjHXy8XQBlVG27j+JwjGpQNQCYNkuxi8UKF5nVkHgOGADvfRIvqnApolAZ7MX7LA6xk3xSsgeJwVCRQim2rrP/sXY8uRdUiAFpH1AL3zBUPAEbmEVnPyBqxLJc7zA9kngHMPS3yddL9qiCvyDfKHCWJfXiW2nopV0YTAQl8Y6Z7zD4njilxEHxjP2n8j699BtBJReQkknK6H2R2b+h9Jq3wroACwuExE+a1lQO+NaUS5BqLedGc1j/hmW38zFcnwb/89UyXb4rTz7e4cUTupSjVuMMyXRqoR0mdV/s+RWHyAgsQRXfCXHezvMuUK4ELjxJPDcQWAK4bqpesiLi8oqOOGA10DichZorvwuyZJWCyTUrxuRhlfOGPWsySyfswwIDpd9D+QO7QEFdaIKvmEzwzIQtRBI/8wstV+2S6U6zsrMDiTapbNvcoyxEQdz2mW4RCWMCZHzBJ54yEmZfpSpBgqaNRL3ILBqrzlJAIqHSjeZ7URaO22u+V3D/MhmeX7K8i1/D8hPkYp5qK3e6UDa6aIWPbROXB4zzckNso7dfRKGPReWw6z77hZDsCYPqx5aXvWtFBb/MHC0iFXAc2FFMa0eYwr7vdgaYk2/8tUr2jq9I4QnYpM5gTOe2C3xoDR7eOf8SkZy1j0OVlLRzzMkfFspVkCeVEDTb0NbqET2iG9DM+bJ8gskRmhueT64GdlqhrO5ZqD1RfT8EvNd4HlAuHhxhP3iOMrUzPfBVMoUoTeuZJ47Wj8Wst11xUQruowkPe+MvFIHDDbiIm5hq+kKiHdToIDNKt8Pk36+CTQQ9FE5isIbuGeC08VHdXQT7zxccBP/3x8F4du5V6z+MBnW08wKFGvJIilFDfVdpuBdXDuPzHMarYOmhePr2M9xrrg3pNJDC8R5Jy4T+mtH+uyCkTenKJCXBR1kjg+ShPKVbIDkfwIMAMw+kYWzPkmsAAAAAElFTkSuQmCC"
+                    alt=""></a>
         </div>
     </div>
     <div class="main-container">
@@ -227,24 +228,49 @@
                     </div>
                 </div>
                 <div class="right-logo">
-                    <img src="//pcstatic.fhes.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//pcstatic.fhes.com/images/QRcode.jpg">
+                    <img src="/pc/build/images/lowjpg/QRcode.jpg" alt="" data-hd="/pc/build/images/QRcode.jpg">
                     <div>{{lang.focus}}</div>
                     {% if !other %}
-                    <img src="//pcstatic.fhes.com/images/logo_black.png" alt=""> {% else %}
-                    <img src="//pcstatic.fhes.com/images/logo.png" alt=""> {% endif %}
+                    <img src="/pc/build/images/logo_black.png" alt=""> {% else %}
+                    <img src="/pc/build/images/logo.png" alt=""> {% endif %}
 
                 </div>
             </div>
         </div>
+    </div>
+    <!-- <script>
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?7043afdff3c241726697de831ae86170";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script language="JavaScript" src="http://code.54kefu.net/kefu/js/b48/1056448.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        (function (b, a, e, h, f, c, g, s) {
+            b[h] = b[h] || function () {
+                (b[h].c = b[h].c || []).push(arguments)
+            };
+            b[h].s = !!c;
+            g = a.getElementsByTagName(e)[0];
+            s = a.createElement(e);
+            s.src = "//s.union.360.cn/" + f + ".js";
+            s.defer = !0;
+            s.async = !0;
+            g.parentNode.insertBefore(s, g)
+        })(window, document, "script", "_qha", 271134, false);
+    </script> -->
 
-        <script type="text/javascript" src="//cdn.fhes.com/jquery-2.1.4.min.js{{dev}}"></script>
-        <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
+    <script type="text/javascript" src="//cdn.fhes.com/jquery-2.1.4.min.js{{dev}}"></script>
+    <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
 
-        {% if dev %}
-        <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
-        {% else %}
-        <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
-        {% endif %} {% block plugJs %} {% endblock %}
+    {% if dev %}
+    <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
+    {% else %}
+    <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
+    {% endif %} {% block plugJs %} {% endblock %}
 </body>
 
 </html>

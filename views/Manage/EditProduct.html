@@ -13,10 +13,10 @@
 {% endblock %} {% block content %}
 <form class="layui-form layui-form-pane" id="post" action="">
     <div class="layui-form-item">
-        <label class="layui-form-label upload-cover">视频封面</label>
+        <label class="layui-form-label upload-cover">产品主图</label>
         <div class="layui-input-block cover">
-            {% if videocover %}
-                <img src="{{videocover}}" class="img-cover" data-id="{{id}}">
+            {% if cover %}
+            <img src="{{cover}}" class="img-cover" data-id="{{id}}">
             {% endif%}
             <div class="layui-upload-drag" id="upload-cover">
                 <i class="layui-icon"></i>
@@ -24,6 +24,20 @@
                 <span>最佳封面图大小1000(宽)*562(高)</span>
             </div>
             <button class="layui-btn" id="btn-delete-cover">点击清除图片</button>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label upload-cover">视频封面</label>
+        <div class="layui-input-block cover">
+            {% if videocover %}
+            <img src="{{videocover}}" class="img-videocover" data-id="{{id}}">
+            {% endif%}
+            <div class="layui-upload-drag" id="upload-videocover">
+                <i class="layui-icon"></i>
+                <p>点击上传，或将文件拖拽到此处</p>
+                <span>最佳封面图大小1000(宽)*562(高)</span>
+            </div>
+            <button class="layui-btn" id="btn-delete-videocover">点击清除图片</button>
         </div>
     </div>
     <div class="layui-form-item">
@@ -45,9 +59,25 @@
         </div>
     </div>
     <div class="layui-form-item">
+        <label class="layui-form-label">所属分类</label>
+        <div class="layui-input-inline">
+            <select name="classid" lay-filter="class">
+                <option value="">选择分类</option>
+                {% for item in product %}
+                {% if item.id == classid %}
+                <option value="{{item.id}}" selected="111">{{item.classname}}</option>
+                {% else %}
+                <option value="{{item.id}}">{{item.classname}}</option>
+                {% endif%}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
         <label class="layui-form-label">中文标题</label>
         <div class="layui-input-block">
-            <input type="text" name="title" lay-verify="" placeholder="请输入中文标题" autocomplete="off" class="layui-input" value="{{title}}">
+            <input type="text" name="title" lay-verify="" placeholder="请输入中文标题" autocomplete="off" class="layui-input"
+                value="{{title}}">
         </div>
     </div>
 
@@ -85,5 +115,5 @@
 <script type="text/javascript" src="//cdn.fhes.com/wangEditor/wangEditor.min.js"></script>
 <script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/qiniu.min.js"></script>
 <script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/upQiniu.js"></script>
-<script type="text/javascript" src="/pc/build/js/edit_detail.min.js"></script>
+<script type="text/javascript" src="/pc/build/js/edit_product.min.js"></script>
 {% endblock %}

@@ -97,12 +97,200 @@ router.get('/addarticle', function (req, res, next) {
   res.render('Manage/AddArticle', req.verifyData.data);
 });
 
-//文档下载管理页面
+//产品分类管理页面
+router.get('/classmanage', function (req, res, next) {
+  res.render('Manage/ClassManage', req.verifyData.data);
+});
 
+//产品列表页面
+router.get('/productmanage', function (req, res, next) {
+  ctrl.classManage.getList().then(r => {
+    res.render('Manage/ProductManage', {
+      product: r
+    });
+  })
+});
+
+//添加产品页面
+router.get('/adderoduct', function (req, res, next) {
+  ctrl.classManage.getList().then(r => {
+    res.render('Manage/EditProduct', {
+      product: r
+    });
+  })
+});
+
+//添加产品接口
+router.post('/addproduct', function (req, res, next) {
+  let body = req.body;
+  console.log(body);
+  ctrl.productManage.change(body).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '产品保存失败'
+    })
+  });
+});
+//修改产品页面
+router.get('/editeroduct/:id', function (req, res, next) {
+  let classlist = ctrl.classManage.getList()
+  let detail = ctrl.productManage.getList({rule:'id = '+req.params.id})
+  Promise.all([classlist,detail]).then(r=>{
+    let result = r[1][0]
+    result.product = r[0]
+    res.render('Manage/EditProduct', result);
+  })
+});
+
+router.post('/editproduct', function (req, res, next) {
+  let body = req.body;
+  let post = {id:body.id,data:body}
+  ctrl.productManage.change(post).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '产品保存失败'
+    })
+  });
+});
+
+//文档下载管理页面
 router.get('/download', (req, res, next) => {
   res.render('Manage/Download')
 })
 
+//获取分类列表
+router.get('/getClassList', function (req, res, next) {
+  let param = req.query;
+
+  let list = ctrl.classManage.getList({
+    start: (param.page - 1) * param.limit,
+    limit: parseInt(param.limit)
+  })
+  let count = ctrl.classManage.getList()
+
+  Promise.all([list, count]).then(r => {
+    res.json({
+      code: 0,
+      msg: '查询成功！',
+      data: r[0],
+      count: r[1].length
+    });
+  })
+});
+
+//删除分类
+router.post('/deleteclass', function (req, res, next) {
+  let body = req.body;
+  body.id = parseInt(body.id);
+  ctrl.classManage.delete(body).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '分类删除失败'
+    })
+  });
+});
+
+//添加修改分类
+router.post('/changeclass', function (req, res, next) {
+  let body = req.body;
+  let post = null
+  if (!body.id) {
+    post = body
+  } else {
+    post = {
+      id: body.id,
+      data: body
+    }
+  }
+  // console.log(post);
+  ctrl.classManage.change(post).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '分类添加失败'
+    })
+  });
+});
+
+
+//获取产品列表
+router.get('/getProductList', function (req, res, next) {
+  let param = req.query;
+  let rule = '';
+  if (param.keyword) {
+    if (rule == '') {
+      rule += `title like '%${param.keyword}%' or entitle like '%${param.keyword}%'`
+    } else {
+      rule += `and (title like '%${param.keyword}%' or entitle like '%${param.keyword}%')`
+    }
+  }
+  if (param.classid) {
+    rule += `classid = ${param.classid}`
+  }
+  let list = ctrl.productManage.getList({
+    rule,
+    start: (param.page - 1) * param.limit,
+    limit: parseInt(param.limit)
+  })
+  let count = ctrl.productManage.getList({
+    rule
+  })
+
+  Promise.all([list, count]).then(r => {
+    res.json({
+      code: 0,
+      msg: '查询成功！',
+      data: r[0],
+      count: r[1].length
+    });
+  })
+});
+
+//删除分类
+router.post('/deleteproduc', function (req, res, next) {
+  let body = req.body;
+  body.id = parseInt(body.id);
+  ctrl.productManage.delete(body).then(result => {
+    res.json({
+      ok: 200,
+      data: result
+    })
+  }).catch(err => {
+    console.log(err);
+    res.json({
+      ok: 0,
+      data: err,
+      msg: '产品删除失败'
+    })
+  });
+});
 
 
 //编辑详情页内容页面
@@ -213,10 +401,10 @@ router.post('/editdetail', function (req, res, next) {
 router.post('/editservice', function (req, res, next) {
   let body = req.body;
   let params = {
-      one:body.onecontent,
-      two:body.twocontent,
-      three:body.threecontent,
-      fore:body.forecontent
+    one: body.onecontent,
+    two: body.twocontent,
+    three: body.threecontent,
+    fore: body.forecontent
   }
   ctrl.updateService(params).then(result => {
     res.json({
@@ -291,16 +479,16 @@ router.get('/uptoken', function (req, res, next) {
   let querys = req.query;
   let token = '';
   if (querys.type == 'file') {
-    token= downtoken.uploadToken()
-  }else{
-    token= uptoken.uploadToken()
+    token = downtoken.uploadToken()
+  } else {
+    token = uptoken.uploadToken()
   }
   res.header("Cache-Control", "max-age=0, private, must-revalidate");
   res.header("Pragma", "no-cache");
   res.header("Expires", 0);
   if (token) {
     res.json({
-      ok:200,
+      ok: 200,
       uptoken: token
     });
   }
@@ -410,7 +598,9 @@ router.post('/setHomeNews', function (req, res, next) {
   let body = req.body;
   let params = {
     id: body.id,
-    data: {'home':body.state}
+    data: {
+      'home': body.state
+    }
   }
   ctrl.updateArticle(params).then(result => {
     res.json({

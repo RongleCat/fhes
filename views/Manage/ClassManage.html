@@ -1,0 +1,15 @@
+{% extends './_ManageLayout.html' %} {% block title %} 产品分类 {% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="/pc/build/css/download_manage.min.css"> {% endblock %} {% block childTitle %} 文档列表 {% endblock %} {% block content %}
+<div class="layui-form">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <button class="layui-btn" id="btn-addfile">添加分类</button>
+        </div>
+    </div>
+</div>
+<table class="layui-table" lay-filter="demo" id="demo"></table>
+{% endblock %} {% block plugJs %}
+<script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/qiniu.min.js"></script>
+<script type="text/javascript" src="/pc/build/js/class_manage.min.js"></script>
+{% endblock %}

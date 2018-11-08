@@ -30,42 +30,38 @@ router.use((req, res, next) => {
 
 //首页新闻接口
 router.get('/', function (req, res, next) {
-  // let rule = ''
-  // let language = ''
-  // if (req.returnData.client_lang === 'zh') {
-  //   language = '10'
-  // } else {
-  //   language = '01'
-  // }
-  // if (language !== '11' && language !== '00' && language) {
-  //   rule += `home = '1' and (language like '${language.replace('0', '%')}') `
-  // }
-  // ctrl.getHomeNewsList({
-  //   rule,
-  //   start: 0,
-  //   limit: 100
-  // }, (result) => {
-  //   result.data.forEach(element => {
-  //     if (element.content) {
-  //       element.content = removeTAG(element.content).substr(0, 48) + '...'
-  //     }
-  //     if (element.encontent) {
-  //       element.encontent = removeTAG(element.encontent).substr(0, 50) + '...'
-  //     }
-  //   });
-  //   req.returnData.newsList = result.data
-
-  //   if (!req.returnData.isMobile) {
-  //     res.render('Pc/Index', req.returnData);
-  //   } else {
-  //     res.render('Wap/Index', req.returnData);
-  //   }
-  // })
-  if (!req.returnData.isMobile) {
-    res.render('Pc/Index', req.returnData);
+  let rule = ''
+  let language = ''
+  if (req.returnData.client_lang === 'zh') {
+    language = '10'
   } else {
-    res.render('Wap/Index', req.returnData);
+    language = '01'
   }
+  if (language !== '11' && language !== '00' && language) {
+    rule += `home = '1' and (language like '${language.replace('0', '%')}') `
+  }
+  ctrl.getHomeNewsList({
+    rule,
+    start: 0,
+    limit: 100
+  }, (result) => {
+    result.data.forEach(element => {
+      if (element.content) {
+        element.content = removeTAG(element.content).substr(0, 48) + '...'
+      }
+      if (element.encontent) {
+        element.encontent = removeTAG(element.encontent).substr(0, 50) + '...'
+      }
+    });
+    req.returnData.newsList = result.data
+
+    if (!req.returnData.isMobile) {
+      console.log(req.returnData);
+      res.render('Pc/Index', req.returnData);
+    } else {
+      res.render('Wap/Index', req.returnData);
+    }
+  })
 });
 
 //新闻详情页面
@@ -91,40 +87,46 @@ router.get('/about', (req, res, next) => {
   if (req.returnData.isMobile) {
     res.render('Wap/About', req.returnData);
   } else {
-    // let rule = ''
-    // let language = ''
-    // if (req.returnData.client_lang === 'zh') {
-    //   language = '10'
-    // } else {
-    //   language = '01'
-    // }
-    // if (language !== '11' && language !== '00' && language) {
-    //   rule += `home = '1' and (language like '${language.replace('0', '%')}') `
-    // }
-    // ctrl.getHomeNewsList({
-    //   rule,
-    //   start: 0,
-    //   limit: 10
-    // }, (result) => {
-    //   result.data.forEach(element => {
-    //     if (element.content) {
-    //       element.content = removeTAG(element.content).substr(0, 48) + '...'
-    //     }
-    //     if (element.encontent) {
-    //       element.encontent = removeTAG(element.encontent).substr(0, 50) + '...'
-    //     }
-    //   });
-    //   req.returnData.newsList = result.data
-    //   res.render('Pc/About', req.returnData);
-    // })
-
-    res.render('Pc/About', req.returnData);
-
+    let rule = ''
+    let language = ''
+    if (req.returnData.client_lang === 'zh') {
+      language = '10'
+    } else {
+      language = '01'
+    }
+    if (language !== '11' && language !== '00' && language) {
+      rule += `home = '1' and (language like '${language.replace('0', '%')}') `
+    }
+    ctrl.getHomeNewsList({
+      rule,
+      start: 0,
+      limit: 10
+    }, (result) => {
+      result.data.forEach(element => {
+        if (element.content) {
+          element.content = removeTAG(element.content).substr(0, 48) + '...'
+        }
+        if (element.encontent) {
+          element.encontent = removeTAG(element.encontent).substr(0, 50) + '...'
+        }
+      });
+      req.returnData.newsList = result.data
+      res.render('Pc/About', req.returnData);
+    })
   }
 })
 //产品分类页面
 router.get('/class', (req, res, next) => {
   res.render('Pc/Class', req.returnData);
+})
+
+//解决方案页面
+router.get('/solution', (req, res, next) => {
+  if (!req.returnData.isMobile) {
+    res.render('Pc/Solution', req.returnData);
+  } else {
+    res.render('Wap/Solution', req.returnData);
+  }
 })
 //产品详情页面
 router.get('/class/:id', (req, res, next) => {
