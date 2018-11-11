@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser'); 
+const bodyParser = require('body-parser');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -21,42 +21,42 @@ swig.setDefaults({
 })
 
 swig.setFilter('active0', function (input) {
-  if (input === '/' || input.toLocaleLowerCase().indexOf('/news')!==-1) {
+  if (input === '/' || input.toLocaleLowerCase().indexOf('/news') !== -1) {
     return 'active'
   } else {
     return ''
   }
 });
 swig.setFilter('active1', function (input) {
-  if (input.toLocaleLowerCase().indexOf('/about')!==-1) {
+  if (input.toLocaleLowerCase().indexOf('/about') !== -1) {
     return 'active'
   } else {
     return ''
   }
 });
 swig.setFilter('active2', function (input) {
-  if (input.toLocaleLowerCase().indexOf('/class')!==-1) {
+  if (input.toLocaleLowerCase().indexOf('/class') !== -1 || input.toLocaleLowerCase().indexOf('/product') !== -1) {
     return 'active'
   } else {
     return ''
   }
 });
 swig.setFilter('active3', function (input) {
-  if (input.toLocaleLowerCase().indexOf('/solution')!==-1) {
+  if (input.toLocaleLowerCase().indexOf('/solution') !== -1) {
     return 'active'
   } else {
     return ''
   }
 });
 swig.setFilter('active4', function (input) {
-  if (input.toLocaleLowerCase().indexOf('/market')!==-1) {
+  if (input.toLocaleLowerCase().indexOf('/market') !== -1) {
     return 'active'
   } else {
     return ''
   }
 });
 swig.setFilter('active5', function (input) {
-  if (input.toLocaleLowerCase().indexOf('/service')!==-1) {
+  if (input.toLocaleLowerCase().indexOf('/service') !== -1) {
     return 'active'
   } else {
     return ''
@@ -71,7 +71,9 @@ app.use(express.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.json({ 'limit':'102400kb'}));
+app.use(bodyParser.json({
+  'limit': '102400kb'
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

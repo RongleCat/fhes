@@ -43,7 +43,8 @@ router.get('/', function (req, res, next) {
   ctrl.getHomeNewsList({
     rule,
     start: 0,
-    limit: 100
+    limit: 100,
+    select: ['id', 'cover', 'title', 'entitle', 'content', 'encontent']
   }, (result) => {
     result.data.forEach(element => {
       if (element.content) {
@@ -56,7 +57,7 @@ router.get('/', function (req, res, next) {
     req.returnData.newsList = result.data
 
     if (!req.returnData.isMobile) {
-      console.log(req.returnData);
+      // console.log(req.returnData);
       res.render('Pc/Index', req.returnData);
     } else {
       res.render('Wap/Index', req.returnData);
@@ -118,6 +119,42 @@ router.get('/about', (req, res, next) => {
 //产品分类页面
 router.get('/class', (req, res, next) => {
   res.render('Pc/Class', req.returnData);
+})
+
+//产品列表页面
+router.get('/productlist', (req, res, next) => {
+  let $class = ctrlmanage.classManage.getList()
+  let $product = ctrlmanage.productManage.getList({
+    rule: 'classid = ' + req.query.id
+  }, ['cover', 'title', 'entitle', 'id'])
+  Promise.all([$class, $product]).then(r => {
+    req.returnData.classlist = r[0]
+    req.returnData.productlist = r[1]
+    req.returnData.classid = req.query.id
+
+    // console.log(r);
+    if (req.returnData.isMobile) {
+      res.render('Wap/ProdyctList', req.returnData);
+    } else {
+      res.render('Pc/ProdyctList', req.returnData);
+    }
+  })
+})
+
+//解决方案详情页面
+router.get('/product/:id', (req, res, next) => {
+  ctrlmanage.productManage.getList({
+    rule: 'id = ' + req.params.id
+  }).then(r => {
+    req.returnData.detail = r[0]
+    if (!req.returnData.isMobile) {
+      res.render('Pc/ClassDetail', req.returnData);
+    } else {
+      res.render('Wap/ClassDetail', req.returnData);
+    }
+  }).catch(err => {
+    res.render('error', err);
+  })
 })
 
 //解决方案页面

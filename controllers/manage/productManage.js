@@ -1,12 +1,12 @@
 const sql = require('../../sql/config')
 
 module.exports = {
-  getList: (params) => {
+  getList: (params, select) => {
     if (params) {
       if (params.start) {
         return sql('productdetail').whereRaw(params.rule).limit(params.limit).offset(params.start).orderBy('id', 'desc').timeout(10000)
       } else {
-        return sql('productdetail').whereRaw(params.rule).timeout(10000)
+        return sql('productdetail').whereRaw(params.rule).column(select ? select : ['*']).timeout(10000)
       }
     } else {
       return sql('productdetail').select('*').timeout(10000)

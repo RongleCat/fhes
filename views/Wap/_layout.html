@@ -17,7 +17,7 @@
     <title>{% block title %} {% endblock %}</title>
     <script src="//cdn.fhes.com/flexible.js"></script>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_pwhh1ynph8.css">
-    <link rel="stylesheet" href="//wapstatic.fhes.com/css/common.min.css">
+    <link rel="stylesheet" href="/wap/build/css/common.min.css">
     {% block plugCss %} {% endblock %}
 </head>
 
@@ -54,22 +54,22 @@
                 </ul>
             </li>
             <li class="{{navActive|active2}}">
-                <a href="/class/7">{{lang.product}}</a>
+                <a href="/productlist?id=8">{{lang.product}}</a>
                 <ul class="down-list">
                     <li>
-                        <a href="/class/7">{{lang.DPseries}}</a>
+                        <a href="/productlist?id=8">{{lang.DPseries}}</a>
                     </li>
                     <li>
-                        <a href="/class/8">{{lang.laserseries}}</a>
+                        <a href="/productlist?id=9">{{lang.laserseries}}</a>
                     </li>
                     <li>
-                        <a href="/class/9">{{lang.CIJseries}}</a>
+                        <a href="/productlist?id=10">{{lang.CIJseries}}</a>
                     </li>
                     <li>
-                        <a href="/class/10">{{lang.consumables}}</a>
+                        <a href="/productlist?id=13">{{lang.consumables}}</a>
                     </li>
                     <li>
-                        <a href="/class/11">{{lang.software}}</a>
+                        <a href="/productlist?id=13">{{lang.software}}</a>
                     </li>
                 </ul>
             </li>
@@ -118,17 +118,17 @@
     </div>
     <div class="common-footer clearfix">
         <div class="left">
-            <img src="//wapstatic.fhes.com/images/logo.png" alt="">
+            <img src="/wap/build/images/logo.png" alt="">
             <p>扫码关注我们
                 <br>(长按保存图片)</p>
         </div>
         <div class="right">
-            <img src="//wapstatic.fhes.com/images/erweima.jpg" alt="">
+            <img src="/wap/build/images/erweima.jpg" alt="">
         </div>
     </div>
     <script type="text/javascript" src="//cdn.fhes.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
-    <script type="text/javascript" src="//wapstatic.fhes.com/js/common.min.js"></script>
+    <script type="text/javascript" src="/wap/build/js/common.min.js"></script>
     <!-- <script type="text/javascript" src="//sxrongoss.oss-cn-hangzhou.aliyuncs.com//cdn.fhes.com/sxrongmobile/evt/worldcup/js/vconsole.min.js"></script> -->
     {% block plugJs %}{% endblock %}
 </body>

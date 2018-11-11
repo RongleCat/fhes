@@ -20,7 +20,10 @@ $(function () {
                 width: 80
             }, {
                 field: 'classname',
-                title: '中文标题'
+                title: '中文名称'
+            }, {
+                field: 'eclassname',
+                title: '英文名称'
             }, {
                 fixed: 'right',
                 align: 'center',
@@ -63,16 +66,22 @@ $(function () {
         } else {
             layer.open({
                 type: 1,
-                area: '300px',
+                area: '400px',
                 title: '修改分类名称',
                 content: `<div class="addfile-container">
                 <form class="layui-form layui-form-pane">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">分类名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title" lay-verify="" placeholder="请输入分类名称" autocomplete="off" class="layui-input" value="${$data.classname}">
-                        </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="" placeholder="请输入分类名称" autocomplete="off" class="layui-input" value="${$data.classname}">
                     </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">英文名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="etitle" lay-verify="" placeholder="请输入分类英文名称" autocomplete="off" class="layui-input" value="${$data.eclassname}">
+                    </div>
+                </div>
                     
                     <div class="layui-form-item btn-box">
                         <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
@@ -86,13 +95,18 @@ $(function () {
                         form.on('submit(submit)', function (data) {
                             console.log(data);
                             if (!$.trim(data.field.title)) {
-                                layer.msg('分类标题不能为空', () => {})
+                                layer.msg('分类名称不能为空', () => {})
+                                return false;
+                            }
+                            if (!$.trim(data.field.etitle)) {
+                                layer.msg('分类英文名称不能为空', () => {})
                                 return false;
                             }
 
                             let post = {
                                 id: $data.id,
-                                classname: $.trim(data.field.title)
+                                classname: $.trim(data.field.title),
+                                eclassname: $.trim(data.field.etitle)
                             }
 
                             console.log(post);
@@ -124,15 +138,21 @@ $(function () {
         $('#btn-addfile').on('click', function () {
             let index = layer.open({
                 type: 1,
-                area: '300px',
+                area: '400px',
                 content: `<div class="addfile-container">
                 <form class="layui-form layui-form-pane">
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">分类名称</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title" lay-verify="" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
-                        </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">分类名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
                     </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">英文名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="etitle" lay-verify="" placeholder="请输入分类英文名称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
                     
                     <div class="layui-form-item btn-box">
                         <button class="layui-btn" lay-submit lay-filter="submit" id="btn-submit">立即提交</button>
@@ -140,18 +160,22 @@ $(function () {
                 </form>
             </div>`,
                 success(el, index) {
-                    console.log(el, index);
                     layui.use('form', function () {
                         let form = layui.form;
                         form.on('submit(submit)', function (data) {
                             console.log(data);
                             if (!$.trim(data.field.title)) {
-                                layer.msg('分类标题不能为空', () => {})
+                                layer.msg('分类名称不能为空', () => {})
+                                return false;
+                            }
+                            if (!$.trim(data.field.etitle)) {
+                                layer.msg('分类英文名称不能为空', () => {})
                                 return false;
                             }
 
                             let post = {
-                                classname: $.trim(data.field.title)
+                                classname: $.trim(data.field.title),
+                                eclassname: $.trim(data.field.etitle)
                             }
 
                             $.ajax({

@@ -1,0 +1,57 @@
+{% extends './_layout.html' %} {% block title %} 产品列表 {% endblock %} {% block content %}
+<div class="banner-bar">
+    <div class="banner-main">
+        <div>产品列表</div>
+        <p>Product List</p>
+    </div>
+</div>
+<div class="other-main">
+    <div class="product-container">
+        <div class="menu-list">
+            {% for item in classlist %}
+            {% if item.id == classid %}
+            <div class="item active">
+                <a href="/productlist?id={{item.id}}">
+                    {% if client_lang === 'zh'%}
+                    {{item.classname}}
+                    {% else %}
+                    {{item.eclassname}}
+                    {% endif %}
+                </a>
+            </div>
+            {% else %}
+            <div class="item">
+                <a href="/productlist?id={{item.id}}">
+                    {% if client_lang === 'zh'%}
+                    {{item.classname}}
+                    {% else %}
+                    {{item.eclassname}}
+                    {% endif %}
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% if productlist.length %}
+        <div class="product-list-main clearfix">
+            {% for item in productlist %}
+            <div class="item">
+                <a href="/product/{{item.id}}" target="_blank">
+                    <img src="{{item.cover}}">
+                    {% if client_lang === 'zh'%}
+                    <p>{{item.title}}</p>
+                    {% else %}
+                    <p>{{item.entitle}}</p>
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-data">暂无数据</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="//pcstatic.fhes.com/css/class_index.min.css">
+<link rel="stylesheet" href="//pcstatic.fhes.com/css/product_index.min.css"> {% endblock %}

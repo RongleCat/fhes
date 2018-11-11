@@ -1,0 +1,56 @@
+{% extends './_layout.html' %} {% block title %} 产品列表 {% endblock %} {% block content %}
+<div class="banner-bar" style="background-image:url('/wap/build/images/lowjpg/banner/03.jpg')" data-hd="/wap/build/images/banner/03.jpg">
+    <div class="banner-main">
+        <div>产品列表</div>
+        <p>Product List</p>
+    </div>
+</div>
+<div class="other-main">
+    <div class="product-container">
+        <div class="product-menu-list clearfix">
+            {% for item in classlist %}
+            {% if item.id == classid %}
+            <div class="item active">
+                <a href="/productlist?id={{item.id}}">
+                    {% if client_lang === 'zh'%}
+                    {{item.classname}}
+                    {% else %}
+                    {{item.eclassname}}
+                    {% endif %}
+                </a>
+            </div>
+            {% else %}
+            <div class="item">
+                <a href="/productlist?id={{item.id}}">
+                    {% if client_lang === 'zh'%}
+                    {{item.classname}}
+                    {% else %}
+                    {{item.eclassname}}
+                    {% endif %}
+                </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% if productlist.length %}
+        <div class="product-list-main clearfix">
+            {% for item in productlist %}
+            <div class="item">
+                <a href="/product/{{item.id}}">
+                    <img src="{{item.cover}}">
+                    {% if client_lang === 'zh'%}
+                    <p>{{item.title}}</p>
+                    {% else %}
+                    <p>{{item.entitle}}</p>
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="no-data">暂无数据</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %} {% block plugCss %}
+<link rel="stylesheet" href="/wap/build/css/product_index.min.css"> {% endblock %}
