@@ -40,7 +40,7 @@ $(function () {
         width: 180,
         field: 'filepath',
         templet(d) {
-          return `<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+          return `<a class="layui-btn layui-btn-primary layui-btn-xs" target="_blank" href="/product/${d.id}" lay-event="detail">查看</a>
           <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
           <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>`
         }
@@ -67,14 +67,14 @@ $(function () {
     }
   })
 
-  layui.use('form', function(){
+  layui.use('form', function () {
     var form = layui.form;
-    form.on('select(class)', function(data){
+    form.on('select(class)', function (data) {
       options.where.classid = data.value
       DownloadList.reload(options);
-    });    
+    });
   });
-  
+
 
   table.on('tool(demo)', function (obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
     let $data = obj.data; //获得当前行数据
@@ -103,12 +103,12 @@ $(function () {
     } else if (layEvent == 'detail') {
       console.log('查看');
     } else {
-      location.href='/manage/editeroduct/'+$data.id
+      location.href = '/manage/editeroduct/' + $data.id
     }
   });
 })
 
 
-$('#btn-addfile').on('click',function (){
-    location.href='/manage/adderoduct'
+$('#btn-addfile').on('click', function () {
+  location.href = '/manage/adderoduct'
 })

@@ -1,5 +1,10 @@
 {% extends './_ManageLayout.html' %} {% block title %} 编辑详情页内容 {% endblock %} {% block plugCss %}
-<link rel="stylesheet" href="//pcstatic.fhes.com/css/article_add.min.css">
+<link rel="stylesheet" href="/pc/build/css/article_add.min.css">
+<style>
+.w-e-text-container{
+    min-height: 300px;
+}
+</style>
 <script type="text/javascript" src="//at.alicdn.com/t/font_656017_r9b441jjqsolayvi.js"></script>
 {% endblock %} {% block childTitle %} 编辑详情页内容 {% endblock %} {% block toolsBar %}
 <div class="layui-form">
@@ -21,7 +26,7 @@
             <div class="layui-upload-drag" id="upload-cover">
                 <i class="layui-icon"></i>
                 <p>点击上传，或将文件拖拽到此处</p>
-                <span>最佳封面图大小1000(宽)*562(高)</span>
+                <span>最佳封面图大小500*500</span>
             </div>
             <button class="layui-btn" id="btn-delete-cover">点击清除图片</button>
         </div>
@@ -82,9 +87,27 @@
     </div>
 
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">中文内容</label>
+        <label class="layui-form-label">中文产品简介</label>
         <div class="layui-input-block">
             <div id="zhContent" class="input-content">{% autoescape %}{{ content }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">中文产品特点</label>
+        <div class="layui-input-block">
+            <div id="zhStyle" class="input-content">{% autoescape %}{{ style }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">中文应用范围</label>
+        <div class="layui-input-block">
+            <div id="zhRange" class="input-content">{% autoescape %}{{ range }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">中文技术参数</label>
+        <div class="layui-input-block">
+            <div id="zhParam" class="input-content">{% autoescape %}{{ param }}{% endautoescape %}</div>
         </div>
     </div>
 
@@ -98,9 +121,27 @@
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
-        <label class="layui-form-label">英文内容</label>
+        <label class="layui-form-label">英文产品简介</label>
         <div class="layui-input-block">
             <div id="enContent" class="input-content">{% autoescape %}{{ encontent }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">英文产品特点</label>
+        <div class="layui-input-block">
+            <div id="enStyle" class="input-content">{% autoescape %}{{ enstyle }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">英文应用范围</label>
+        <div class="layui-input-block">
+            <div id="enRange" class="input-content">{% autoescape %}{{ enrange }}{% endautoescape %}</div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">英文技术参数</label>
+        <div class="layui-input-block">
+            <div id="enParam" class="input-content">{% autoescape %}{{ enparam }}{% endautoescape %}</div>
         </div>
     </div>
     <div class="layui-form-item">
@@ -111,9 +152,9 @@
     </div>
 </form>
 {% endblock %} {% block plugJs %}
-<script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/plupload.full.min.js"></script>
-<script type="text/javascript" src="//cdn.fhes.com/wangEditor/wangEditor.min.js"></script>
-<script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/qiniu.min.js"></script>
-<script type="text/javascript" src="//cdn.fhes.com/wangEditor/js/upQiniu.js"></script>
-<script type="text/javascript" src="//pcstatic.fhes.com/js/edit_product.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/plupload.full.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/wangEditor.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/qiniu.min.js"></script>
+<script type="text/javascript" src="/cdn/wangEditor/js/upQiniu.js"></script>
+<script type="text/javascript" src="/pc/build/js/edit_product.min.js"></script>
 {% endblock %}

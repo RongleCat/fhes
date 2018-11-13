@@ -7,8 +7,8 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' />
     <title>{% block title %} {% endblock %}</title>
     <link rel="stylesheet" href="//at.alicdn.com/t/font_666685_ucdd411jzip.css{{dev}}"> {% if dev %}
-    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% else %}
-    <link rel="stylesheet" href="//pcstatic.fhes.com/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {%
+    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% else %}
+    <link rel="stylesheet" href="/pc/build/css/common.min.css{{dev}}"> {% endif %} {% block plugCss %} {%
     endblock %}
 </head>
 
@@ -16,7 +16,7 @@
     <div class="common-header">
         <div class="header-main">
             <a href="/" title="返回首页">
-                <img src="//pcstatic.fhes.com/images/logo.png" alt="FHES" class="logo">
+                <img src="/pc/build/images/logo.png" alt="FHES" class="logo">
             </a>
             <ul class="nav-list clearfix{{lang.langClass}}">
                 <li class="{{navActive|active0}}">
@@ -228,11 +228,11 @@
                     </div>
                 </div>
                 <div class="right-logo">
-                    <img src="//pcstatic.fhes.com/images/lowjpg/QRcode.jpg" alt="" data-hd="//pcstatic.fhes.com/images/QRcode.jpg">
+                    <img src="/pc/build/images/lowjpg/QRcode.jpg" alt="" data-hd="/pc/build/images/QRcode.jpg">
                     <div>{{lang.focus}}</div>
                     {% if !other %}
-                    <img src="//pcstatic.fhes.com/images/logo_black.png" alt=""> {% else %}
-                    <img src="//pcstatic.fhes.com/images/logo.png" alt=""> {% endif %}
+                    <img src="/pc/build/images/logo_black.png" alt=""> {% else %}
+                    <img src="/pc/build/images/logo.png" alt=""> {% endif %}
 
                 </div>
             </div>
@@ -263,13 +263,13 @@
         })(window, document, "script", "_qha", 271134, false);
     </script> -->
 
-    <script type="text/javascript" src="//cdn.fhes.com/jquery-2.1.4.min.js{{dev}}"></script>
-    <script type="text/javascript" src="//cdn.fhes.com/jquery.cookie.min.js{{dev}}"></script>
+    <script type="text/javascript" src="/cdn/jquery-2.1.4.min.js{{dev}}"></script>
+    <script type="text/javascript" src="/cdn/jquery.cookie.min.js{{dev}}"></script>
 
     {% if dev %}
-    <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
+    <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
     {% else %}
-    <script type="text/javascript" src="//pcstatic.fhes.com/js/common.min.js{{dev}}"></script>
+    <script type="text/javascript" src="/pc/build/js/common.min.js{{dev}}"></script>
     {% endif %} {% block plugJs %} {% endblock %}
 </body>
 

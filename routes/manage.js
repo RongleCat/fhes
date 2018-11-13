@@ -51,7 +51,7 @@ router.use(function (req, res, next) {
   if (req.method === 'POST') {
     let r = [];
     for (var i in req.body) {
-      if (i.indexOf('content') == -1) {
+      if (i.indexOf('content') == -1 && i.indexOf('style') == -1 && i.indexOf('range') == -1 && i.indexOf('param') == -1) {
         if (/[@#\$<>%\^&\*]+/g.test(req.body[i])) {
           res.json({
             ok: 0,
@@ -141,8 +141,10 @@ router.post('/addproduct', function (req, res, next) {
 //修改产品页面
 router.get('/editeroduct/:id', function (req, res, next) {
   let classlist = ctrl.classManage.getList()
-  let detail = ctrl.productManage.getList({rule:'id = '+req.params.id})
-  Promise.all([classlist,detail]).then(r=>{
+  let detail = ctrl.productManage.getList({
+    rule: 'id = ' + req.params.id
+  })
+  Promise.all([classlist, detail]).then(r => {
     let result = r[1][0]
     result.product = r[0]
     res.render('Manage/EditProduct', result);
@@ -151,7 +153,10 @@ router.get('/editeroduct/:id', function (req, res, next) {
 
 router.post('/editproduct', function (req, res, next) {
   let body = req.body;
-  let post = {id:body.id,data:body}
+  let post = {
+    id: body.id,
+    data: body
+  }
   ctrl.productManage.change(post).then(result => {
     res.json({
       ok: 200,

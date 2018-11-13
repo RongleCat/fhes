@@ -14,8 +14,30 @@
     </div>
 </div>
 <div class="other-main">
+
+
+    <div class="content-container" id="content">
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.content}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.encontent}}{% endautoescape %}
+        {% endif %}
+    </div>
+
+    {% if detail.style %}
+    <div class="content-container" id="style">
+        <div class="common-title">产品特点</div>
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.style}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.enstyle}}{% endautoescape %}
+        {% endif %}
+    </div>
+    {% endif %}
+
     {% if detail.video %}
-    <div class="video-container">
+    <div class="video-container" id="video">
+        <div class="common-title">视频展示</div>
         <video id="my-player" class="video-js" controls preload="auto" poster="{{detail.videocover}}" data-setup='{}'>
             <source src="{{detail.video}}" type="video/mp4">
             </source>
@@ -28,26 +50,42 @@
         </video>
     </div>
     {% endif %}
-    <div class="content-container">
+
+    {% if detail.range %}
+    <div class="content-container" id="range">
+        <div class="common-title">应用范围</div>
         {% if client_lang === 'zh'%}
-        {% autoescape %}{{detail.content}}{% endautoescape %}
+        {% autoescape %}{{detail.range}}{% endautoescape %}
         {% else %}
-        {% autoescape %}{{detail.encontent}}{% endautoescape %}
+        {% autoescape %}{{detail.enrange}}{% endautoescape %}
         {% endif %}
     </div>
+    {% endif %}
+
+    {% if detail.param %}
+    <div class="content-container" id="param">
+        <div class="common-title">技术参数</div>
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.param}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.enparam}}{% endautoescape %}
+        {% endif %}
+    </div>
+    {% endif %}
+
 </div>
 
 <!-- <div class="loading-layer">正在加载...</div> -->
 {% endblock %} {% block plugCss %}
 {% if detail.video %}
-<link href="//cdn.fhes.com/video/video-js.min.css{{dev}}" rel="stylesheet">
+<link href="/cdn/video/video-js.min.css{{dev}}" rel="stylesheet">
 {% endif %}
 <link rel="stylesheet" href="/wap/build/css/class_detail.min.css">
 {% endblock %}
 
 {% block plugJs %}
 {% if detail.video %}
-<script src="//cdn.fhes.com/video/video.min.js{{dev}}"></script>
+<script src="/cdn/video/video.min.js{{dev}}"></script>
 <!-- <script type="text/javascript" src="/wap/build/js/class_detail.min.js"></script> -->
 {% endif %}
 

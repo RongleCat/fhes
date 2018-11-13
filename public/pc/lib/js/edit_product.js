@@ -171,6 +171,34 @@ $(function () {
     }
     zhContent.customConfig.menus = _menu
 
+    var zhStyle = new E('#zhStyle')
+    zhStyle.customConfig.onfocus = function () {
+        $(zhStyle.toolbarSelector).addClass('focus')
+    }
+    zhStyle.customConfig.onblur = function () {
+        $(zhStyle.toolbarSelector).removeClass('focus')
+    }
+    zhStyle.customConfig.menus = _menu
+
+    var zhRange = new E('#zhRange')
+    zhRange.customConfig.onfocus = function () {
+        $(zhRange.toolbarSelector).addClass('focus')
+    }
+    zhRange.customConfig.onblur = function () {
+        $(zhRange.toolbarSelector).removeClass('focus')
+    }
+    zhRange.customConfig.menus = _menu
+
+    var zhParam = new E('#zhParam')
+    zhParam.customConfig.onfocus = function () {
+        $(zhParam.toolbarSelector).addClass('focus')
+    }
+    zhParam.customConfig.onblur = function () {
+        $(zhParam.toolbarSelector).removeClass('focus')
+    }
+    zhParam.customConfig.menus = _menu
+
+
     var enContent = new E('#enContent')
     enContent.customConfig.onfocus = function () {
         $(enContent.toolbarSelector).addClass('focus')
@@ -180,12 +208,53 @@ $(function () {
     }
     enContent.customConfig.menus = _menu
 
+    var enStyle = new E('#enStyle')
+    enStyle.customConfig.onfocus = function () {
+        $(enStyle.toolbarSelector).addClass('focus')
+    }
+    enStyle.customConfig.onblur = function () {
+        $(enStyle.toolbarSelector).removeClass('focus')
+    }
+    enStyle.customConfig.menus = _menu
+
+    var enRange = new E('#enRange')
+    enRange.customConfig.onfocus = function () {
+        $(enRange.toolbarSelector).addClass('focus')
+    }
+    enRange.customConfig.onblur = function () {
+        $(enRange.toolbarSelector).removeClass('focus')
+    }
+    enRange.customConfig.menus = _menu
+
+    var enParam = new E('#enParam')
+    enParam.customConfig.onfocus = function () {
+        $(enParam.toolbarSelector).addClass('focus')
+    }
+    enParam.customConfig.onblur = function () {
+        $(enParam.toolbarSelector).removeClass('focus')
+    }
+    enParam.customConfig.menus = _menu
+
     zhContent.create()
+    zhStyle.create()
+    zhRange.create()
+    zhParam.create()
+
     enContent.create()
+    enStyle.create()
+    enRange.create()
+    enParam.create()
 
 
     uploadInit(zhContent)
-    uploadInit(enContent);
+    uploadInit(zhStyle);
+    uploadInit(zhRange)
+    uploadInit(zhParam);
+
+    uploadInit(enContent)
+    uploadInit(enStyle);
+    uploadInit(enRange)
+    uploadInit(enParam);
 
 
 
@@ -212,7 +281,15 @@ $(function () {
 
         form.on('submit(submit)', function (data) {
             let content = zhContent.txt.html();
+            let style = zhStyle.txt.html();
+            let range = zhRange.txt.html();
+            let param = zhParam.txt.html();
+
             let encontent = enContent.txt.html();
+            let enstyle = enStyle.txt.html();
+            let enrange = enRange.txt.html();
+            let enparam = enParam.txt.html();
+
             let cover = $('.img-cover').attr('src')
             let videocover = $('.img-videocover').attr('src')
 
@@ -260,8 +337,32 @@ $(function () {
                 data.field.content = content;
             }
 
+            if (zhStyle.txt.text()) {
+                data.field.style = style;
+            }
+
+            if (zhRange.txt.text()) {
+                data.field.range = range;
+            }
+
+            if (zhParam.txt.text()) {
+                data.field.param = param;
+            }
+
             if (enContent.txt.text()) {
                 data.field.encontent = encontent;
+            }
+
+            if (enStyle.txt.text()) {
+                data.field.enstyle = enstyle;
+            }
+
+            if (enRange.txt.text()) {
+                data.field.enrange = enrange;
+            }
+
+            if (enParam.txt.text()) {
+                data.field.enparam = enparam;
             }
 
             if (!data.field.title) {
@@ -275,12 +376,42 @@ $(function () {
             }
 
             if (!data.field.content) {
-                layer.msg('中文内容不能为空', () => {})
+                layer.msg('中文产品简介不能为空', () => {})
                 return false;
             }
 
             if (!data.field.encontent) {
-                layer.msg('英文内容不能为空', () => {})
+                layer.msg('英文产品简介不能为空', () => {})
+                return false;
+            }
+
+            if (data.field.style && !data.field.enstyle) {
+                layer.msg('英文产品特点不能为空', () => {})
+                return false;
+            }
+
+            if (!data.field.style && data.field.enstyle) {
+                layer.msg('中文产品特点不能为空', () => {})
+                return false;
+            }
+
+            if (data.field.range && !data.field.enrange) {
+                layer.msg('英文应用范围不能为空', () => {})
+                return false;
+            }
+
+            if (!data.field.range && data.field.enrange) {
+                layer.msg('中文应用范围不能为空', () => {})
+                return false;
+            }
+
+            if (data.field.param && !data.field.enparam) {
+                layer.msg('英文技术参数不能为空', () => {})
+                return false;
+            }
+
+            if (!data.field.param && data.field.enparam) {
+                layer.msg('中文技术参数不能为空', () => {})
                 return false;
             }
 
@@ -324,7 +455,13 @@ $(function () {
         e.preventDefault();
         $('input[type="text"]').val('')
         zhContent.txt.clear()
+        zhStyle.txt.clear()
+        zhRange.txt.clear()
+        zhParam.txt.clear()
         enContent.txt.clear()
+        enStyle.txt.clear()
+        enRange.txt.clear()
+        enParam.txt.clear()
         fileurl = null
         $('#upload-file span').text('')
         $('.img-videocover').remove()

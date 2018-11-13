@@ -1,60 +1,152 @@
 {% extends './_layout.html' %}
 {% block title %}
- {% if client_lang === 'zh'%}
- {{detail.title}}
- {% else %}
- {{detail.entitle}}
- {% endif %}
+{% if client_lang === 'zh'%}
+{{detail.title}}
+{% else %}
+{{detail.entitle}}
+{% endif %}
 {% endblock %}
 {% block content %}
-<div class="banner-bar" style="background-image:url('//pcstatic.fhes.com/images/lowjpg/banner/03.jpg')" data-hd="//pcstatic.fhes.com/images/banner/03.jpg">
+<div class="banner-bar" style="background-image:url('/pc/build/images/lowjpg/banner/03.jpg')" data-hd="/pc/build/images/banner/03.jpg">
     <div class="banner-main">
         <div>{{detail.title}}</div>
         <p>{{detail.entitle}}</p>
     </div>
 </div>
-<div class="other-main">
+<div class="block-nav">
+    <div class="main clearfix">
+        {% if client_lang === 'zh'%}
+        <a href="#content" class="active">
+            产品简介
+        </a>
+        {% if detail.style %}
+        <a href="#style">
+            产品特点
+        </a>
+        {% endif %}
         {% if detail.video %}
-        <div class="video-container">
-            <video id="my-player" class="video-js" controls preload="auto" poster="{{detail.videocover}}"
-                data-setup='{}'>
-                <source src="{{detail.video}}" type="video/mp4"></source>
-                <p class="vjs-no-js">
-                    若要查看此视频，请启用JavaScript，或者考虑升级网页浏览器
-                    <a href="http://videojs.com/html5-video-support/" target="_blank">
-                        supports HTML5 video
-                    </a>
-                </p>
-            </video>
-        </div>
+        <a href="#video">
+            视频展示
+        </a>
         {% endif %}
-        <div class="content-container">
-            {% if client_lang === 'zh'%}
-                {% autoescape %}{{detail.content}}{% endautoescape %}
-            {% else %}
-                {% autoescape %}{{detail.encontent}}{% endautoescape %}
-            {% endif %}
-        </div>
-        {% if detail.file %}
-        <div class="downfile-container">
-            {% if client_lang === 'zh'%}
-            <a href="{{detail.file}}?attname=" download>技术参数{{lang.download}}</a>
-            {% else %}
-            <a href="{{detail.file}}?attname=" download>{{lang.download}} file</a>
-            {% endif %}
-        </div>
+        {% if detail.range %}
+        <a href="#range">
+            应用范围
+        </a>
         {% endif %}
+        {% if detail.param %}
+        <a href="#param">
+            技术参数
+        </a>
+        {% endif %}
+        {% else %}
+        <a href="#content" class="active">
+            Product introduction
+        </a>
+        {% if detail.style %}
+        <a href="#style">
+            Product features
+        </a>
+        {% endif %}
+        {% if detail.video %}
+        <a href="#video">
+            Video
+        </a>
+        {% endif %}
+        {% if detail.range %}
+        <a href="#range">
+            Application range
+        </a>
+        {% endif %}
+        {% if detail.param %}
+        <a href="#param">
+            Technical Parameters
+        </a>
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+<div class="other-main">
+
+    <div class="content-container" id="content">
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.content}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.encontent}}{% endautoescape %}
+        {% endif %}
+    </div>
+
+    {% if detail.style %}
+    <div class="content-container" id="style">
+        <div class="common-title">产品特点</div>
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.style}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.enstyle}}{% endautoescape %}
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if detail.video %}
+    <div class="video-container" id="video">
+        <div class="common-title">视频展示</div>
+        <video id="my-player" class="video-js" controls preload="auto" poster="{{detail.videocover}}" data-setup='{}'>
+            <source src="{{detail.video}}" type="video/mp4">
+            </source>
+            <p class="vjs-no-js">
+                若要查看此视频，请启用JavaScript，或者考虑升级网页浏览器
+                <a href="http://videojs.com/html5-video-support/" target="_blank">
+                    supports HTML5 video
+                </a>
+            </p>
+        </video>
+    </div>
+    {% endif %}
+
+    {% if detail.range %}
+    <div class="content-container" id="range">
+        <div class="common-title">应用范围</div>
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.range}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.enrange}}{% endautoescape %}
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if detail.param %}
+    <div class="content-container" id="param">
+        <div class="common-title">技术参数</div>
+        {% if client_lang === 'zh'%}
+        {% autoescape %}{{detail.param}}{% endautoescape %}
+        {% else %}
+        {% autoescape %}{{detail.enparam}}{% endautoescape %}
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if detail.file %}
+    <div class="downfile-container">
+        {% if client_lang === 'zh'%}
+        <a href="{{detail.file}}?attname=" download>技术参数{{lang.download}}</a>
+        {% else %}
+        <a href="{{detail.file}}?attname=" download>{{lang.download}} file</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %} {% block plugCss %}
 {% if detail.video %}
-    <link href="//cdn.fhes.com/video/video-js.min.css{{dev}}" rel="stylesheet">
+<link href="/cdn/video/video-js.min.css{{dev}}" rel="stylesheet">
 {% endif %}
-<link rel="stylesheet" href="//pcstatic.fhes.com/css/class_detail.min.css">
+<link rel="stylesheet" href="/pc/build/css/class_detail.min.css">
 {% endblock %}
 
 {% block plugJs %}
+<script type="text/javascript" src="/pc/build/js/class_detail.min.js"></script>
 {% if detail.video %}
-    <script src="//cdn.fhes.com/video/video.min.js{{dev}}"></script>
+<script src="/cdn/video/video.min.js{{dev}}"></script>
 {% endif %}
 
 {% endblock %}
