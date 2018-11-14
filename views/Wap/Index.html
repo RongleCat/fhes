@@ -1,6 +1,6 @@
 {% extends './_layout.html' %} {% block title %} FHES首页 {% endblock %} {% block content %}
 <div class="video-container">
-    <video id="my-player" class="video-js" controls preload="auto" poster="/wap/build/images/video_cover.jpg"
+    <video id="my-player" class="video-js" controls preload="auto" poster="//wapstatic.fhes.com/images/video_cover.jpg"
         data-setup='{}'>
         <source src="http://p8vbsyyqf.bkt.clouddn.com/fhes.mp4" type="video/mp4"></source>
         <p class="vjs-no-js">
@@ -10,7 +10,7 @@
             </a>
         </p>
     </video>
-    <div class="video-bottom" data-hd="/wap/build/images/video_bottom.jpg"></div>
+    <div class="video-bottom" data-hd="//wapstatic.fhes.com/images/video_bottom.jpg"></div>
 </div>
 <div class="content-block hangye">
     <div class="block-title">
@@ -20,37 +20,37 @@
         <div class="item">
             <a href="/class/1">
                 <p>{{lang.food}}</p>
-                <img src="/wap/build/images/window/01.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/01.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/2">
                 <p>{{lang.seed}}</p>
-                <img src="/wap/build/images/window/02.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/02.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/3">
                 <p>{{lang.packaging}}</p>
-                <img src="/wap/build/images/window/03.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/03.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/4">
                 <p>{{lang.bottle}}</p>
-                <img src="/wap/build/images/window/04.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/04.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/5">
                 <p>{{lang.salt}}</p>
-                <img src="/wap/build/images/window/05.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/05.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/6">
                 <p>{{lang.parts}}</p>
-                <img src="/wap/build/images/window/06.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/window/06.jpg" alt="">
             </a>
         </div>
     </div>
@@ -63,19 +63,19 @@
         <div class="item">
             <a href="/class/8">
                 <p>{{lang.laserseries}}</p>
-                <img src="/wap/build/images/class/01.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/class/01.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/9">
                 <p>{{lang.CIJseries}}</p>
-                <img src="/wap/build/images/class/02.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/class/02.jpg" alt="">
             </a>
         </div>
         <div class="item">
             <a href="/class/7">
                 <p>{{lang.DPseries}}</p>
-                <img src="/wap/build/images/class/03.jpg" alt="">
+                <img src="//wapstatic.fhes.com/images/class/03.jpg" alt="">
             </a>
         </div>
     </div>
@@ -85,17 +85,17 @@
         <div class="clearfix">
             <div class="left">
                 <div class="item lang">
-                    <img src="/wap/build/images/lowjpg/app_03.jpg" alt="">
+                    <img src="//wapstatic.fhes.com/images/lowjpg/app_03.jpg" alt="">
                     <div class="title">{{lang.qrmarketing}}</div>
                 </div>
             </div>
             <div class="right">
                 <div class="item">
-                    <img src="/wap/build/images/lowjpg/app_02.jpg" alt="">
+                    <img src="//wapstatic.fhes.com/images/lowjpg/app_02.jpg" alt="">
                     <div class="title">{{lang.qrassignment}}</div>
                 </div>
                 <div class="item">
-                    <img src="/wap/build/images/lowjpg/app_05.jpg" alt="">
+                    <img src="//wapstatic.fhes.com/images/lowjpg/app_05.jpg" alt="">
                     <div class="title">{{lang.datamonitoring}}</div>
                 </div>
             </div>
@@ -103,13 +103,13 @@
         <div class="clearfix">
             <div class="left">
                 <div class="item">
-                    <img src="/wap/build/images/lowjpg/app_04.jpg" alt="">
+                    <img src="//wapstatic.fhes.com/images/lowjpg/app_04.jpg" alt="">
                     <div class="title">{{lang.productqr}}</div>
                 </div>
             </div>
             <div class="right">
                 <div class="item">
-                    <img src="/wap/build/images/lowjpg/app_01.jpg" alt="">
+                    <img src="//wapstatic.fhes.com/images/lowjpg/app_01.jpg" alt="">
                     <div class="title">{{lang.counterfeitingsystem}}</div>
                 </div>
             </div>
@@ -142,12 +142,12 @@
     </div>
 </div>
 {% endblock %} {% block plugCss %}
-<link href="/cdn/video/video-js.min.css{{dev}}" rel="stylesheet">
-<link rel="stylesheet" href="/cdn/swiper/swiper.min.css">
-<link rel="stylesheet" href="/wap/build/css/home_index.min.css">{% endblock %} {% block plugJs %}
-<script src="/cdn/video/video.min.js{{dev}}"></script>
-<script type="text/javascript" src="/cdn/swiper/swiper.min.js"></script>
-<script type="text/javascript" src="/wap/build/js/home_index.min.js"></script>
+<link href="//cdn.fhes.com/video/video-js.min.css{{dev}}" rel="stylesheet">
+<link rel="stylesheet" href="//cdn.fhes.com/swiper/swiper.min.css">
+<link rel="stylesheet" href="//wapstatic.fhes.com/css/home_index.min.css">{% endblock %} {% block plugJs %}
+<script src="//cdn.fhes.com/video/video.min.js{{dev}}"></script>
+<script type="text/javascript" src="//cdn.fhes.com/swiper/swiper.min.js"></script>
+<script type="text/javascript" src="//wapstatic.fhes.com/js/home_index.min.js"></script>
 {% endblock %}
 </body>
 

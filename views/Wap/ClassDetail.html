@@ -7,7 +7,7 @@
 {% endif %}
 {% endblock %}
 {% block content %}
-<div class="banner-bar" style="background-image:url('/wap/build/images/lowjpg/banner/03.jpg')" data-hd="/wap/build/images/banner/03.jpg">
+<div class="banner-bar" style="background-image:url('//wapstatic.fhes.com/images/lowjpg/banner/03.jpg')" data-hd="//wapstatic.fhes.com/images/banner/03.jpg">
     <div class="banner-main">
         <div>{{detail.title}}</div>
         <p>{{detail.entitle}}</p>
@@ -78,15 +78,15 @@
 <!-- <div class="loading-layer">正在加载...</div> -->
 {% endblock %} {% block plugCss %}
 {% if detail.video %}
-<link href="/cdn/video/video-js.min.css{{dev}}" rel="stylesheet">
+<link href="//cdn.fhes.com/video/video-js.min.css{{dev}}" rel="stylesheet">
 {% endif %}
-<link rel="stylesheet" href="/wap/build/css/class_detail.min.css">
+<link rel="stylesheet" href="//wapstatic.fhes.com/css/class_detail.min.css">
 {% endblock %}
 
 {% block plugJs %}
 {% if detail.video %}
-<script src="/cdn/video/video.min.js{{dev}}"></script>
-<!-- <script type="text/javascript" src="/wap/build/js/class_detail.min.js"></script> -->
+<script src="//cdn.fhes.com/video/video.min.js{{dev}}"></script>
+<!-- <script type="text/javascript" src="//wapstatic.fhes.com/js/class_detail.min.js"></script> -->
 {% endif %}
 
 {% endblock %}
