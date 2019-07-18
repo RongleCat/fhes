@@ -1,5 +1,5 @@
 {% extends './_layout.html' %} {% block title %} FHES首页 {% endblock %} {% block content %}
-<div class="video-container">
+<div class="video-container" style="display:none">
     <video id="my-player" class="video-js" controls preload="auto" poster="//wapstatic.fhes.com/images/video_cover.jpg"
         data-setup='{}'>
         <source src="http://p8vbsyyqf.bkt.clouddn.com/fhes.mp4" type="video/mp4"></source>
@@ -61,19 +61,19 @@
     </div>
     <div class="block-main clearfix">
         <div class="item">
-            <a href="/class/8">
+            <a href="/productlist?id=9">
                 <p>{{lang.laserseries}}</p>
                 <img src="//wapstatic.fhes.com/images/class/01.jpg" alt="">
             </a>
         </div>
         <div class="item">
-            <a href="/class/9">
+            <a href="/productlist?id=10">
                 <p>{{lang.CIJseries}}</p>
                 <img src="//wapstatic.fhes.com/images/class/02.jpg" alt="">
             </a>
         </div>
         <div class="item">
-            <a href="/class/7">
+            <a href="/productlist?id=8">
                 <p>{{lang.DPseries}}</p>
                 <img src="//wapstatic.fhes.com/images/class/03.jpg" alt="">
             </a>

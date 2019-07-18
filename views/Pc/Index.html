@@ -1,6 +1,6 @@
 {% extends './_layout.html' %} {% block title %} FHES首页 {% endblock %} {% block content %}
 <div class="top-img" data-hd="//pcstatic.fhes.com/images/top_bg.jpg"></div>
-<div class="video-container">
+<div class="video-container" style="display:none">
     <video id="my-player" class="video-js" controls preload="auto" poster="//pcstatic.fhes.com/images/video_cover.jpg" data-setup='{}'>
         <source src="http://p8vbsyyqf.bkt.clouddn.com/fhes.mp4" type="video/mp4">
         </source>
@@ -70,7 +70,7 @@
     <div class="block-title font-black">{{lang.productseries}}</div>
     <div class="class-list clearfix">
         <div class="class-item item-01" data-hd="http://pcstatic.fhes.com/images/class/01.jpg">
-            <a href="/class/8">
+            <a href="/productlist?id=9">
                 <div class="tip-bar">{{lang.laserseries}}
                     <u>{{lang.readmore}}></u>
                 </div>
@@ -78,7 +78,7 @@
             <div class="mask-layer"></div>
         </div>
         <div class="class-item item-02" data-hd="http://pcstatic.fhes.com/images/class/02.jpg">
-            <a href="/class/9">
+            <a href="/productlist?id=10">
                 <div class="tip-bar">{{lang.CIJseries}}
                     <u>{{lang.readmore}}></u>
                 </div>
@@ -86,7 +86,7 @@
             <div class="mask-layer"></div>
         </div>
         <div class="class-item item-03" data-hd="http://pcstatic.fhes.com/images/class/03.jpg">
-            <a href="/class/7">
+            <a href="/productlist?id=8">
                 <div class="tip-bar">{{lang.DPseries}}
                     <u>{{lang.readmore}}></u>
                 </div>
